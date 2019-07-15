@@ -1,7 +1,4 @@
 import React from "react";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
-import Footer from "../components/Footer"
 
 // NoMatch page when page wasn't found
 function NoMatch() {
