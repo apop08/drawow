@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
@@ -6,7 +7,7 @@ import Game from "./pages/Game";
 import Rank from "./pages/Rank";
 import Profile from "./pages/Profile";
 import NoMatch from "./pages/NoMatch";
-
+import Canvas from "./components/Canvas"
 // Set up the router
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           <Route path ="/game" exact component={Game}></Route>
           <Route path ="/rank" exact component={Rank}></Route>
           <Route path ="/profile" exact component={Profile}></Route>
+          <Route path ="/test/canvas" exact component={Canvas}></Route>
           <Route component ={NoMatch}></Route>
         </Switch>
+
       </div>
     </Router>
   );
