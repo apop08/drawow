@@ -1,0 +1,14 @@
+.nav {
+    background-color: lightgray;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    text-align: center;
+}
+
+.nav .logo {
+    border: 1px solid red;
+    padding: 20px;
+    display: inline-block;
+}

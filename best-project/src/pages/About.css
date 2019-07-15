@@ -1,0 +1,20 @@
+.about-page {
+    text-align: center;
+}
+
+.container {
+    display: block;
+    text-align: center;
+    margin: 200px;
+    border: 1px solid silver;
+    margin-right: 130px;
+
+    box-shadow: 5px 10px 5px darkslategray;
+    height: 310px;
+}
+button.custom-button{
+    margin: 80px 60px;
+}
+span{
+    width: 200px;
+}
