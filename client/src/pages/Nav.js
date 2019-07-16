@@ -20,6 +20,7 @@ class Nav extends Component {
       <div className="App d-flex justify-content-center">
         <button
           type="button"
+          value="about"
           className="btn btn-secondary"
           onClick={this.toggle}
         >
@@ -27,6 +28,7 @@ class Nav extends Component {
         </button>
         <button
           type="button"
+          value="game"
           className="btn btn-secondary"
           onClick={this.toggle}
         >
@@ -34,6 +36,7 @@ class Nav extends Component {
         </button>    
          <button
           type="button"
+          value="rank"
           className="btn btn-secondary"
           onClick={this.toggle}
         >
@@ -41,6 +44,7 @@ class Nav extends Component {
         </button>     
         <button
           type="button"
+          valut="profile"
           className="btn btn-secondary"
           onClick={this.toggle}
         >
