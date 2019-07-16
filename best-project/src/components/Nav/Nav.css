@@ -7,11 +7,17 @@
     text-align: center;
 }
 
-.nav .logo {
-    border: 1px solid red;
+.nav {
+    /* border: 1px solid red; */
     padding: 20px;
     display: inline-block;
-    background: url(../../images/DrawWow_PNG-02.png);
-    width: 90%;
-    height: 100%;
+    /* background: url(../../images/DrawWow_PNG-02.png); */
+    /* width: 90%; */
+    /* height: 100%; */
+}
+.logo {
+    /* border: 1px solid red; */
+    padding: 20px;
+    display: inline-block;
+    width: 20%;
 }
