@@ -4,6 +4,7 @@ import Nav from '../components/Nav/Nav'
 import './About.css';
 import 'react-awesome-button/dist/themes/theme-blue.css';
 import Footer from '../components/Footer/Footer';
+// import images from '../../public/images';
 
 class About extends Component {
     render() {
