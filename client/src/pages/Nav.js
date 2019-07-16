@@ -47,8 +47,8 @@ class Nav extends Component {
           Profile
         </button>
         <Modal isOpen={this.state.modal}>
-          <ModalHeader>
-            <h3>This is modal header</h3>
+          {/* <ModalHeader> */}
+            {/* <h3>This is modal header</h3> */}
             <button
               type="button"
               className="close"
@@ -57,11 +57,11 @@ class Nav extends Component {
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </ModalHeader>
+         {/* </ModalHeader> */}
           <ModalBody>
             <p>This is modal body</p>
           </ModalBody>
-          <ModalFooter>
+          {/* <ModalFooter>
             <button
               type="button"
               className="btn btn-secondary"
@@ -76,7 +76,7 @@ class Nav extends Component {
             >
               Save changes
             </button>
-          </ModalFooter>
+          </ModalFooter> */}
         </Modal>
       </div>
     );
