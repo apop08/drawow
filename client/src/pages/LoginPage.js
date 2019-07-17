@@ -30,7 +30,7 @@ class LoginPage extends Component {
         return (
             <Container>
                 <div className='about-page'>
-                    <div className='container'>
+                    <div className='container '>
                         
                         <AwesomeButton className='custom-button' type="primary" onPress={(e) => this.handleLoginPress(e)}>LogIn</AwesomeButton>
 

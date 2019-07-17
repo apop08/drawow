@@ -3,7 +3,7 @@ import Modal, { ModalHeader, ModalBody } from '../components/Modal/index';
 import About from '../components/About/index';
 import Rank from '../components/Rank/index';
 import Profile from '../components/Profile/index';
-import './style.css';
+import './Nav.css';
 
 class Nav extends Component {
   constructor(props) {
