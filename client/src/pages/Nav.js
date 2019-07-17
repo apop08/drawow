@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal, { ModalHeader, ModalBody } from '../components/Modal/index';
+import About from '../components/About/index';
 import './style.css';
 
 class Nav extends Component {
@@ -22,7 +23,7 @@ class Nav extends Component {
     console.log(this.state.button);
     switch (this.state.button) {
       case "about":
-        test = "this is about"
+        test = <About/>
         break
       case "game":
         test = "this is game"
