@@ -23,8 +23,8 @@ class Signup extends Component {
 	handleSubmit(event) {
 		event.preventDefault()
 
-		this.props._login(this.state.username, sha256(this.state.password))
-		this.setState({ redirectTo: '/'})
+		this.props._login(this.state.username, this.state.email, sha256(this.state.password))
+		this.setState({ redirectTo: '/nav'})
 	}
 
 	render() {
