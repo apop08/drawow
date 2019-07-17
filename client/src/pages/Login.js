@@ -26,7 +26,7 @@ class LoginForm extends Component {
 		event.preventDefault()
 
 		this.props._login(this.state.username, sha256(this.state.password))
-		this.setState({ redirectTo: '/'})
+		this.setState({redirectTo: '/'})
 	}
 
 	render() {
