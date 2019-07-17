@@ -6,19 +6,40 @@ class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      button: ""
     };
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
-    this.setState({ modal: !this.state.modal });
+  toggle = event => {
+    const { name, value } = event.target;
+    this.setState({ modal: !this.state.modal, [name]: value });
   }
 
   render() {
+    var test = "";
+    console.log(this.state.button);
+    switch (this.state.button) {
+      case "about":
+        test = "this is about"
+        break
+      case "game":
+        test = "this is game"
+        break
+      case "rank":
+        test = "this is rank"
+        break
+      case "profile":
+        test = "this is profile"
+        break
+      default:
+    }
+
     return (
       <div className="App d-flex justify-content-center">
         <button
+          name="button"
           type="button"
           value="about"
           className="btn btn-secondary"
@@ -33,16 +54,18 @@ class Nav extends Component {
           onClick={this.toggle}
         >
           Game
-        </button>    
-         <button
+        </button>
+        <button
+          name="button"
           type="button"
           value="rank"
           className="btn btn-secondary"
           onClick={this.toggle}
         >
           Rank
-        </button>     
+        </button>
         <button
+          name="button"
           type="button"
           valut="profile"
           className="btn btn-secondary"
@@ -62,7 +85,7 @@ class Nav extends Component {
             </button>
           </ModalHeader>
           <ModalBody>
-            <p>This is modal body</p>
+            <p>{test}</p>
           </ModalBody>
         </Modal>
       </div>
