@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal, { ModalHeader, ModalBody } from '../components/Modal/index';
 import About from '../components/About/index';
+import Rank from '../components/Rank/index';
+import Profile from '../components/Profile/index';
 import './style.css';
 
 class Nav extends Component {
@@ -29,10 +31,10 @@ class Nav extends Component {
         test = "this is game"
         break
       case "rank":
-        test = "this is rank"
+        test = <Rank/>
         break
       case "profile":
-        test = "this is profile"
+        test = <Profile/>
         break
       default:
     }
@@ -68,7 +70,7 @@ class Nav extends Component {
         <button
           name="button"
           type="button"
-          valut="profile"
+          value="profile"
           className="btn btn-secondary"
           onClick={this.toggle}
         >

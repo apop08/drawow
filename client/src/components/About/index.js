@@ -2,7 +2,7 @@ import React from 'react';
 
 function About() {
     return (
-        <p>"test"</p>
+        <p>"test about"</p>
     )
 }
 export default About;
