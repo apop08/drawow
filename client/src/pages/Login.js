@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import sha256 from 'js-sha256';
+import Container from '../components/Container/Container';
+
 class LoginForm extends Component {
 	constructor() {
 		super()
@@ -32,26 +34,28 @@ class LoginForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-				<div className="LoginForm">
-					<h1>Login form</h1>
-					<form>
-						<label htmlFor="username">Username: </label>
-						<input
-							type="text"
-							name="username"
-							value={this.state.username}
-							onChange={this.handleChange}
-						/>
-						<label htmlFor="password">Password: </label>
-						<input
-							type="password"
-							name="password"
-							value={this.state.password}
-							onChange={this.handleChange}
-						/>
-						<button onClick={this.handleSubmit}>Login</button>
-					</form>
-				</div>
+				<Container>
+					<div className="LoginForm">
+						<h1>Login form</h1>
+						<form>
+							<label htmlFor="username">Username: </label>
+							<input
+								type="text"
+								name="username"
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<label htmlFor="password">Password: </label>
+							<input
+								type="password"
+								name="password"
+								value={this.state.password}
+								onChange={this.handleChange}
+							/>
+							<button onClick={this.handleSubmit}>Login</button>
+						</form>
+					</div>
+				</Container>
 			)
 		}
 	}
