@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AwesomeButton } from 'react-awesome-button';
 import Container from '../components/Container/Container';
-import './About.css'
-import 'react-awesome-button/dist/themes/theme-blue.css'
+import './LoginPage.css'
+import 'react-awesome-button/dist/themes/theme-blue.css';
 // import images from '../../public/images';
 import Login from './Login'
 
-class About extends Component {
+class LoginPage extends Component {
     constructor(props)
     {
         super(props);
@@ -44,4 +44,4 @@ class About extends Component {
     }
 }
 
-export default About;
+export default LoginPage;

@@ -1,11 +1,11 @@
-
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LoginForm from "./pages/Login";
-import About from "./pages/About";
-import Game from "./pages/Game";
-import Rank from "./pages/Rank";
+import LoginPage from "./pages/LoginPage";
+import About from "./pages/LoginPage";
+// import Game from "./pages/Game";
+// import Rank from "./pages/Rank";
 //import Profile from "./pages/Profile";
+import Nav from "./pages/Nav";
 import NoMatch from "./pages/NoMatch";
 import Canvas from "./components/Canvas"
 import axios from "axios";
@@ -77,11 +77,12 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route path="/" exact component={LoginForm}></Route>
+            <Route path="/" exact component={LoginPage}></Route>
             <Route path="/about" exact component={About}></Route>
-            <Route path="/game" exact component={Game}></Route>
-            <Route path="/rank" exact component={Rank}></Route>
-            {/*<Route path ="/profile" exact component={Profile}></Route>*/}
+			<Route path="/nav" exact component={Nav}></Route>
+            {/* <Route path="/game" exact component={Game}></Route> */}
+            {/* <Route path="/rank" exact component={Rank}></Route> */}
+            {/* <Route path ="/profile" exact component={Profile}></Route> */}
             <Route path="/test/canvas" exact component={Canvas}></Route>
             <Route component={NoMatch}></Route>
           </Switch>

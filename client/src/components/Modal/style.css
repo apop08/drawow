@@ -1,0 +1,16 @@
+.modal-header{
+    border:none
+}
+@media (min-width: 576px) {
+    .modal-dialog { max-width: none; }
+  }
+  
+  .modal-dialog {
+    width: 80%;
+    height: 92%;
+    padding: 0;
+  }
+  
+  .modal-content {
+    height: 99%;
+  }
