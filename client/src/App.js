@@ -19,7 +19,8 @@ class App extends Component {
     };
 
     this._logout = this._logout.bind(this);
-    this._login = this._login.bind(this);
+	this._login = this._login.bind(this);
+	this._register = this._register.bind(this);
   }
 
 	componentDidMount() {
@@ -72,12 +73,27 @@ class App extends Component {
 			})
 	}
 
+	_register(username, email, password) {
+		axios
+			.post('/auth/register', {
+				username,
+				email,
+				password
+			})
+			.then(response => {
+				console.log(response)
+				if (response.status === 200) {
+					// update the state
+					this._login(username, password)
+				}
+			})
+	}
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            <Route path="/" render={(props) => <LoginPage {...props} _login={this._login} />}></Route>
+            <Route path="/" exact render={(props) => <LoginPage {...props} _login={this._login} _register={this._register} />}></Route>
             <Route path="/about" exact component={About}></Route>
 			<Route path="/nav" exact component={Nav}></Route>
             {/* <Route path="/game" exact component={Game}></Route> */}
