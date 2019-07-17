@@ -38,22 +38,23 @@ class Nav extends Component {
         break
       default:
     }
-
+ 
     return (
       <div className="App d-flex justify-content-center">
         <button
           name="button"
           type="button"
           value="about"
-          className="btn btn-secondary"
+          className="btn btn-secondary navBtn"
           onClick={this.toggle}
         >
           About
         </button>
         <button
+           name="button"
           type="button"
           value="game"
-          className="btn btn-secondary"
+          className="btn btn-secondary navBtn"
           onClick={this.toggle}
         >
           Game
@@ -62,7 +63,7 @@ class Nav extends Component {
           name="button"
           type="button"
           value="rank"
-          className="btn btn-secondary"
+          className="btn btn-secondary navBtn"
           onClick={this.toggle}
         >
           Rank
@@ -71,7 +72,7 @@ class Nav extends Component {
           name="button"
           type="button"
           value="profile"
-          className="btn btn-secondary"
+          className="btn btn-secondary navBtn"
           onClick={this.toggle}
         >
           Profile

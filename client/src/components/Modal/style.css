@@ -1,6 +1,7 @@
 .modal-header{
     border:none
 }
+
 @media (min-width: 576px) {
     .modal-dialog { max-width: none; }
   }
@@ -13,4 +14,5 @@
   
   .modal-content {
     height: 99%;
+    /* padding: 2%; */
   }

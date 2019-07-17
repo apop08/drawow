@@ -1,0 +1,25 @@
+#content{
+    padding:0 8% 0 8%; 
+}
+h1 {
+    text-align: center; 
+
+}
+#quotes{
+    font-size: 20px;
+    font-weight:bold;
+    font-family: 'Roboto Slab', serif;
+    font-style: italic;
+}
+#tall{
+    font-size: 30px;
+}
+.githubLink{
+    text-align:center
+}
+.githubLink a{
+    margin-left:2%;
+}
+.githubLink a:hover{
+    text-decoration: none;
+}
