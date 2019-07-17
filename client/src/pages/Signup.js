@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import sha256 from 'js-sha256';
-//import Container from '../components/Container/Container';
 
-class LoginForm extends Component {
-	constructor() {
+class Signup extends Component {
+    constructor() {
 		super()
 		this.state = {
 			username: '',
-			password: '',
+            password: '',
+            email: '',
 			redirectTo: null
-		}
-
-		this.handleSubmit = this.handleSubmit.bind(this)
+        }
+        this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
 
@@ -26,7 +24,7 @@ class LoginForm extends Component {
 		event.preventDefault()
 
 		this.props._login(this.state.username, sha256(this.state.password))
-		this.setState({redirectTo: '/'})
+		this.setState({ redirectTo: '/'})
 	}
 
 	render() {
@@ -57,7 +55,7 @@ class LoginForm extends Component {
 				
 			)
 		}
-	}
+    }
 }
 
-export default LoginForm
+    export default Signup

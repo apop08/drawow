@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
-class Container extends Component {
+class Storage extends Component {
     render() {
 
         return <div className='page-container'>
@@ -13,4 +13,4 @@ class Container extends Component {
     }
 }
 
-export default Container;
+export default Storage;
