@@ -3,7 +3,9 @@
 }
 button{
     margin-right:10%;
+    color:#5200ff;
 }
 button:nth-child(4){
     margin-right:0%;
 }
+
