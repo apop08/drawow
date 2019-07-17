@@ -19,7 +19,7 @@ class LoginPage extends Component {
 
         console.log(this.state.formToPresent);
         
-        this.setState({formToPresent: <Login/>});
+        this.setState({formToPresent: <Login _login={this.props._login}/>});
     }
 
     handleSignUpPress()

@@ -77,7 +77,7 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route path="/" exact component={LoginPage}></Route>
+            <Route path="/" render={(props) => <LoginPage {...props} _login={this._login} />}></Route>
             <Route path="/about" exact component={About}></Route>
 			<Route path="/nav" exact component={Nav}></Route>
             {/* <Route path="/game" exact component={Game}></Route> */}
