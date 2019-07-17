@@ -24,7 +24,7 @@ class LoginPage extends Component {
 
     handleSignUpPress()
     {
-        //this.formToPresent = <SignUp/>;
+        //this.formToPresent = <SignUp _register=this.props._register/>;
     }
     render() {
         return (
