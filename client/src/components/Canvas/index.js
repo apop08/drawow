@@ -32,6 +32,7 @@ function findxy(res, e, obj) {
   }
 }
 
+
 class Canvas extends Component {
   constructor(props) {
     super(props)
@@ -46,6 +47,7 @@ class Canvas extends Component {
     this.dot_flag = false;
     this.x = "black";
     this.y = 2;
+    this.color = this.color.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +78,7 @@ class Canvas extends Component {
     }, false);
   };
 
+
   draw() {
     this.ctx.beginPath();
     this.ctx.moveTo(this.prevX, this.prevY);
@@ -86,21 +89,32 @@ class Canvas extends Component {
     this.ctx.closePath();
   };
 
-
+  color(color){
+    console.log("change color");
+    this.x = color;
+  }
   render() {
+    let obj = this;
     return (<div><canvas ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-      {/* <div style={{position:"absolute", top:"12%", left:"43%"}}>Choose Color</div>
-      <div style={{position:"absolute", top:"15%", left:"45%", width:"10px", height:"10px", background:"green"}} id="green" onclick="color(this)"></div>
-      <div style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"blue"}} id="blue" onclick="color(this)"></div>
-      <div style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"red"}} id="red" onclick="color(this)"></div>
-      <div style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onclick="color(this)"></div>
-      <div style={{position:"absolute", top:"17%", left:"46%", width:"10px", height:"10px", background:"orange"}} id="orange" onclick="color(this)"></div>
-      <div style={{position:"absolute", top:"17%", left:"47%", width:"10px", height:"10px", background:"black"}} id="black" onclick="color(this)"></div>
+      <div style={{position:"absolute", top:"12%", left:"43%"}}>Choose Color</div>
+      <button style={{position:"absolute", top:"15%", left:"45%", width:"10px", height:"10px", background:"green"}} id="green" onClick={this.color.bind(this, "green")}></button>
+      <button style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"red"}} id="red" onClick={this.color.bind(this, "red")}></button>
+      <button style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={this.color.bind(this, "blue")}></button>
+      <button style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"orange"}} id="orange" onClick={this.color.bind(this, "orange")}></button>
+      <button style={{position:"absolute", top:"17%", left:"46%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick={this.color.bind(this, "yellow")}></button>
+      <button style={{position:"absolute", top:"17%", left:"47%", width:"10px", height:"10px", background:"black"}} id="black" onClick={this.color.bind(this, "black")}></button>
+      <button style={{position:"absolute", top:"22%", left:"43%", width:"15px", height:"15px", background:"white"}} id="white" onClick={this.color.bind(this, "white")}></button>
+      
+      {/*<div style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={color(this)}></div>
+      <div style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"red"}} id="red" onClick="color(this)"></div>
+      <div style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick="color(this)"></div>
+      <div style={{position:"absolute", top:"17%", left:"46%", width:"10px", height:"10px", background:"orange"}} id="orange" onClick="color(this)"></div>
+      <div style={{position:"absolute", top:"17%", left:"47%", width:"10px", height:"10px", background:"black"}} id="black" onClick="color(this)"></div>
       <div style={{position:"absolute", top:"20%", left:"43%"}}>Eraser</div>
-      <div style={{position:"absolute", top:"22%", left:"45%", width:"15px", height:"15px", background:"white", border:"2px solid"}} id="white" onclick="color(this)"></div>
+      <div style={{position:"absolute", top:"22%", left:"45%", width:"15px", height:"15px", background:"white", border:"2px solid"}} id="white" onclick="Color(this)"></div>
       <img id="canvasimg" alt="canvas" style={{position:"absolute", top:"10%", left:"52%", display: "none"}} />
       <input type="button" value="save" id="btn" size="30" onclick="save()" style={{position:"absolute", top:"55%", left:"10%"}} /> 
-  <input type="button" value="clear" id="clr" size="23" onclick="erase()" style={{position:"absolute", top:"55%", left:"15%"}} />*/}
+      <input type="button" value="clear" id="clr" size="23" onclick="erase()" style={{position:"absolute", top:"55%", left:"15%"}} />*/}
     </div>)
   }
 }
