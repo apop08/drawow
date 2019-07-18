@@ -17,6 +17,7 @@ button:nth-child(4){
     width:10%;
     height:50px;
     border:none;
+    margin-bottom:25%;
 }
 .navBtn:hover{
     background:white;
@@ -27,7 +28,6 @@ button:nth-child(4){
     /* height:60px; */
     transform: scale(1.5);
 }
-body {
-    /* background:lightgray; */
-    background:#1d005ba5;
+body{
+    height:100%;
 }
