@@ -13,15 +13,17 @@ button:nth-child(4){
     /* background:#1d005ba5; */
     background:white;
     /* color:white; */
-    color:#1d005ba5;
+    color:#5200ff;
     width:10%;
     height:50px;
     border:none;
     margin-bottom:25%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
 }
 .navBtn:hover{
     background:white;
-    color:#1d005ba5;
+    color:#5200ff;
     /* background:#5200ff; */
     /* background:#1d005ba5; */
     /* width:15%; */
