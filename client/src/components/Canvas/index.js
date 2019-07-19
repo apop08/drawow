@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "./components/Slider";
 import $ from "jquery"
-
+import { SliderPicker } from 'react-color';
 function getPosition(mouseEvent, sigCanvas) {
   var rect = sigCanvas.getBoundingClientRect();
   return {
@@ -34,12 +34,13 @@ function finishDrawing(mouseEvent, sigCanvas, context) {
 class Canvas extends Component {
   constructor(props) {
     super(props)
-    this.state = {};
+    this.state = {color: "000000"};
     this.canvas = false;
     this.ctx = false;
-    this.x = "black";
+    this.x = this.state.color;
     //this.y = 2;
     this.color = this.color.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -70,42 +71,29 @@ class Canvas extends Component {
     });
   }
 
-  color(color) {
-    console.log("change color");
-    this.ctx.strokeStyle = color;
-
-    
+  color(color){
+    this.setState({color: color});
+    this.ctx.strokeStyle = this.state.color;
   }
-
   brush(size) {
-    console.log("change brush");
     this.ctx.lineWidth = size;
   }
+  handleChange = (color) =>{
+    console.log(color.hex)
+    this.setState({color: color.hex});
+    this.ctx.strokeStyle = this.state.color;
+    
+  }
   render() {
-
-    // let obj = this;
-    return (<div><canvas ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-      <div style={{position:"absolute", top:"12%", left:"43%"}}>Choose Color</div>
-      <button style={{position:"absolute", top:"15%", left:"45%", width:"10px", height:"10px", background:"green"}} id="green" onClick={this.color.bind(this, "green")}></button>
-      <button style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"red"}} id="red" onClick={this.color.bind(this, "red")}></button>
-      <button style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={this.color.bind(this, "blue")}></button>
-      <button style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"orange"}} id="orange" onClick={this.color.bind(this, "orange")}></button>
-      <button style={{position:"absolute", top:"17%", left:"46%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick={this.color.bind(this, "yellow")}></button>
-      <button style={{position:"absolute", top:"17%", left:"47%", width:"10px", height:"10px", background:"black"}} id="black" onClick={this.color.bind(this, "black")}></button>
-      <button style={{position:"absolute", top:"22%", left:"43%", width:"15px", height:"15px", background:"white"}} id="white" onClick={this.color.bind(this, "white")}></button>
-
+    //let obj = this;
+    console.log(this.state)
+    return (<div>
       
-      Color: <input class="jscolor" ref="colorbar" value={this.ctx.strokeStyle} onChange={obj.color.bind(obj, this.colorbar.value)}></input>
+      Color: <SliderPicker color={this.state.color} onChangeComplete={this.handleChange}/>
       <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
       <div style={{ position: "absolute", top: "12%", left: "43%" }}>Choose Color</div>
-      <button style={{ position: "absolute", top: "15%", left: "45%", width: "10px", height: "10px", background: "green" }} id="green" onClick={this.color.bind(this, "green")}></button>
-      <button style={{ position: "absolute", top: "15%", left: "46%", width: "10px", height: "10px", background: "red" }} id="red" onClick={this.color.bind(this, "red")}></button>
-      <button style={{ position: "absolute", top: "15%", left: "47%", width: "10px", height: "10px", background: "blue" }} id="blue" onClick={this.color.bind(this, "blue")}></button>
-      <button style={{ position: "absolute", top: "17%", left: "45%", width: "10px", height: "10px", background: "orange" }} id="orange" onClick={this.color.bind(this, "orange")}></button>
-      <button style={{ position: "absolute", top: "17%", left: "46%", width: "10px", height: "10px", background: "yellow" }} id="yellow" onClick={this.color.bind(this, "yellow")}></button>
-      <button style={{ position: "absolute", top: "17%", left: "47%", width: "10px", height: "10px", background: "black" }} id="black" onClick={this.color.bind(this, "black")}></button>
       <button style={{ position: "absolute", top: "22%", left: "43%", width: "15px", height: "15px", background: "white" }} id="white" onClick={this.color.bind(this, "white")}></button>
-      <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "white" }} min="1" max="15" value="10" step="1" fn={this.brush.bind(this)} />
+      <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "black" }} min="1" max="15" value="10" step="1" fn={this.brush.bind(this)} />
       {/*<div style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={color(this)}></div>
       <div style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"red"}} id="red" onClick="color(this)"></div>
       <div style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick="color(this)"></div>
