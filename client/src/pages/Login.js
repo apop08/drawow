@@ -1,7 +1,9 @@
+// should we move this to a component? Alex
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import sha256 from 'js-sha256';
 //import Container from '../components/Container/Container';
+import './Login.css'
 
 class LoginForm extends Component {
 	constructor() {
@@ -26,17 +28,20 @@ class LoginForm extends Component {
 		event.preventDefault()
 
 		this.props._login(this.state.username, sha256(this.state.password))
-		this.setState({redirectTo: '/nav'})
+		this.setState({ redirectTo: '/nav' })
 	}
 
 	render() {
 		if (this.state.redirectTo) {
+			console.log(this.state.redirectTo)
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-					<div className="LoginForm">
-						<h1>Login form</h1>
-						<form>
+				<div className="LoginForm">
+					
+
+					<form>
+						<div>
 							<label htmlFor="username">Username: </label>
 							<input
 								type="text"
@@ -44,6 +49,8 @@ class LoginForm extends Component {
 								value={this.state.username}
 								onChange={this.handleChange}
 							/>
+						</div>
+						<div>
 							<label htmlFor="password">Password: </label>
 							<input
 								type="password"
@@ -51,10 +58,12 @@ class LoginForm extends Component {
 								value={this.state.password}
 								onChange={this.handleChange}
 							/>
-							<button onClick={this.handleSubmit}>Login</button>
-						</form>
-					</div>
-				
+						</div>
+					
+						<button id ="login_button" onClick={this.handleSubmit}>Login</button>
+					</form>
+				</div>
+
 			)
 		}
 	}

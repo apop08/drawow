@@ -101,6 +101,7 @@ class App extends Component {
             {/* <Route path ="/profile" exact component={Profile}></Route> */}
             <Route path="/test/canvas" exact component={Canvas}></Route>
             <Route component={NoMatch}></Route>
+
           </Switch>
 
         </div>

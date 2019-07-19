@@ -1,0 +1,28 @@
+.App{
+    margin-top:300px;
+}
+button{
+    margin-right:10%;
+}
+button:nth-child(4){
+    margin-right:0%;
+}
+
+.navBtn{
+    background:white;
+    color:#5200ff;
+    width:10%;
+    height:50px;
+    border:none;
+    margin-bottom:25%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+}
+.navBtn:hover{
+    background:white;
+    color:#5200ff;
+    transform: scale(1.5);
+}
+body{
+    height:100%;
+}

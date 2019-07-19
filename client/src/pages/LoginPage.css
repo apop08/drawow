@@ -2,12 +2,14 @@
     text-align: center;
 }
 
-.container {
+.our-container {
     display: block;
     text-align: center;
-    margin: 200px;
+    margin: 200px 100px;
     border: 1px solid silver;
+
     margin-right: 130px;
+background:white;
 
     box-shadow: 5px 10px 5px darkslategray;
     height: 310px;
@@ -15,6 +17,14 @@
 button.custom-button{
     margin: 80px 60px;
 }
+
+@media only screen {
+    
+    button.custom-button{
+        margin: 20px;
+    }
+}
+
 span{
     width: 200px;
 }
