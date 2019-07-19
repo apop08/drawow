@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import axios from 'axios'
+// import sha256 from 'js-sha256';
 
 class Signup extends Component {
     constructor() {
 		super()
 		this.state = {
 			username: '',
-            password: '',
-            email: '',
+			password: '',
+			confirmPassword: '',
 			redirectTo: null
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,9 +24,26 @@ class Signup extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault()
-
-		this.props._login(this.state.username, this.state.email, sha256(this.state.password))
-		this.setState({ redirectTo: '/nav'})
+		
+		// TODO - validate!
+		axios
+			.post('/auth/signup', {
+				username: this.state.username,
+				password: this.state.password
+			})
+			.then(response => {
+				console.log(response)
+				if (!response.data.errmsg) {
+					console.log('youre good')
+					this.setState({
+						redirectTo: '/login'
+					})
+				} else {
+					console.log('duplicate')
+				}
+			})
+		// this.props._login(this.state.username, this.state.email, sha256(this.state.password))
+		// this.setState({ redirectTo: '/nav'})
 	}
 
 	render() {
@@ -32,25 +51,31 @@ class Signup extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-					<div className="LoginForm">
-						<h1>Login form</h1>
-						<form>
-							<label htmlFor="username">Username: </label>
-							<input
-								type="text"
-								name="username"
-								value={this.state.username}
-								onChange={this.handleChange}
-							/>
-							<label htmlFor="password">Password: </label>
-							<input
-								type="password"
-								name="password"
-								value={this.state.password}
-								onChange={this.handleChange}
-							/>
-							<button onClick={this.handleSubmit}>Login</button>
-						</form>
+			
+					<div className="SignupForm">
+						<h1>Signup form</h1>
+						<label htmlFor="username">Username: </label>
+						<input
+							type="text"
+							name="username"
+							value={this.state.username}
+							onChange={this.handleChange}
+						/>
+						<label htmlFor="password">Password: </label>
+						<input
+							type="password"
+							name="password"
+							value={this.state.password}
+							onChange={this.handleChange}
+						/>
+						<label htmlFor="confirmPassword">Confirm Password: </label>
+						<input
+							type="password"
+							name="confirmPassword"
+							value={this.state.confirmPassword}
+							onChange={this.handleChange}
+						/>
+						<button onClick={this.handleSubmit}>Sign up</button>
 					</div>
 				
 			)

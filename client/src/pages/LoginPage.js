@@ -5,6 +5,7 @@ import './LoginPage.css'
 import 'react-awesome-button/dist/themes/theme-blue.css';
 // import images from '../../public/images';
 import Login from './Login'
+import Signup from './Signup'
 
 class LoginPage extends Component {
     constructor(props) {
@@ -36,7 +37,8 @@ class LoginPage extends Component {
     }
 
     handleSignUpPress() {
-        //this.formToPresent = <SignUp _register=this.props._register/>;
+        
+        this.setState({ formToPresent: <Signup/> });
     }
     render() {
         return (
@@ -47,7 +49,7 @@ class LoginPage extends Component {
                         <AwesomeButton className='custom-button' type="primary" onPress={(e) => this.handleLoginPress(e)}>LogIn</AwesomeButton>
                         { this.state.width < 682 && this.state.formToPresent}
 
-                        <AwesomeButton className='custom-button' type="primary">Sign Up</AwesomeButton>
+                        <AwesomeButton className='custom-button' type="primary" onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
 
                         {this.state.width >= 682 && this.state.formToPresent }
                     </div>

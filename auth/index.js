@@ -1,4 +1,3 @@
-const express = require('express')
 const router = express.Router()
 const User = require('../db/models/user')
 const passport = require('../passport')
@@ -54,7 +53,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-	console.log("here");
+	console.log("route");
 	const { username, password } = req.body
 	// ADD VALIDATION
 	User.findOne({ 'local.username': username }, (err, userMatch) => {

@@ -1,7 +1,7 @@
 // should we move this to a component? Alex
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import sha256 from 'js-sha256';
+// import sha256 from 'js-sha256';
 //import Container from '../components/Container/Container';
 import './Login.css'
 
@@ -26,8 +26,8 @@ class LoginForm extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault()
-
-		this.props._login(this.state.username, sha256(this.state.password))
+		console.log('handleSubmit')
+		this.props._login(this.state.username, this.state.password)
 		this.setState({ redirectTo: '/nav' })
 	}
 
