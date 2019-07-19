@@ -1,27 +1,29 @@
+
 .nav {
     background-color: rgba(0, 0, 0, 0.673);
+
     height: 100px;
     width: 100%;
     position: fixed;
     top: 0;
     text-align: center;
+    /* border: 1px solid red; */
+    padding: 20px;
+    /* display: inline-block; */
+    /* background: url(../../images/DrawWow_PNG-02.png); */
+    /* width: 90%; */
+    /* height: 100%; */
 }
+
 
 .page-content {
     margin-top: 100px;
 }
 
-.nav {
-    /* border: 1px solid red; */
-    padding: 20px;
-    display: inline-block;
-    /* background: url(../../images/DrawWow_PNG-02.png); */
-    /* width: 90%; */
-    /* height: 100%; */
-}
 .logo {
     /* border: 1px solid red; */
-    padding: 20px;
+    /* padding: 20px; */
     display: inline-block;
-    width: 20%;
+    /* width: 20%; */
+    width: 200px;
 }
