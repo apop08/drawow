@@ -85,24 +85,9 @@ class Canvas extends Component {
     
   }
   render() {
-<<<<<<< HEAD
     //let obj = this;
     console.log(this.state)
     return (<div>
-=======
-
-    // let obj = this;
-    return (<div><canvas ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-      <div style={{position:"absolute", top:"12%", left:"43%"}}>Choose Color</div>
-      <button style={{position:"absolute", top:"15%", left:"45%", width:"10px", height:"10px", background:"green"}} id="green" onClick={this.color.bind(this, "green")}></button>
-      <button style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"red"}} id="red" onClick={this.color.bind(this, "red")}></button>
-      <button style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={this.color.bind(this, "blue")}></button>
-      <button style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"orange"}} id="orange" onClick={this.color.bind(this, "orange")}></button>
-      <button style={{position:"absolute", top:"17%", left:"46%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick={this.color.bind(this, "yellow")}></button>
-      <button style={{position:"absolute", top:"17%", left:"47%", width:"10px", height:"10px", background:"black"}} id="black" onClick={this.color.bind(this, "black")}></button>
-      <button style={{position:"absolute", top:"22%", left:"43%", width:"15px", height:"15px", background:"white"}} id="white" onClick={this.color.bind(this, "white")}></button>
-
->>>>>>> master
       
       Color: <SliderPicker color={this.state.color} onChangeComplete={this.handleChange}/>
       <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
