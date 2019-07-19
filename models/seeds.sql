@@ -17,14 +17,14 @@ VALUES ("Said", "Password");
 
 
 INSERT INTO scores (username, score)
-VALUES ("Evgenia", score);
+VALUES ("Evgenia", 600);
 
 INSERT INTO scores (username, score)
-VALUES ("Lucy", score);
+VALUES ("Lucy", 550);
 
 INSERT INTO scores (username, score)
-VALUES ("Alex", score);
+VALUES ("Alex", 350);
 
 INSERT INTO scores (username, score)
-VALUES ("Said", score);
+VALUES ("Said", 20);
 

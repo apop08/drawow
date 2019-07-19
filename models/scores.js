@@ -1,13 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-    var Parking = sequelize.define("Score", {
-      firstName: {
+    var Score = sequelize.define("Score", {
+      userName: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
+     
       Score: {
         type: DataTypes.STRING,
         allowNull: false
