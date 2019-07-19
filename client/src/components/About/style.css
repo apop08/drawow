@@ -3,16 +3,19 @@
 }
 h1 {
     text-align: center; 
+    color:#5200ff;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
 
 }
 #quotes{
-    font-size: 20px;
+    font-size: 25px;
     font-weight:bold;
     font-family: 'Roboto Slab', serif;
     font-style: italic;
 }
 #tall{
-    font-size: 30px;
+    font-size: 35px;
 }
 .githubLink{
     text-align:center
@@ -22,4 +25,9 @@ h1 {
 }
 .githubLink a:hover{
     text-decoration: none;
+    color: #5200ff;
+}
+p{
+    font-size:20px;
+    font-family: 'Rubik', sans-serif;
 }

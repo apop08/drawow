@@ -94,7 +94,7 @@ class Canvas extends Component {
     this.x = color;
   }
   render() {
-    let obj = this;
+    // let obj = this;
     return (<div><canvas ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
       <div style={{position:"absolute", top:"12%", left:"43%"}}>Choose Color</div>
       <button style={{position:"absolute", top:"15%", left:"45%", width:"10px", height:"10px", background:"green"}} id="green" onClick={this.color.bind(this, "green")}></button>

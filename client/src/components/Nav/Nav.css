@@ -1,5 +1,7 @@
-.our-nav {
-    background-color: lightgray;
+
+.nav {
+    background-color: rgba(0, 0, 0, 0.673);
+
     height: 100px;
     width: 100%;
     position: fixed;
