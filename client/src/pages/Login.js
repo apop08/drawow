@@ -38,7 +38,7 @@ class LoginForm extends Component {
 		} else {
 			return (
 				<div className="LoginForm">
-					<h1></h1>
+					
 
 					<form>
 						<div>
