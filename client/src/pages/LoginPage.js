@@ -7,36 +7,49 @@ import 'react-awesome-button/dist/themes/theme-blue.css';
 import Login from './Login'
 
 class LoginPage extends Component {
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
-        this.state = {formToPresent: null};
+        this.state = { formToPresent: null, width: 0 };
         this.handleLoginPress = this.handleLoginPress.bind(this);
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
     }
 
-    handleLoginPress()
-    {
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth });
+    }
+
+    handleLoginPress() {
 
         console.log(this.state.formToPresent);
-        
-        this.setState({formToPresent: <Login _login={this.props._login}/>});
+
+        this.setState({ formToPresent: <Login _login={this.props._login} /> });
     }
 
-    handleSignUpPress()
-    {
+    handleSignUpPress() {
         //this.formToPresent = <SignUp _register=this.props._register/>;
     }
     render() {
         return (
             <Container>
                 <div className='about-page'>
-                    <div className='container'>
-                        
+                    <div className='our-container '>
+
                         <AwesomeButton className='custom-button' type="primary" onPress={(e) => this.handleLoginPress(e)}>LogIn</AwesomeButton>
+                        { this.state.width < 682 && this.state.formToPresent}
 
                         <AwesomeButton className='custom-button' type="primary">Sign Up</AwesomeButton>
 
-                        {this.state.formToPresent}
+                        {this.state.width >= 682 && this.state.formToPresent }
                     </div>
                 </div>
             </Container>
