@@ -37,6 +37,7 @@ class LoginForm extends Component {
 			console.log(this.state.redirectTo)
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
+		
 			return (
 				<div className="LoginForm">
 					

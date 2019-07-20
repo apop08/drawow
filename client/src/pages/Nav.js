@@ -43,6 +43,7 @@ class Nav extends Component {
     return (<div>
 
     <h1>{this.props.user}</h1>
+    {/* <a href="/" >home </a> */}
     <button onClick={this.props._logout}>logout</button>
       <div className="App d-flex justify-content-center">
         <button

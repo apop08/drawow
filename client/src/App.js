@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 import LoginPage from "./pages/LoginPage";
 import About from "./pages/LoginPage";
 // import Game from "./pages/Game";
@@ -10,6 +11,8 @@ import NoMatch from "./pages/NoMatch";
 import Canvas from "./components/Canvas"
 import axios from "axios";
 import tester from "./components/tester";
+// const DisplayLinks = props => {
+
 // Set up the router
 class App extends Component {
   constructor(props) {
@@ -64,6 +67,7 @@ class App extends Component {
 				password
 			})
 			.then(response => {
+
 				console.log(response);
 				// console.log(response.data.error)
 				if (response.status === 200) {
@@ -77,6 +81,13 @@ class App extends Component {
 				// 	alert("wrong username or password");
 
 				// }
+			}).catch(err => {
+			
+				console.log(err);
+				if (err){
+					alert("wrong username or password");
+					console.log(this.state)
+				}
 			})
 	}
 
@@ -96,14 +107,23 @@ class App extends Component {
 	// 		})
 	// }
   render() {
+	  let nav;
+	if(this.state.loggedIn)
+	 nav = <Route path="/nav" exact render = {(props) => <Nav {...props} user ={this.state.user.local.username}
+	_logout={this._logout} />}></Route>
+	else
+	nav = <Route path="/nav" exact render = {(props) => <LoginPage {...props} _logout ={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
+// 
+	// Redirect("/");
     return (
       <Router>
         <div>
           <Switch>
-            <Route path="/" exact render={(props) => <LoginPage {...props} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
-            <Route path="/about" exact component={About}></Route>
-	<Route path="/nav" exact render = {(props) => <Nav {...props} user ={this.state.user.local.username}
-	_logout={this._logout} />}></Route>
+            <Route path="/" exact render={(props) => <LoginPage {...props} _logout ={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
+			{/* <Route path="/" exact render={(props) => <LoginPage/>}></Route> */}
+
+		    <Route path="/about" exact component={About}></Route>
+			{nav}
             {/* <Route path="/game" exact component={Game}></Route> */}
             {/* <Route path="/rank" exact component={Rank}></Route> */}
             {/* <Route path ="/profile" exact component={Profile}></Route> */}
