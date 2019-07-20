@@ -64,6 +64,7 @@ class App extends Component {
 				password
 			})
 			.then(response => {
+				console.log(response);
 				// console.log(response.data.error)
 				if (response.status === 200) {
 					// update the state
@@ -72,6 +73,10 @@ class App extends Component {
 						user: response.data.user,
 					})
 				}
+				// if(!response){
+				// 	alert("wrong username or password");
+
+				// }
 			})
 	}
 
