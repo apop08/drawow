@@ -85,11 +85,13 @@ class Canvas extends Component {
     
   }
   render() {
+
     //let obj = this;
     console.log(this.state)
     return (<div>
       
       Color: <SliderPicker color={this.state.color} onChangeComplete={this.handleChange}/>
+
       <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
       <div style={{ position: "absolute", top: "12%", left: "43%" }}>Choose Color</div>
       <button style={{ position: "absolute", top: "22%", left: "43%", width: "15px", height: "15px", background: "white" }} id="white" onClick={this.color.bind(this, "white")}></button>
