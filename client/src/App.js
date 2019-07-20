@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       loggedIn: false,
 	  user: null,
-	  redirectTo: null
+	  redirectTo: null,
     };
 
     this._logout = this._logout.bind(this);
