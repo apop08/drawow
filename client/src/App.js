@@ -9,6 +9,7 @@ import Nav from "./pages/Nav";
 import NoMatch from "./pages/NoMatch";
 import Canvas from "./components/Canvas"
 import axios from "axios";
+import tester from "./components/tester";
 // Set up the router
 class App extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class App extends Component {
             {/* <Route path="/rank" exact component={Rank}></Route> */}
             {/* <Route path ="/profile" exact component={Profile}></Route> */}
             <Route path="/test/canvas" exact component={Canvas}></Route>
+			<Route path="/test/test" exact component={tester}></Route>
 			
             <Route component={NoMatch}></Route>
 

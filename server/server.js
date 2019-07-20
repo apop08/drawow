@@ -79,7 +79,7 @@ app.use(function(err, req, res, next) {
 })
 
 app.get("*", (req, res) => {
-	console.log("hi");
+	res.send("hello");
   });
 
 // ==== Starting Server =====
