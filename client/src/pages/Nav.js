@@ -21,6 +21,7 @@ class Nav extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     var test = "";
     console.log(this.state.button);
     switch (this.state.button) {
@@ -39,7 +40,10 @@ class Nav extends Component {
       default:
     }
  
-    return (
+    return (<div>
+
+    <h1>{this.props.user}</h1>
+    <button onClick={this.props._logout}>logout</button>
       <div className="App d-flex justify-content-center">
         <button
           name="button"
@@ -92,6 +96,7 @@ class Nav extends Component {
             <p>{test}</p>
           </ModalBody>
         </Modal>
+      </div>
       </div>
     );
   }

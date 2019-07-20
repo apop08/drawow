@@ -33,13 +33,17 @@ class Signup extends Component {
 			})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				if (!response.data.error) {
 					console.log('youre good')
 					this.setState({
-						redirectTo: '/login'
+						redirectTo: '/nav'
 					})
 				} else {
+					alert("Already signed up. please login")
 					console.log('duplicate')
+					this.setState({
+						redirectTo: '/'
+					})
 				}
 			})
 		// this.props._login(this.state.username, this.state.email, sha256(this.state.password))

@@ -16,12 +16,13 @@ class App extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      user: null
+	  user: null,
+	  redirectTo: null
     };
 
     this._logout = this._logout.bind(this);
 	this._login = this._login.bind(this);
-	this._register = this._register.bind(this);
+	// this._register = this._register.bind(this);
   }
 
 	componentDidMount() {
@@ -63,40 +64,41 @@ class App extends Component {
 				password
 			})
 			.then(response => {
-				console.log(response)
+				// console.log(response.data.error)
 				if (response.status === 200) {
 					// update the state
 					this.setState({
 						loggedIn: true,
-						user: response.data.user
+						user: response.data.user,
 					})
 				}
 			})
 	}
 
-	_register(username, email, password) {
-		axios
-			.post('/auth/register', {
-				username,
-				email,
-				password
-			})
-			.then(response => {
-				console.log(response)
-				if (response.status === 200) {
-					// update the state
-					this._login(username, password)
-				}
-			})
-	}
+	// _register(username, email, password) {
+	// 	axios
+	// 		.post('/auth/register', {
+	// 			username,
+	// 			email,
+	// 			password
+	// 		})
+	// 		.then(response => {
+	// 			console.log(response)
+	// 			if (response.status === 200) {
+	// 				// update the state
+	// 				this._login(username, password)
+	// 			}
+	// 		})
+	// }
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            <Route path="/" exact render={(props) => <LoginPage {...props} _login={this._login} _register={this._register} />}></Route>
+            <Route path="/" exact render={(props) => <LoginPage {...props} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
             <Route path="/about" exact component={About}></Route>
-			<Route path="/nav" exact component={Nav}></Route>
+	<Route path="/nav" exact render = {(props) => <Nav {...props} user ={this.state.user.local.username}
+	_logout={this._logout} />}></Route>
             {/* <Route path="/game" exact component={Game}></Route> */}
             {/* <Route path="/rank" exact component={Rank}></Route> */}
             {/* <Route path ="/profile" exact component={Profile}></Route> */}
