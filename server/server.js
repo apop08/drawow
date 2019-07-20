@@ -13,7 +13,7 @@ const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./db') // loads our connection to the mongo database
 const passport = require('./passport')
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3001
 
 // ===== Middleware ====
 app.use(morgan('dev'))
@@ -77,6 +77,10 @@ app.use(function(err, req, res, next) {
 	console.error(err.stack)
 	res.status(500)
 })
+
+app.get("*", (req, res) => {
+	console.log("hi");
+  });
 
 // ==== Starting Server =====
 app.listen(PORT, () => {
