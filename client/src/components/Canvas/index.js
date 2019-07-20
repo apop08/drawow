@@ -55,10 +55,15 @@ class Canvas extends Component {
     this.ctx = this.canvas.getContext("2d");
     this.ctx.lineJoin = "round";
     let obj = this;
+<<<<<<< Updated upstream
     $("#canvas").mousedown(function (mouseEvent) {
       var position = getPosition(mouseEvent, obj.canvas);
       obj.ctx.moveTo(position.X, position.Y);
       obj.ctx.beginPath();
+=======
+  };
+
+>>>>>>> Stashed changes
 
       // attach event handlers
       $(this).mousemove(function (mouseEvent) {
