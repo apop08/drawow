@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-// import sha256 from 'js-sha256';
 
 class Signup extends Component {
     constructor() {
@@ -46,8 +45,6 @@ class Signup extends Component {
 					})
 				}
 			})
-		// this.props._login(this.state.username, this.state.email, sha256(this.state.password))
-		// this.setState({ redirectTo: '/nav'})
 	}
 
 	render() {
@@ -58,7 +55,6 @@ class Signup extends Component {
 			return (
 			
 					<div className="SignupForm">
-						<h1>Signup form</h1>
 						<label htmlFor="username">Username: </label>
 						<input
 							type="text"
