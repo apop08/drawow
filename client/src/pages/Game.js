@@ -15,6 +15,9 @@ class Game extends Component {
             obj.setState({ chat: [...obj.state.chat, msg] })
             console.log(obj.state.chat)
           });
+        socket.on('tradeUsername', function(){
+            socket.emit('tradeUsername', this.props.user)
+          });
     }
 
     componentDidMount(){
