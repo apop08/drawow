@@ -9,10 +9,12 @@
   width: 80%;
   height: 92%;
   padding: 0;
-}
+  
 
+}
 .modal-content {
   height: 99%;
+  overflow: scroll;
 }
 @-webkit-keyframes example {
   from {
@@ -46,4 +48,9 @@
     transform: perspective(400px);
   }
 }
-  
+@media only screen and (max-width: 576px) {
+  .modal-dialog{
+      margin-left:2%;
+      /* margin-top:2%; */
+  }
+}
