@@ -91,26 +91,3 @@ server.listen(PORT, () => {
 })
 const game = new GameObj(io);
 //accept connected users socket requests
-<<<<<<< HEAD
-=======
-io.on('connection', function(socket){
-  console.log('a user connected');
-//on chat event
-  socket.on('chat message', function(msg){
-	//send the msg out
-    io.emit('chat message', msg);
-  });
-
-  socket.on('drawing', function(img){
-	//send the msg out
-    io.emit('drawing', img);
-  });
-
-  socket.on('disconnect', function(){
-    console.log('User Disconnected');
-  });
-  socket.on('example_message', function(msg){
-    console.log('message: ' + msg);
-  });
-});
->>>>>>> heroku
