@@ -1,3 +1,5 @@
+import game from './game/gameobj'
+
 // Loading evnironmental variables here
 if (process.env.NODE_ENV !== 'production') {
 	console.log('loading dev environments')
@@ -90,20 +92,5 @@ app.get("*", (req, res) => {
 server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
-
+const game = new game(io);
 //accept connected users socket requests
-io.on('connection', function(socket){
-  console.log('a user connected');
-//on chat event
-  socket.on('chat message', function(msg){
-	//send the msg out
-    io.emit('chat message', msg);
-  });
-
-  socket.on('disconnect', function(){
-    console.log('User Disconnected');
-  });
-  socket.on('example_message', function(msg){
-    console.log('message: ' + msg);
-  });
-});
