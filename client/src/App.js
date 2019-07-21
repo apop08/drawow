@@ -5,7 +5,7 @@ import axios from "axios";
 import LoginPage from "./pages/LoginPage";
 import Nav from "./pages/Nav";
 import About from "./pages/LoginPage";
-// import Game from "./pages/Game";
+import Game from "./pages/Game";
 // import Rank from "./pages/Rank";
 // import Profile from "./pages/Profile";
 import Canvas from "./components/Canvas";
@@ -100,7 +100,7 @@ class App extends Component {
 						<Route path="/" exact render={(props) => <LoginPage {...props} _logout={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
 						<Route path="/about" exact component={About}></Route>
 						{nav}
-						{/* <Route path="/game" exact component={Game}></Route> */}
+						<Route path="/game" exact component={Game}></Route>
 						{/* <Route path="/rank" exact component={Rank}></Route> */}
 						{/* <Route path ="/profile" exact component={Profile}></Route> */}
 						<Route path="/test/canvas" exact component={Canvas}></Route>
@@ -114,6 +114,7 @@ class App extends Component {
 			</Router>
 		);
 	}
+
 }
 
 export default App;
