@@ -39,7 +39,7 @@ class LoginForm extends Component {
 
 	render() {
 		console.log(this.props.loggedIn);
-		if (this.state.redirectTo && this.props.loggedIn) {
+		if (this.state.redirectTo) {
 			console.log(this.state.redirectTo)
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
