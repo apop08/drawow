@@ -14,19 +14,9 @@ const dbConnection = require('./db') // loads our connection to the mongo databa
 const passport = require('./passport')
 const app = express()
 const PORT = process.env.PORT || 3001
+var server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('User Disconnected');
-  });
-  socket.on('example_message', function(msg){
-    console.log('message: ' + msg);
-  });
-});
-io.listen(8000);
 
 
 // ===== Middleware ====
@@ -97,6 +87,23 @@ app.get("*", (req, res) => {
   });
 
 // ==== Starting Server =====
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
+
+//accept connected users socket requests
+io.on('connection', function(socket){
+  console.log('a user connected');
+//on chat event
+  socket.on('chat message', function(msg){
+	//send the msg out
+    io.emit('chat message', msg);
+  });
+
+  socket.on('disconnect', function(){
+    console.log('User Disconnected');
+  });
+  socket.on('example_message', function(msg){
+    console.log('message: ' + msg);
+  });
+});

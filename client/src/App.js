@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import LoginPage from "./pages/LoginPage";
 import About from "./pages/LoginPage";
-// import Game from "./pages/Game";
+import Game from "./pages/Game";
 // import Rank from "./pages/Rank";
 //import Profile from "./pages/Profile";
 import Nav from "./pages/Nav";
@@ -126,7 +126,7 @@ class App extends Component {
 
 		    <Route path="/about" exact component={About}></Route>
 			{nav}
-            {/* <Route path="/game" exact component={Game}></Route> */}
+            <Route path="/game" exact component={Game}></Route>
             {/* <Route path="/rank" exact component={Rank}></Route> */}
             {/* <Route path ="/profile" exact component={Profile}></Route> */}
             <Route path="/test/canvas" exact component={Canvas}></Route>
