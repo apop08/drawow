@@ -32,8 +32,8 @@ class LoginPage extends Component {
     handleLoginPress() {
 
         console.log(this.state.formToPresent);
-
-        this.setState({ formToPresent: <Login _login={this.props._login} /> });
+        // this.setState({formToPresent: null})
+        this.setState({ formToPresent: <Login _login={this.props._login} loggedIn = {this.props.loggedIn}/> });
     }
 
     handleSignUpPress() {
