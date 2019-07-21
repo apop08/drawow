@@ -60,7 +60,7 @@ class App extends Component {
 		})
 	}
 
-	_login(username, password) {
+	_login(username, password, obj) {
 		axios
 			.post('/auth/login', {
 				username,
@@ -77,6 +77,8 @@ class App extends Component {
 						user: response.data.user,
 					})
 				}
+
+				obj.success();
 				// if(!response){
 				// 	alert("wrong username or password");
 
@@ -109,7 +111,7 @@ class App extends Component {
   render() {
 	  let nav;
 	if(this.state.loggedIn)
-	 nav = <Route path="/nav" exact render = {(props) => <Nav {...props} user ={this.state.user.local.username}
+	 nav = <Route path="/nav" exact render = {(props) => <Nav {...props} user = {this.state.user.local.username}
 	_logout={this._logout} />}></Route>
 	else
 	nav = <Route path="/nav" exact render = {(props) => <LoginPage {...props} _logout ={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>

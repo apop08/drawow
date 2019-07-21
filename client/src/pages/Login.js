@@ -27,7 +27,13 @@ class LoginForm extends Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		console.log('handleSubmit')
-		this.props._login(this.state.username, this.state.password)
+		this.props._login(this.state.username, this.state.password, this)
+		//this.setState({ redirectTo: '/nav' })
+	}
+
+	success(){
+		console.log("we did it");
+		
 		this.setState({ redirectTo: '/nav' })
 	}
 

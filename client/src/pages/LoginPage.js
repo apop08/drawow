@@ -10,7 +10,7 @@ import Signup from './Signup'
 class LoginPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { formToPresent: null, width: 0 };
+        this.state = { formToPresent: <Login _login={this.props._login} />, width: 0 };
         this.handleLoginPress = this.handleLoginPress.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
