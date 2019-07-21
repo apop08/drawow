@@ -5,33 +5,52 @@ const socket = openSocket();
 class Game extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {message: '',
+                      chat: []};
         this.sendSocketIO = this.sendSocketIO.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        let obj = this;
+        socket.on('chat message', function(msg){
+            console.log(msg);
+            obj.setState({ chat: [...obj.state.chat, msg] })
+            console.log(obj.state.chat)
+          });
     }
 
-    componentDidMount() {
+    componentDidMount(){
 
     }
 
+    handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
     sendSocketIO() {
         socket.emit('example_message', 'demo');
     }
 
-    submit(e) {
+    submitChat(e) {
 
         e.preventDefault(); // prevents page reloading
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
+        //console.log(this.state.message);
+        
+        socket.emit('chat message', this.state.message);
+        this.setState({message: ''});
+
+        
         return false;
 
     }
 
     render() {
-        { console.log(process.env.proxy) }
+        let chat = this.state.chat.map(e => {
+            return <li>{e}</li>;
+        })
         return <div>
-            <ul id="messages"></ul>
+            <ul style={{color:'white'}} id="messages">{chat}</ul>
             <form action="">
-                <input id="m" autocomplete="off" /><button onSubmit={this.submit.bind(this)}>Send</button>
+                <input  type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange}/><button onClick={this.submitChat.bind(this)}>Send</button>
             </form>
         </div>
     }
