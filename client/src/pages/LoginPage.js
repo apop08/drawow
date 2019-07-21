@@ -45,12 +45,11 @@ class LoginPage extends Component {
                 <div className='about-page'>
                     <div className='our-container '>
 
-                        <AwesomeButton className='custom-button' type="primary" onPress={(e) => this.handleLoginPress(e)}>LogIn</AwesomeButton>
-                        { this.state.width < 682 && this.state.formToPresent}
+                        <AwesomeButton style={{"--button-primary-color": "#5200ff", "--button-primary-color-dark": "#5200ff", "--button-primary-color-hover": "#5200ff","--button-primary-color-active":"#5200ff"}} className='custom-button' type="primary" onPress={(e) => this.handleLoginPress(e)}>LogIn</AwesomeButton>
 
-                        <AwesomeButton className='custom-button' type="primary" onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
+                        <AwesomeButton style={{"--button-primary-color": "#ff5e86", "--button-primary-color-dark": "#ff5e86", "--button-primary-color-hover": "#ff5e86", "--button-primary-color-active":"#ff5e86"}} className='custom-button' type="primary" onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
 
-                        {this.state.width >= 682 && this.state.formToPresent }
+                        {this.state.width >= 712 && this.state.formToPresent }
                     </div>
                 </div>
             </Container>
