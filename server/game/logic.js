@@ -17,7 +17,7 @@ handleDisconnect = function (io, socket) {
 handleUser = function (io, socket) {
   socket.on('tradeUsername', function (user) {
     socket.set("user", user);
-    socket.get("user", (err, username) => console.log(`Welcome ${username}`));
+    socket.get("user", (err, username) => console.log(`Welcome`));
 
   });
 };
@@ -39,7 +39,7 @@ class Logic {
   }
   initSocketEvents() {
     this.io.on('connection', function (socket) {
-      //console.log('a user connected');
+      console.log('a user connected');
       //on chat event
       const io = this.io;
       sendUser(io, socket);

@@ -11,6 +11,11 @@ class Game extends Component {
                       chat: []};
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
+
+    }
+
+    componentDidMount(){
         let obj = this;
         socket.on('chat message', function(msg){
             console.log(msg);
@@ -18,12 +23,10 @@ class Game extends Component {
             console.log(obj.state.chat)
           });
         socket.on('tradeUsername', function(){
+            console.log("sending username");
+            
             socket.emit('tradeUsername', this.props.user)
           });
-    }
-
-    componentDidMount(){
-
     }
 
     handleChange(event) {
