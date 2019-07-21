@@ -9,6 +9,7 @@
     "dotenv": "^8.0.0",
     "jquery": "^3.4.1",
     "js-sha256": "^0.9.0",
+    "moment": "^2.24.0",
     "react": "^16.6.3",
     "react-awesome-button": "^6.1.2",
     "react-color": "^2.17.3",
@@ -22,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "browserslist": [
     ">0.2%",

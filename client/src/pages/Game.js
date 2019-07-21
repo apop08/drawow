@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
+import moment from 'moment';
+import Canvas from '../components/Canvas';
 const socket = openSocket();
 class Game extends Component {
     constructor(props) {
@@ -37,8 +39,8 @@ class Game extends Component {
 
         e.preventDefault(); // prevents page reloading
         //console.log(this.state.message);
-        
-        socket.emit('chat message', this.state.message);
+        const msg = `[${moment().format('LTS')}] ${this.props.user}: ${this.state.message}`;
+        socket.emit('chat message', msg);
         this.setState({message: ''});
 
         
@@ -51,7 +53,8 @@ class Game extends Component {
             return <li>{e}</li>;
         })
         return <div>
-            <ul style={{color:'white'}} id="messages">{chat}</ul>
+            <Canvas socket={socket} />
+            <ul style={{color:'Black'}} id="messages">{chat}</ul>
             <form action="">
                 <input  type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange}/><button onClick={this.submitChat.bind(this)}>Send</button>
             </form>

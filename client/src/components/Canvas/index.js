@@ -42,7 +42,13 @@ class Canvas extends Component {
     this.x = this.state.color;
     //this.y = 2;
     this.color = this.color.bind(this);
+    let obj = this;
     //this.handleChange = this.handleChange.bind(this);
+    this.props.socket.on('drawing', function(img){
+
+      obj.recPic(img);
+    });
+
   }
 
   componentDidMount() {
@@ -108,6 +114,9 @@ class Canvas extends Component {
 
     let obj = this;
 
+
+
+
     $('#undo').click(function () {
       obj.history.undo(obj.canvas, obj.ctx);
     });
@@ -121,18 +130,42 @@ class Canvas extends Component {
       obj.ctx.moveTo(position.X, position.Y);
       obj.ctx.beginPath();
       obj.history.saveState(obj.canvas);
+
       // attach event handlers
       $(this).mousemove(function (mouseEvent) {
         drawLine(mouseEvent, obj.canvas, obj.ctx);
       }).mouseup(function (mouseEvent) {
+        obj.sendPic();
         finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
       }).mouseout(function (mouseEvent) {
+        obj.sendPic();
         finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
       });
     });
 
   }
 
+
+  sendPic(){
+    const imgData = this.canvas.toDataURL('image/png', .3);
+    console.log(imgData);
+    //console.log(imgData)
+    this.props.socket.emit('drawing', imgData);
+  }
+
+  recPic(img){
+    console.log(img);
+    let pic = new Image();
+    pic.src = img;
+    console.log(pic);
+    let obj = this;
+    pic.onload = function () {
+      //draw background image
+      //obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height)
+      obj.ctx.drawImage(pic, 0, 0);
+
+    };
+  }
   color(color) {
     this.setState({ color: color });
     this.ctx.strokeStyle = this.state.color;
@@ -159,7 +192,7 @@ class Canvas extends Component {
       <button style={{ position: "absolute", top: "22%", left: "43%", width: "15px", height: "15px", background: "white" }} id="white" onClick={this.color.bind(this, "white")}></button>
       <button style={{ position: "absolute", top: "28%", left: "43%", width: "15px", height: "15px", background: "white" }} id="undo">Undo</button>
       <button style={{ position: "absolute", top: "28%", left: "45%", width: "15px", height: "15px", background: "white" }} id="redo">Redo</button>
-      <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "black" }} min="1" max="15" value="10" step="1" fn={this.brush.bind(this)} />
+      <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "black" }} min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
       {/*<div style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={color(this)}></div>
       <div style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"red"}} id="red" onClick="color(this)"></div>
       <div style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick="color(this)"></div>
