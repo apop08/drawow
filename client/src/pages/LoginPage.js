@@ -30,15 +30,13 @@ class LoginPage extends Component {
         this.setState({ width: window.innerWidth });
     }
 
+    // attach login form when login button is clicked
     handleLoginPress() {
-
-        console.log(this.state.formToPresent);
-        // this.setState({formToPresent: null})
         this.setState({ formToPresent: <Login _login={this.props._login} loggedIn = {this.props.loggedIn}/> });
     }
 
+    // attach signup form when signup button is clicked
     handleSignUpPress() {
-        
         this.setState({ formToPresent: <Signup/> });
     }
     render() {
