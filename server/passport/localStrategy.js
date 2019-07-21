@@ -10,7 +10,6 @@ const strategy = new LocalStrategy(
 			if (err) {
 				return done(err)
 			}
-			// console.log(userMatch.local.username);
 			if (!userMatch) {
 				console.log("none match");
 				return done(null, false, { message: 'Incorrect username' })
