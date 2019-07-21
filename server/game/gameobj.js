@@ -1,4 +1,5 @@
-import logic from './logic';
+
+const logic = require('./logic');
 class GameObj{
     constructor(io){
         this.io = io;
@@ -6,4 +7,4 @@ class GameObj{
 
     }
 }
-export default GameObj;
+module.exports = GameObj;

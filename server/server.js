@@ -1,4 +1,4 @@
-import game from './game/gameobj'
+
 
 // Loading evnironmental variables here
 if (process.env.NODE_ENV !== 'production') {
@@ -18,7 +18,7 @@ const app = express()
 const PORT = process.env.PORT || 3001
 var server = require('http').Server(app);
 const io = require('socket.io')(server);
-
+const GameObj = require('./game/gameobj');
 
 
 // ===== Middleware ====
@@ -92,5 +92,5 @@ app.get("*", (req, res) => {
 server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
-const game = new game(io);
+const game = new GameObj(io);
 //accept connected users socket requests

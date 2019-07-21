@@ -9,13 +9,13 @@ handleDisconnect = function(io, socket){
     socket.on('disconnect', function(){
         console.log('User Disconnected');
       });
-}
+};
 
 handleConnection = function(io, socket){
     socket.on('playerConnected', function(user){
         console.log(`${user} Disconnected`);
       });
-}
+};
 
 class Logic{
     constructor(io){
@@ -29,4 +29,4 @@ class Logic{
           });
     }
 }
-export default Logic;
+module.exports = Logic;
