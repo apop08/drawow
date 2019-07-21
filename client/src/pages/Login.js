@@ -28,6 +28,10 @@ class LoginForm extends Component {
 		event.preventDefault()
 		console.log('handleSubmit')
 		this.props._login(this.state.username, this.state.password, this)
+		this.setState({
+			username: '',
+			password: '',
+		})
 	}
 
 	// state set only when this function is called, which is after _login succeeds
