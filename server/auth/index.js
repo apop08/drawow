@@ -3,14 +3,14 @@ const router = express.Router()
 const User = require('../db/models/user')
 const passport = require('../passport')
 
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
-router.get(
-	'/google/callback',
-	passport.authenticate('google', {
-		successRedirect: '/',
-		failureRedirect: '/login'
-	})
-)
+// router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
+// router.get(
+// 	'/google/callback',
+// 	passport.authenticate('google', {
+// 		successRedirect: '/',
+// 		failureRedirect: '/login'
+// 	})
+// )
 
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
@@ -32,6 +32,8 @@ router.post(
 	},
 	passport.authenticate('local'),
 	(req, res) => {
+		// console.log("here");
+		console.log(res);
 		console.log('POST to /login')
 		const user = JSON.parse(JSON.stringify(req.user)) // hack
 		const cleanUser = Object.assign({}, user)
@@ -54,6 +56,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
+	console.log("here");
 	const { username, password } = req.body
 	// ADD VALIDATION
 	User.findOne({ 'local.username': username }, (err, userMatch) => {

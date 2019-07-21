@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 import LoginPage from "./pages/LoginPage";
 import About from "./pages/LoginPage";
 // import Game from "./pages/Game";
@@ -9,18 +10,22 @@ import Nav from "./pages/Nav";
 import NoMatch from "./pages/NoMatch";
 import Canvas from "./components/Canvas"
 import axios from "axios";
+import tester from "./components/tester";
+// const DisplayLinks = props => {
+
 // Set up the router
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
-      user: null
+	  user: null,
+	  redirectTo: null,
     };
 
     this._logout = this._logout.bind(this);
 	this._login = this._login.bind(this);
-	this._register = this._register.bind(this);
+	// this._register = this._register.bind(this);
   }
 
 	componentDidMount() {
@@ -55,51 +60,78 @@ class App extends Component {
 		})
 	}
 
-	_login(username, password) {
+	_login(username, password, obj) {
 		axios
 			.post('/auth/login', {
 				username,
 				password
 			})
 			.then(response => {
-				console.log(response)
+
+				console.log(response);
+				// console.log(response.data.error)
 				if (response.status === 200) {
 					// update the state
 					this.setState({
 						loggedIn: true,
-						user: response.data.user
+						user: response.data.user,
 					})
+				}
+
+				obj.success();
+				// if(!response){
+				// 	alert("wrong username or password");
+
+				// }
+			}).catch(err => {
+			
+				console.log(err);
+				if (err){
+					alert("wrong username or password");
+					console.log(this.state)
 				}
 			})
 	}
 
-	_register(username, email, password) {
-		axios
-			.post('/auth/register', {
-				username,
-				email,
-				password
-			})
-			.then(response => {
-				console.log(response)
-				if (response.status === 200) {
-					// update the state
-					this._login(username, password)
-				}
-			})
-	}
+	// _register(username, email, password) {
+	// 	axios
+	// 		.post('/auth/register', {
+	// 			username,
+	// 			email,
+	// 			password
+	// 		})
+	// 		.then(response => {
+	// 			console.log(response)
+	// 			if (response.status === 200) {
+	// 				// update the state
+	// 				this._login(username, password)
+	// 			}
+	// 		})
+	// }
   render() {
+	  let nav;
+	if(this.state.loggedIn)
+	 nav = <Route path="/nav" exact render = {(props) => <Nav {...props} user = {this.state.user.local.username}
+	_logout={this._logout} />}></Route>
+	else
+	nav = <Route path="/nav" exact render = {(props) => <LoginPage {...props} _logout ={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
+// 
+	// Redirect("/");
     return (
       <Router>
         <div>
           <Switch>
-            <Route path="/" exact render={(props) => <LoginPage {...props} _login={this._login} _register={this._register} />}></Route>
-            <Route path="/about" exact component={About}></Route>
-			<Route path="/nav" exact component={Nav}></Route>
+            <Route path="/" exact render={(props) => <LoginPage {...props} _logout ={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
+			{/* <Route path="/" exact render={(props) => <LoginPage/>}></Route> */}
+
+		    <Route path="/about" exact component={About}></Route>
+			{nav}
             {/* <Route path="/game" exact component={Game}></Route> */}
             {/* <Route path="/rank" exact component={Rank}></Route> */}
             {/* <Route path ="/profile" exact component={Profile}></Route> */}
             <Route path="/test/canvas" exact component={Canvas}></Route>
+			<Route path="/test/test" exact component={tester}></Route>
+			
             <Route component={NoMatch}></Route>
 
           </Switch>

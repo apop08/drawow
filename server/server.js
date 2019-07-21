@@ -13,7 +13,21 @@ const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./db') // loads our connection to the mongo database
 const passport = require('./passport')
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3001
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('User Disconnected');
+  });
+  socket.on('example_message', function(msg){
+    console.log('message: ' + msg);
+  });
+});
+io.listen(8000);
+
 
 // ===== Middleware ====
 app.use(morgan('dev'))
@@ -77,6 +91,10 @@ app.use(function(err, req, res, next) {
 	console.error(err.stack)
 	res.status(500)
 })
+
+app.get("*", (req, res) => {
+	res.send("hello");
+  });
 
 // ==== Starting Server =====
 app.listen(PORT, () => {
