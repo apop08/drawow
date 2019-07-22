@@ -1,0 +1,11 @@
+#login_button{
+    margin-right: 0;
+    background: #b2757e;
+    color: white;
+}
+label{
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: white;
+    margin-right: 5px;
+}

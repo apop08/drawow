@@ -1,0 +1,88 @@
+.App{
+    margin-top:14%;
+    text-align:center;
+}
+button{
+    margin-right:5%;
+}
+button:nth-child(5){
+    margin-right:0%;
+}
+.navBtn{
+    background:white;
+    color:#5200ff;
+    width:10%;
+    height:50px;
+    border:none;
+    margin-bottom:22.5%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+}
+.navBtn:hover{
+    background:white;
+    color:#5200ff;
+    transform: scale(1.5);
+}
+body{
+    height:100%;
+}
+#userName {
+    margin-top:2.5%;
+    background: rgba(0, 0, 0, 0.673);
+    text-align:right;
+    display: block;
+    width:8%;
+    margin-left:89%;
+    color:white;
+    font-weight:bold;
+}
+#welcome{
+    font-size:20px;
+    color:white;
+    text-align:right;
+    font-weight:normal;
+}
+.navPage{
+    height:690px;
+}
+
+@media only screen and (max-width: 1105px) {
+    #userName {
+        width:15%;
+    margin-left:84%;
+    }
+  }
+
+@media only screen and (max-width: 1000px) {
+    #userName {
+        width:100%;
+    margin-left:0%;
+    text-align:center;
+    margin-top:5%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    button{
+        margin-right:2%;
+    }
+    .navBtn{
+        width:60%;
+        margin-left:20%;
+        margin-right:20%;
+        margin-bottom:4%;
+
+    }
+    button:nth-child(5){
+        margin-right:20%;
+    }
+    .navPage{
+        height:665px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .navPage{
+        height:675px;
+    }
+}
