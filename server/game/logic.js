@@ -8,23 +8,23 @@ handleChatMessage = (io, socket) => {
   });
 };
 
-handleDisconnect = function (io, socket, users) {
+handleDisconnect = function (io, socket, obj) {
   socket.on('disconnect', function () {
     console.log(`${socket.user} disconnected`);
-    const index = users.indexOf(socket.user);
-    if(index > -1) users.splice(index, 1);
-    console.log(users);
+    const index = obj.users.indexOf(socket.user);
+    if(index > -1) obj.users.splice(index, 1);
+    console.log(obj.users);
   });
 };
 
-handleUser = function (io, socket, users) {
+handleUser = function (io, socket, obj) {
   socket.on('tradeUsername', function (user) {
     console.log("handleuser");
     //console.log(socket);
     socket.user = user;
-    users.push(user);
+    obj.users.push(user);
     console.log(`Welcome ${socket.user}`);
-    console.log(users);
+    console.log(obj.users);
   });
 };
 sendUser = function (io, socket) {
@@ -39,28 +39,47 @@ sendDraw = function (io, socket) {
   });
 }
 
+startGame = function (io, socket, obj) {
+  socket.on('start', function () {
+    console.log('----------------------');
+    
+    console.log(obj);
+    console.log('----------------------');
+    //send the msg out
+    const drawer = obj.init();
+    console.log(`${drawer} will be drawing`)
+    io.emit('startGame', drawer);
+
+  });
+}
 
 //public accessable functions go in here
 class Logic {
-  constructor(io) {
+  constructor(io, gameobj) {
     this.io = io;
-    this.users = [];
+    this.gameobj = gameobj
+    this.gameobj.users = [];
 
   }
 
-  
+
   initSocketEvents() {
-    let obj = this;
+    let obj = this.gameobj;
+
+    
     this.io.on('connection', function (socket) {
       console.log('a user connected');
       //on chat event
       const io = obj.io;
       sendUser(io, socket);
       sendDraw(io, socket);
-      handleUser(io, socket, obj.users);
+      handleUser(io, socket, obj);
       handleChatMessage(io, socket);
-      handleDisconnect(io, socket, obj.users);
+      handleDisconnect(io, socket, obj);
+      startGame(io, socket, obj);
     });
+
+
   }
 }
 module.exports = Logic;

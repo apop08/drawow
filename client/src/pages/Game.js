@@ -9,7 +9,9 @@ class Game extends Component {
         super(props);
         this.state = {
             message: '',
-            chat: []
+            chat: [],
+            drawer: false,
+            live: false
         };
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -32,7 +34,14 @@ class Game extends Component {
 
         this.socket.on('drawing', function (img) {
 
-            this.canvasRef.current.recPic(img);
+            obj.canvasRef.current.recPic(img);
+        });
+        this.socket.on('startGame', function (drawer) {
+
+            if (obj.props.user == drawer) {
+                obj.setState({ drawer: true })
+            }
+            obj.setState({ live: true })
         });
     }
 
@@ -58,10 +67,13 @@ class Game extends Component {
 
     }
 
+    startGame() {
+        this.socket.emit('start');
+    }
     sendImage(canvas) {
         const imgData = canvas.toDataURL('image/png', .3);
         //console.log(imgData)
-        this.props.socket.emit('drawing', imgData);
+        this.socket.emit('drawing', imgData);
     }
 
 
@@ -69,8 +81,12 @@ class Game extends Component {
         let chat = this.state.chat.map(e => {
             return <li>{e}</li>;
         })
+        let canv = <button onClick={this.startGame.bind(this)}>Start</button>;
+        if (this.state.live) {
+            canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
+        }
         return <div>
-            <Canvas ref={this.canvasRef} sendImage={this.sendImage} />
+            {canv}
             <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
             <form action="">
                 <input type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button onClick={this.submitChat.bind(this)}>Send</button>
