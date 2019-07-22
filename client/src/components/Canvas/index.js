@@ -42,12 +42,8 @@ class Canvas extends Component {
     this.x = this.state.color;
     //this.y = 2;
     this.color = this.color.bind(this);
-    let obj = this;
+    //let obj = this;
     //this.handleChange = this.handleChange.bind(this);
-    this.props.socket.on('drawing', function(img){
-
-      obj.recPic(img);
-    });
 
   }
 
@@ -135,22 +131,14 @@ class Canvas extends Component {
       $(this).mousemove(function (mouseEvent) {
         drawLine(mouseEvent, obj.canvas, obj.ctx);
       }).mouseup(function (mouseEvent) {
-        obj.sendPic();
+        obj.props.sendImage();
         finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
       }).mouseout(function (mouseEvent) {
-        obj.sendPic();
+        obj.props.sendImage();
         finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
       });
     });
 
-  }
-
-
-  sendPic(){
-    const imgData = this.canvas.toDataURL('image/png', .3);
-    console.log(imgData);
-    //console.log(imgData)
-    this.props.socket.emit('drawing', imgData);
   }
 
   recPic(img){

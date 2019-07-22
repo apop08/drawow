@@ -10,18 +10,23 @@ handleChatMessage = (io, socket) => {
 
 handleDisconnect = function (io, socket) {
   socket.on('disconnect', function () {
-    console.log('User Disconnected');
+    console.log(`${socket.user} disconnected`);
   });
 };
 
 handleUser = function (io, socket) {
+ 
   socket.on('tradeUsername', function (user) {
-    socket.set("user", user);
-    socket.get("user", (err, username) => console.log(`Welcome`));
+    console.log("handleuser");
+    console.log(socket);
+    socket.user = user;
+    console.log(`Welcome ${socket.user}`);
 
   });
 };
 sendUser = function (io, socket) {
+  console.log("ask for user name");
+  
   socket.emit('tradeUsername');
 }
 sendDraw = function (io, socket) {
