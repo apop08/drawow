@@ -11,7 +11,8 @@ class Game extends Component {
             message: '',
             chat: [],
             drawer: false,
-            live: false
+            live: false,
+            users: []
         };
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -43,6 +44,9 @@ class Game extends Component {
             }
             obj.setState({ live: true })
         });
+        this.socket.on('userList', function(users){
+            obj.setState({users: users});
+        })
     }
 
     handleChange(event) {
@@ -86,6 +90,7 @@ class Game extends Component {
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
         return <div>
+            <p>{this.state.users}</p>
             {canv}
             <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
             <form action="">

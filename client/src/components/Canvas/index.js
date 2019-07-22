@@ -149,10 +149,10 @@ class Canvas extends Component {
   }
 
   recPic(img) {
-    console.log(img);
+    //console.log(img);
     let pic = new Image();
     pic.src = img;
-    console.log(pic);
+    //console.log(pic);
     let obj = this;
     pic.onload = function () {
       //draw background image

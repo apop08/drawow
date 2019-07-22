@@ -13,6 +13,7 @@ handleDisconnect = function (io, socket, obj) {
     console.log(`${socket.user} disconnected`);
     const index = obj.users.indexOf(socket.user);
     if(index > -1) obj.users.splice(index, 1);
+    io.emit('userList', obj.users);
     console.log(obj.users);
   });
 };
@@ -25,6 +26,7 @@ handleUser = function (io, socket, obj) {
     obj.users.push(user);
     console.log(`Welcome ${socket.user}`);
     console.log(obj.users);
+    io.emit('userList', obj.users);
   });
 };
 sendUser = function (io, socket) {
@@ -77,6 +79,7 @@ class Logic {
       handleChatMessage(io, socket);
       handleDisconnect(io, socket, obj);
       startGame(io, socket, obj);
+      
     });
 
 
