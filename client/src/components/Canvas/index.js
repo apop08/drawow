@@ -75,19 +75,20 @@ class Canvas extends Component {
       },
 
 
-      undo: function (canvas, ctx) {
+      undo: function (canvas, ctx, obj) {
         console.log("undo");
 
-        this.restoreState(canvas, ctx, this.undo_list, this.redo_list);
+        this.restoreState(canvas, ctx, this.undo_list, this.redo_list, obj);
+        
       },
 
-      redo: function (canvas, ctx) {
+      redo: function (canvas, ctx, obj) {
         console.log("redo");
 
-        this.restoreState(canvas, ctx, this.redo_list, this.undo_list);
+        this.restoreState(canvas, ctx, this.redo_list, this.undo_list, obj);
       },
 
-      restoreState: function (canvas, ctx, pop, push) {
+      restoreState: function (canvas, ctx, pop, push, obj) {
         if (pop.length) {
           this.saveState(canvas, push, true);
           let restore_state = pop.pop();
@@ -103,6 +104,7 @@ class Canvas extends Component {
             //draw a box over the top
             //ctx.fillStyle = "rgba(200, 0, 0, 0.5)";
             //ctx.fillRect(0, 0, 500, 500);
+            obj.sendImage(canvas);
           };
         }
       }
@@ -114,13 +116,12 @@ class Canvas extends Component {
 
 
       $('#undo').click(function () {
-        obj.history.undo(obj.canvas, obj.ctx);
-        obj.props.gameobj.sendImage(obj.canvas);
+        obj.history.undo(obj.canvas, obj.ctx, obj.props.gameobj);
       });
 
       $('#redo').click(function () {
-        obj.history.redo(obj.canvas, obj.ctx);
-        obj.props.gameobj.sendImage(obj.canvas);
+        obj.history.redo(obj.canvas, obj.ctx, obj.props.gameobj);
+        
       });
 
       $("#canvas").mousedown(function (mouseEvent) {
@@ -133,9 +134,13 @@ class Canvas extends Component {
         $(this).mousemove(function (mouseEvent) {
           drawLine(mouseEvent, obj.canvas, obj.ctx);
         }).mouseup(function (mouseEvent) {
+          console.log("mouseup");
+          
           obj.props.gameobj.sendImage(obj.canvas);
           finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
         }).mouseout(function (mouseEvent) {
+          console.log("mouseout");
+          
           obj.props.gameobj.sendImage(obj.canvas);
           finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
         });
@@ -151,7 +156,7 @@ class Canvas extends Component {
     let obj = this;
     pic.onload = function () {
       //draw background image
-      //obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height)
+      obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height)
       obj.ctx.drawImage(pic, 0, 0);
 
     };
