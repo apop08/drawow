@@ -8,20 +8,23 @@ handleChatMessage = (io, socket) => {
   });
 };
 
-handleDisconnect = function (io, socket) {
+handleDisconnect = function (io, socket, users) {
   socket.on('disconnect', function () {
     console.log(`${socket.user} disconnected`);
+    const index = users.indexOf(socket.user);
+    if(index > -1) users.splice(index, 1);
+    console.log(users);
   });
 };
 
-handleUser = function (io, socket) {
- 
+handleUser = function (io, socket, users) {
   socket.on('tradeUsername', function (user) {
     console.log("handleuser");
-    console.log(socket);
+    //console.log(socket);
     socket.user = user;
+    users.push(user);
     console.log(`Welcome ${socket.user}`);
-
+    console.log(users);
   });
 };
 sendUser = function (io, socket) {
@@ -41,17 +44,22 @@ sendDraw = function (io, socket) {
 class Logic {
   constructor(io) {
     this.io = io;
+    this.users = [];
+
   }
+
+  
   initSocketEvents() {
+    let obj = this;
     this.io.on('connection', function (socket) {
       console.log('a user connected');
       //on chat event
-      const io = this.io;
+      const io = obj.io;
       sendUser(io, socket);
       sendDraw(io, socket);
-      handleUser(io, socket);
+      handleUser(io, socket, obj.users);
       handleChatMessage(io, socket);
-      handleDisconnect(io, socket);
+      handleDisconnect(io, socket, obj.users);
     });
   }
 }
