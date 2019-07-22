@@ -4,7 +4,7 @@ import About from '../components/About/index';
 import Rank from '../components/Rank/index';
 import Profile from '../components/Profile/index';
 // import Container from '../components/Container/Container';
-
+import Game from './Game'
 import './Nav.css';
 
 class Nav extends Component {
@@ -31,7 +31,7 @@ class Nav extends Component {
         test = <About />
         break
       case "game":
-        test = "this is game"
+        test = <Game user={this.props.user}/>
         break
       case "rank":
         test = <Rank />
@@ -101,7 +101,7 @@ class Nav extends Component {
               </button>
             </ModalHeader>
             <ModalBody>
-              <p>{test}</p>
+              {test}
             </ModalBody>
           </Modal>
         </div>

@@ -42,7 +42,9 @@ class Canvas extends Component {
     this.x = this.state.color;
     //this.y = 2;
     this.color = this.color.bind(this);
+    //let obj = this;
     //this.handleChange = this.handleChange.bind(this);
+
   }
 
   componentDidMount() {
@@ -105,34 +107,55 @@ class Canvas extends Component {
         }
       }
     }
+    if (this.props.drawer) {
+      let obj = this;
 
-    let obj = this;
 
-    $('#undo').click(function () {
-      obj.history.undo(obj.canvas, obj.ctx);
-    });
 
-    $('#redo').click(function () {
-      obj.history.redo(obj.canvas, obj.ctx);
-    });
 
-    $("#canvas").mousedown(function (mouseEvent) {
-      var position = getPosition(mouseEvent, obj.canvas);
-      obj.ctx.moveTo(position.X, position.Y);
-      obj.ctx.beginPath();
-      obj.history.saveState(obj.canvas);
-      // attach event handlers
-      $(this).mousemove(function (mouseEvent) {
-        drawLine(mouseEvent, obj.canvas, obj.ctx);
-      }).mouseup(function (mouseEvent) {
-        finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-      }).mouseout(function (mouseEvent) {
-        finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+      $('#undo').click(function () {
+        obj.history.undo(obj.canvas, obj.ctx);
+        obj.props.gameobj.sendImage(obj.canvas);
       });
-    });
 
+      $('#redo').click(function () {
+        obj.history.redo(obj.canvas, obj.ctx);
+        obj.props.gameobj.sendImage(obj.canvas);
+      });
+
+      $("#canvas").mousedown(function (mouseEvent) {
+        var position = getPosition(mouseEvent, obj.canvas);
+        obj.ctx.moveTo(position.X, position.Y);
+        obj.ctx.beginPath();
+        obj.history.saveState(obj.canvas);
+
+        // attach event handlers
+        $(this).mousemove(function (mouseEvent) {
+          drawLine(mouseEvent, obj.canvas, obj.ctx);
+        }).mouseup(function (mouseEvent) {
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        }).mouseout(function (mouseEvent) {
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        });
+      });
+    }
   }
 
+  recPic(img) {
+    console.log(img);
+    let pic = new Image();
+    pic.src = img;
+    console.log(pic);
+    let obj = this;
+    pic.onload = function () {
+      //draw background image
+      //obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height)
+      obj.ctx.drawImage(pic, 0, 0);
+
+    };
+  }
   color(color) {
     this.setState({ color: color });
     this.ctx.strokeStyle = this.state.color;
@@ -147,30 +170,23 @@ class Canvas extends Component {
 
   }
   render() {
+    let drawingStuff = <div><canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas></div>;
+    if (this.props.drawer) {
+      drawingStuff = <div><div style={{ position: "absolute", top: "12%", left: "60%" }}>
+        Color: <ChromePicker color={this.state.color} onChangeComplete={this.handleChange} />
+      </div>
+        <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
+        <div style={{ position: "absolute", top: "12%", left: "43%" }}>Choose Color</div>
+        <button style={{ position: "absolute", top: "22%", left: "43%", width: "15px", height: "15px", background: "white" }} id="white" onClick={this.color.bind(this, "white")}></button>
+        <button style={{ position: "absolute", top: "28%", left: "43%", width: "15px", height: "15px", background: "white" }} id="undo">Undo</button>
+        <button style={{ position: "absolute", top: "28%", left: "45%", width: "15px", height: "15px", background: "white" }} id="redo">Redo</button>
+        <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "black" }} min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
+        </div>
+    }
 
     //let obj = this;
     console.log(this.state)
-    return (<div>
-      <div style={{ position: "absolute", top: "12%", left: "60%" }}>
-        Color: <ChromePicker color={this.state.color} onChangeComplete={this.handleChange} />
-      </div>
-      <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-      <div style={{ position: "absolute", top: "12%", left: "43%" }}>Choose Color</div>
-      <button style={{ position: "absolute", top: "22%", left: "43%", width: "15px", height: "15px", background: "white" }} id="white" onClick={this.color.bind(this, "white")}></button>
-      <button style={{ position: "absolute", top: "28%", left: "43%", width: "15px", height: "15px", background: "white" }} id="undo">Undo</button>
-      <button style={{ position: "absolute", top: "28%", left: "45%", width: "15px", height: "15px", background: "white" }} id="redo">Redo</button>
-      <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "black" }} min="1" max="15" value="10" step="1" fn={this.brush.bind(this)} />
-      {/*<div style={{position:"absolute", top:"15%", left:"46%", width:"10px", height:"10px", background:"blue"}} id="blue" onClick={color(this)}></div>
-      <div style={{position:"absolute", top:"15%", left:"47%", width:"10px", height:"10px", background:"red"}} id="red" onClick="color(this)"></div>
-      <div style={{position:"absolute", top:"17%", left:"45%", width:"10px", height:"10px", background:"yellow"}} id="yellow" onClick="color(this)"></div>
-      <div style={{position:"absolute", top:"17%", left:"46%", width:"10px", height:"10px", background:"orange"}} id="orange" onClick="color(this)"></div>
-      <div style={{position:"absolute", top:"17%", left:"47%", width:"10px", height:"10px", background:"black"}} id="black" onClick="color(this)"></div>
-      <div style={{position:"absolute", top:"20%", left:"43%"}}>Eraser</div>
-      <div style={{position:"absolute", top:"22%", left:"45%", width:"15px", height:"15px", background:"white", border:"2px solid"}} id="white" onclick="Color(this)"></div>
-      <img id="canvasimg" alt="canvas" style={{position:"absolute", top:"10%", left:"52%", display: "none"}} />
-      <input type="button" value="save" id="btn" size="30" onclick="save()" style={{position:"absolute", top:"55%", left:"10%"}} /> 
-      <input type="button" value="clear" id="clr" size="23" onclick="erase()" style={{position:"absolute", top:"55%", left:"15%"}} />*/}
-    </div>)
+    return drawingStuff;
   }
 }
 
