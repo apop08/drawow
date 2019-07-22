@@ -1,3 +1,5 @@
+
+
 // Loading evnironmental variables here
 if (process.env.NODE_ENV !== 'production') {
 	console.log('loading dev environments')
@@ -13,7 +15,11 @@ const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./db') // loads our connection to the mongo database
 const passport = require('./passport')
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3001
+var server = require('http').Server(app);
+const io = require('socket.io')(server);
+const GameObj = require('./game/gameobj');
+
 
 // ===== Middleware ====
 app.use(morgan('dev'))
@@ -62,10 +68,13 @@ app.use(passport.session()) // will call the deserializeUser
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path')
 	console.log('YOU ARE IN THE PRODUCTION ENV')
-	app.use('/static', express.static(path.join(__dirname, '../build/static')))
+	app.use(express.static(path.join(__dirname, '../client/build')))
+	app.use('/static', express.static(path.join(__dirname, '../client/build/static')))
+	
 	app.get('/', (req, res) => {
-		res.sendFile(path.join(__dirname, '../build/'))
+		res.sendFile(path.join(__dirname, '../client/build/'))
 	})
+	
 }
 
 /* Express app ROUTING */
@@ -78,7 +87,10 @@ app.use(function(err, req, res, next) {
 	res.status(500)
 })
 
+
 // ==== Starting Server =====
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
+const game = new GameObj(io);
+//accept connected users socket requests
