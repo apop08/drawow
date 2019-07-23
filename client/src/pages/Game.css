@@ -80,3 +80,9 @@ ul #oldMessage, ul #message {
     background:#5200ff;
     color:white;
 }
+#user{
+    float:left;
+    font-size:30px;
+    margin-left: 5%;
+    margin-top:0%;
+}

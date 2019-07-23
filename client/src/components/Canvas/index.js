@@ -199,7 +199,7 @@ class Canvas extends Component {
     }
     if (this.props.drawer) {
 
-      drawingStuff = <div>
+      drawingStuff = <div className = "container">
         <RandomWord/>
         <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
         {palette}

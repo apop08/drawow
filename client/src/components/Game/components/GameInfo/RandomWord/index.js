@@ -1,6 +1,7 @@
 
 // import Timer from '../components/Game/components/GameInfo/Timer/Timer';
 import React, { Component } from 'react';
+import './style.css';
 
 class RandomWord extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class RandomWord extends Component {
 
     render() {
         console.log(this.state.word);
-        return (  <h1>{this.state.word} </h1>)
+        return (<div id = "randomWord">{this.state.word}</div>)
    
     }
 }
