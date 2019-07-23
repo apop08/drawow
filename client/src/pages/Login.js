@@ -48,7 +48,7 @@ class LoginForm extends Component {
 			return (
 				<div className="LoginForm">
 					<form>
-						<div>
+						<div id = "getUser">
 							<label htmlFor="username">Username: </label>
 							<input
 								type="text"
@@ -57,7 +57,7 @@ class LoginForm extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<div>
+						<div id ="password">
 							<label htmlFor="password">Password: </label>
 							<input
 								type="password"

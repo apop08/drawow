@@ -1,8 +1,11 @@
 #confirm{
-    margin-right:4.6%
+    margin-right:3px;
 }
 #getUser{
-    margin-right:.2%
+    margin-left:50px;
+}
+#password{
+    margin-left:53px;
 }
 .SignupForm{
     right:0;
@@ -13,5 +16,8 @@
     color: white;
     border:none;
     margin-top:1%;
-    width:20.5%;
+    width:280px;
+}
+input{
+    width:150px
 }
