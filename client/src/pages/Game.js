@@ -3,7 +3,8 @@ import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 import Canvas from '../components/Canvas';
-import Chat from '../components/Chat';
+import './Game.css'
+
 class Game extends Component {
     constructor(props) {
         super(props);
@@ -94,15 +95,20 @@ class Game extends Component {
 
     render() {
         let chat = this.state.chat.map(e => {
-            return <li>{e}</li>;
+            return <ul id ="oldMessage">{e}</ul>;
         })
         let chatPage;
+        let chatBtn;
         if (this.state.formToPresent) {
-            chatPage = <div><ul style={{ color: 'Black' }} id="messages">{chat}</ul>
+            chatPage = <div className ="chatPage">
+                <ul style={{ color: 'Black'}} id="messages">{chat}</ul>
                 <form action="">
-                    <input type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button onClick={this.submitChat.bind(this)}>Send</button>
+                    <input className = "chatBox" type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button  className="btn btn-secondary send" onClick={this.submitChat.bind(this)}>Send</button>
                 </form>
             </div>
+            chatBtn= <button onClick={this.openChat} className ="btn btn-secondary xButton">X</button>
+        }else {
+            chatBtn =<button onClick={this.openChat} className ="btn btn-secondary chatButton">Chat </button>
 
         }
         let canv = <button onClick={this.startGame.bind(this)}>Start</button>;
@@ -110,10 +116,12 @@ class Game extends Component {
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
         return <div>
-            <p>{this.state.users}</p>
+            <p>{this.state.users} </p>
             {canv}
-            <button onClick={this.openChat}>Chat</button>
-            {chatPage}
+            <div className="chat">
+                {chatBtn}
+                {chatPage}
+            </div>
         </div>
     }
 }

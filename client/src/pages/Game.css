@@ -1,0 +1,76 @@
+body{
+    /* position:relative; */
+}
+.chat{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width:20%;
+}
+
+.chatPage{
+    background :white;
+    border-style: solid;
+    border-color:rgba(0, 0, 0, 0.673);
+    animation: open .25s;
+}
+@keyframes open {
+    from { transform: scaleY(0) }
+        to { transform: scaleY(1) }
+  }
+ 
+.chatButton{
+    /* right:0; */
+    /* text-align: right; */
+    /* margin-right:0%; */
+    /* position: fixed;
+    bottom: 0;
+    right: 0; */
+    margin-left:    84%;
+    background:#5200ff;
+    color:white;
+    border:none;
+    height:25px;   
+    padding:0% 2% 0% 2%;
+    font-size:15px;
+}
+.xButton{
+    margin-left:    91%;
+    background:#5200ff;
+    color:white;
+    border:none;
+    height:25px;   
+    padding:0% 2% 0% 2%;
+    font-size:15px;
+}
+.chatBox{
+    width: 83%;
+    margin:0%
+}
+.send{
+    background:#5200ff;
+    color:white;
+    border:none;
+    height:25px;   
+    padding:0% 2% 0% 2%;
+    font-size:15px;
+    margin: 1px 0% 3px 0%;
+}
+.chatButton:hover{
+    transform: scale(1.2);
+}
+.send:hover, .chatButton:hover, .xButton{
+    background:white;
+    color:   #5200ff;
+    border:solid 0.5px #1a034d73;
+}
+/* needs to be worked on */
+ /* .send:active{
+    border:none;
+    outline:none;
+
+} */
+
+ul #oldMessage, ul #message {
+    text-align:left;
+}
