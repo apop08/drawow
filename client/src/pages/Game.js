@@ -5,7 +5,11 @@ import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 import Canvas from '../components/Canvas';
+
+import Timer from '../components/Game/components/GameInfo/Timer/Timer'
+
 import './Game.css'
+
 
 class Game extends Component {
     constructor(props) {
@@ -118,7 +122,11 @@ class Game extends Component {
         }
 
         return <div>
+
+            <Timer></Timer>
+
             <div id = "user">{this.state.users} </div>
+
             {canv}
             <div className="chat">
                 {chatBtn}
