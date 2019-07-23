@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 import Canvas from '../components/Canvas';
-
+import Chat from '../components/Chat';
 class Game extends Component {
     constructor(props) {
         super(props);
@@ -12,11 +12,13 @@ class Game extends Component {
             chat: [],
             drawer: false,
             live: false,
-            users: []
+            users: [],
+            formToPresent: null
         };
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
+        this.openChat = this.openChat.bind(this);
 
     }
 
@@ -44,8 +46,8 @@ class Game extends Component {
             }
             obj.setState({ live: true })
         });
-        this.socket.on('userList', function(users){
-            obj.setState({users: users});
+        this.socket.on('userList', function (users) {
+            obj.setState({ users: users });
         })
     }
 
@@ -79,12 +81,30 @@ class Game extends Component {
         //console.log(imgData)
         this.socket.emit('drawing', imgData);
     }
+    openChat(e) {
+        e.preventDefault();
+        if (this.state.formToPresent === true) {
+            this.setState({ formToPresent: false })
+        } else {
+            this.setState({ formToPresent: true });
+        }
+
+    }
 
 
     render() {
         let chat = this.state.chat.map(e => {
             return <li>{e}</li>;
         })
+        let chatPage;
+        if (this.state.formToPresent) {
+            chatPage = <div><ul style={{ color: 'Black' }} id="messages">{chat}</ul>
+                <form action="">
+                    <input type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button onClick={this.submitChat.bind(this)}>Send</button>
+                </form>
+            </div>
+
+        }
         let canv = <button onClick={this.startGame.bind(this)}>Start</button>;
         if (this.state.live) {
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
@@ -92,10 +112,8 @@ class Game extends Component {
         return <div>
             <p>{this.state.users}</p>
             {canv}
-            <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
-            <form action="">
-                <input type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button onClick={this.submitChat.bind(this)}>Send</button>
-            </form>
+            <button onClick={this.openChat}>Chat</button>
+            {chatPage}
         </div>
     }
 }
