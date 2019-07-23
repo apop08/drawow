@@ -1,0 +1,23 @@
+#confirm{
+    margin-right:3px;
+}
+#getUser{
+    margin-left:50px;
+}
+#password{
+    margin-left:53px;
+}
+.SignupForm{
+    right:0;
+}
+.signup{
+    margin-right: 0;
+    background: #b2757e;
+    color: white;
+    border:none;
+    margin-top:1%;
+    width:280px;
+}
+input{
+    width:150px
+}

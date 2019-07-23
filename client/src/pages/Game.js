@@ -5,7 +5,11 @@ import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 import Canvas from '../components/Canvas';
+
 import Timer from '../components/Game/components/GameInfo/Timer/Timer'
+
+import './Game.css'
+
 
 class Game extends Component {
     constructor(props) {
@@ -15,11 +19,13 @@ class Game extends Component {
             chat: [],
             drawer: false,
             live: false,
-            users: []
+            users: [],
+            formToPresent: null
         };
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
+        this.openChat = this.openChat.bind(this);
 
     }
 
@@ -47,8 +53,8 @@ class Game extends Component {
             }
             obj.setState({ live: true })
         });
-        this.socket.on('userList', function(users){
-            obj.setState({users: users});
+        this.socket.on('userList', function (users) {
+            obj.setState({ users: users });
         })
     }
 
@@ -82,24 +88,50 @@ class Game extends Component {
         //console.log(imgData)
         this.socket.emit('drawing', imgData);
     }
+    openChat(e) {
+        e.preventDefault();
+        if (this.state.formToPresent === true) {
+            this.setState({ formToPresent: false })
+        } else {
+            this.setState({ formToPresent: true });
+        }
+    }
 
 
     render() {
         let chat = this.state.chat.map(e => {
-            return <li>{e}</li>;
+            return <ul id ="oldMessage">{e}</ul>;
         })
-        let canv = <button onClick={this.startGame.bind(this)}>Start</button>;
+        let chatPage;
+        let chatBtn;
+        if (this.state.formToPresent) {
+            chatPage = <div className ="chatPage">
+                <ul style={{ color: 'Black'}} id="messages">{chat}</ul>
+                <form action="">
+                    <input className = "chatBox" type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button  className="btn btn-secondary send" onClick={this.submitChat.bind(this)}>Send</button>
+                </form>
+            </div>
+            chatBtn= <button onClick={this.openChat} className ="btn btn-secondary xButton">X</button>
+        }else {
+            chatBtn =<button onClick={this.openChat} className ="btn btn-secondary chatButton">Chat </button>
+        }
+
+        let canv = <button onClick={this.startGame.bind(this)} className ="btn btn-secondary startButton">Start</button>;
         if (this.state.live) {
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
+
         return <div>
+
             <Timer></Timer>
-            <p>{this.state.users}</p>
+
+            <div id = "user">{this.state.users} </div>
+
             {canv}
-            <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
-            <form action="">
-                <input type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button onClick={this.submitChat.bind(this)}>Send</button>
-            </form>
+            <div className="chat">
+                {chatBtn}
+                {chatPage}
+            </div>
         </div>
     }
 }
