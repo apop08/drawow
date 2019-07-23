@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 import Canvas from '../components/Canvas';
+import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
 class Game extends Component {
     constructor(props) {
@@ -92,6 +93,7 @@ class Game extends Component {
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
         return <div>
+            <Timer></Timer>
             <p>{this.state.users}</p>
             {canv}
             <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
