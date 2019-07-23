@@ -1,3 +1,5 @@
+
+// import Timer from '../components/Game/components/GameInfo/Timer/Timer';
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
