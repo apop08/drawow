@@ -1,14 +1,17 @@
-#login_button{
+#confirm{
+    margin-right:4.6%
+}
+#getUser{
+    margin-right:.2%
+}
+.SignupForm{
+    right:0;
+}
+.signup{
     margin-right: 0;
     background: #b2757e;
     color: white;
     border:none;
     margin-top:1%;
     width:20.5%;
-}
-label{
-    display: inline-block;
-    margin-bottom: .5rem;
-    color: white;
-    margin-right: 5px;
 }

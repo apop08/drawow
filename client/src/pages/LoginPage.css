@@ -7,10 +7,14 @@
     text-align: center;
     margin: 194px 100px;
     border: 1px solid silver;
-    margin-right: 130px;
+    /* margin-right: 130px; */
+    /* margin-left:380px; */
+    margin-left:30%;
     background:#212529;
     box-shadow: 5px 10px 5px darkslategray;
     height: 310px;
+    padding-top:3%;
+    width:40%;
 }
 button.custom-button{
     margin: 80px 60px;
@@ -21,8 +25,36 @@ button.custom-button{
     button.custom-button{
         margin: 20px;
     }
+  
 }
 
 span{
     width: 200px;
+}
+@media only screen and (max-width: 1204px) {
+    .our-container{
+        height:400px;
+        margin-top:180px;
+        margin-bottom:118px;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .our-container{
+        /* height:400px;
+        margin-top:180px;
+        margin-bottom:118px; */
+        width:50%;
+        margin-left:25%;
+    }
+}
+@media only screen and (max-width: 711px) {
+    .our-container{
+          /* width:50%;
+        margin-left:25%; */
+        /* height:400px;
+        margin-top:180px;
+        margin-bottom:118px;*/
+        width:60%;
+        margin-left:21%; 
+    }
 }

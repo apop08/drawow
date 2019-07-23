@@ -67,7 +67,7 @@ class LoginForm extends Component {
 							/>
 						</div>
 					
-						<button id ="login_button" onClick={this.handleSubmit}>Login</button>
+						<button className ="btn btn-secondary" id ="login_button" onClick={this.handleSubmit}>Login</button>
 					</form>
 				</div>
 
