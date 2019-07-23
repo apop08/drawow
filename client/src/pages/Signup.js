@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import './Signup.css'
 
 class Signup extends Component {
-    constructor() {
+	constructor() {
 		super()
 		this.state = {
 			username: '',
 			password: '',
 			confirmPassword: '',
 			redirectTo: null
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
+		}
+		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
 
@@ -23,7 +24,7 @@ class Signup extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault()
-		
+
 		// TODO - validate!
 		axios
 			.post('/auth/signup', {
@@ -51,10 +52,11 @@ class Signup extends Component {
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
-			
+
 			return (
-			
-					<div className="SignupForm">
+
+				<div className="SignupForm">
+					<div id = "getUser">
 						<label htmlFor="username">Username: </label>
 						<input
 							type="text"
@@ -62,6 +64,8 @@ class Signup extends Component {
 							value={this.state.username}
 							onChange={this.handleChange}
 						/>
+					</div>
+					<div id ="password">
 						<label htmlFor="password">Password: </label>
 						<input
 							type="password"
@@ -69,6 +73,8 @@ class Signup extends Component {
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
+					</div>
+					<div id = "confirm">
 						<label htmlFor="confirmPassword">Confirm Password: </label>
 						<input
 							type="password"
@@ -76,12 +82,14 @@ class Signup extends Component {
 							value={this.state.confirmPassword}
 							onChange={this.handleChange}
 						/>
-						<button onClick={this.handleSubmit}>Sign up</button>
 					</div>
-				
+
+					<button className="btn btn-secondary signup" onClick={this.handleSubmit}>Sign up</button>
+				</div>
+
 			)
 		}
-    }
+	}
 }
 
-    export default Signup
+export default Signup

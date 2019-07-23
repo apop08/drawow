@@ -2,6 +2,9 @@
     margin-right: 0;
     background: #b2757e;
     color: white;
+    border:none;
+    margin-top:1%;
+    width:280px;
 }
 label{
     display: inline-block;

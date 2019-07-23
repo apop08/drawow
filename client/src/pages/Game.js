@@ -118,7 +118,7 @@ class Game extends Component {
         }
 
         return <div>
-            <p>{this.state.users} </p>
+            <div id = "user">{this.state.users} </div>
             {canv}
             <div className="chat">
                 {chatBtn}
