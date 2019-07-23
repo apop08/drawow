@@ -5,13 +5,10 @@
 .our-container {
     display: block;
     text-align: center;
-    margin: 200px 100px;
+    margin: 194px 100px;
     border: 1px solid silver;
-
     margin-right: 130px;
     background:#212529;
-
-
     box-shadow: 5px 10px 5px darkslategray;
     height: 310px;
 }
