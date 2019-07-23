@@ -89,7 +89,6 @@ class Game extends Component {
         } else {
             this.setState({ formToPresent: true });
         }
-
     }
 
 
@@ -109,12 +108,13 @@ class Game extends Component {
             chatBtn= <button onClick={this.openChat} className ="btn btn-secondary xButton">X</button>
         }else {
             chatBtn =<button onClick={this.openChat} className ="btn btn-secondary chatButton">Chat </button>
-
         }
-        let canv = <button onClick={this.startGame.bind(this)}>Start</button>;
+
+        let canv = <button onClick={this.startGame.bind(this)} className ="btn btn-secondary startButton">Start</button>;
         if (this.state.live) {
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
+
         return <div>
             <p>{this.state.users} </p>
             {canv}

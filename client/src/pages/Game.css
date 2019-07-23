@@ -1,10 +1,7 @@
-body{
-    /* position:relative; */
-}
 .chat{
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 5.3%;
+    right: 3%;
     width:20%;
 }
 
@@ -20,12 +17,6 @@ body{
   }
  
 .chatButton{
-    /* right:0; */
-    /* text-align: right; */
-    /* margin-right:0%; */
-    /* position: fixed;
-    bottom: 0;
-    right: 0; */
     margin-left:    84%;
     background:#5200ff;
     color:white;
@@ -73,4 +64,19 @@ body{
 
 ul #oldMessage, ul #message {
     text-align:left;
+}
+
+.startButton{
+    background:#5200ff;
+    color:white;
+    margin:15%;
+    width:25%;
+    height:20%; 
+    font-size:30px;
+    border:none;
+}
+.startButton:hover{
+    transform: scale(1.5);
+    background:#5200ff;
+    color:white;
 }
