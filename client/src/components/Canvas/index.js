@@ -3,6 +3,7 @@ import Slider from "./components/Slider";
 import $ from "jquery"
 import { ChromePicker } from 'react-color';
 import './style.css'
+import RandomWord from "../Game/components/GameInfo/RandomWord"
 import { Z_ASCII } from "zlib";
 
 function getPosition(mouseEvent, sigCanvas) {
@@ -199,6 +200,7 @@ class Canvas extends Component {
     if (this.props.drawer) {
 
       drawingStuff = <div>
+        <RandomWord/>
         <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
         {palette}
         <div id="palette">
