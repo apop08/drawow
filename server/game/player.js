@@ -5,6 +5,7 @@ class Player{
         this.socket = socket;
         this.state = 'lobby';
         this.gameId = 0;
+        this.isDrawing = false;
     }
     joinRoom(game){
         this.state = 'waiting';
@@ -21,6 +22,11 @@ class Player{
     }
     startGame(){
         e.state = 'playing';
+    }
+    setDrawer()
+    {
+        this.isDrawing = true;
+        this.socket.emit('your drawing');
     }
 }
 module.exports = Player
