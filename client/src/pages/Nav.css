@@ -81,13 +81,25 @@ body{
         margin-left:20%;
         margin-right:20%;
         margin-bottom:4%;
-
     }
     button:nth-child(5){
         margin-right:20%;
     }
     .navPage{
         height:665px;
+    }
+}
+
+/* iPad  */
+@media only screen and (max-width: 768px) {
+   .navPage{
+       margin-top:20%;
+       margin-bottom:27%;
+   }
+   .navBtn{
+    width:50%;
+    margin-bottom:0%;
+    margin-top:5%;
     }
 }
 

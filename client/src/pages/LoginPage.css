@@ -20,17 +20,16 @@ button.custom-button{
     margin: 80px 60px;
 }
 
-@media only screen {
-    
-    button.custom-button{
-        margin: 20px;
-    }
-  
-}
-
 span{
     width: 200px;
 }
+
+@media only screen {
+    button.custom-button{
+        margin: 20px;
+    }
+}
+
 @media only screen and (max-width: 1204px) {
     .our-container{
         height:400px;
@@ -57,11 +56,12 @@ span{
         margin-left:25%;
     }
 } */
+
 /* iPad  */
 @media only screen and (max-width: 768px) {
     .our-container{
-        margin-top:320px;
-        margin-bottom:200px;
+        margin-top:300px;
+        margin-bottom:220px;
         width:50%;
         margin-left:25%;
     }
