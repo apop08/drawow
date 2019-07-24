@@ -9,22 +9,22 @@ class Timer extends Component {
         };
     }
 
-    componentDidMount() {
-        let obj = this;
+    // componentDidMount() {
+        // let obj = this;
 
-        const intervalId = setInterval(() => {
-            const t = ++obj.state.time
-            console.log(t)
-            obj.setState({time: t})
-            if (t >= 5) {
-                clearInterval(intervalId)
-            }
-        }, 1000);
-    }
+        // const intervalId = setInterval(() => {
+        //     const t = ++obj.state.time
+        //     console.log(t)
+        //     obj.setState({time: t})
+        //     if (t >= 5) {
+        //         clearInterval(intervalId)
+        //     }
+        // }, 1000);
+    // }
 
     render() {
         return <div style={{border: '2px solid red', margin: '10px'}}>
-            <p>{this.state.time}</p>
+            <p>{this.props.time}</p>
         </div>;
     }
 }
