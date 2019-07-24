@@ -38,13 +38,43 @@ span{
         margin-bottom:118px;
     }
 }
+
+/* for ipad pro */
+@media only screen and (max-width: 1024px) {
+    .our-container{
+        height:500px;
+        width:50%;
+        margin-top:400px;
+        margin-bottom:470px;
+        margin-left:25%;
+        padding-top:15%;
+    }
+}
+/* might delete this
 @media only screen and (max-width: 900px) {
     .our-container{
-        /* height:400px;
-        margin-top:180px;
-        margin-bottom:118px; */
         width:50%;
         margin-left:25%;
+    }
+} */
+/* iPad  */
+@media only screen and (max-width: 768px) {
+    .our-container{
+        margin-top:320px;
+        margin-bottom:200px;
+        width:50%;
+        margin-left:25%;
+    }
+}
+@media only screen and (max-width: 711px) {
+    .our-container{
+          /* width:50%;
+        margin-left:25%; */
+        /* height:400px;
+        margin-top:180px;
+        margin-bottom:118px;*/
+        width:60%;
+        margin-left:21%; 
     }
 }
 @media only screen and (max-width: 711px) {
