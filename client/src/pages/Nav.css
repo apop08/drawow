@@ -1,5 +1,5 @@
 .App{
-    margin-top:14%;
+    margin-top:13%;
     text-align:center;
 }
 button{
@@ -14,7 +14,7 @@ button:nth-child(5){
     width:10%;
     height:50px;
     border:none;
-    margin-bottom:22.5%;
+    margin-bottom:18%;
     font-family: 'Rubik', sans-serif;
     font-size: 20px;
 }
@@ -43,7 +43,7 @@ body{
     font-weight:normal;
 }
 .navPage{
-    height:690px;
+    height:662px;
 }
 
 @media only screen and (max-width: 1105px) {
