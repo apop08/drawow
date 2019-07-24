@@ -20,7 +20,8 @@ class Game extends Component {
             drawer: false,
             live: false,
             users: [],
-            formToPresent: null
+            formToPresent: null,
+            timer: 0
         };
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -82,6 +83,14 @@ class Game extends Component {
 
     startGame() {
         this.socket.emit('start');
+        const intervalId = setInterval(() => {
+            const t = ++this.state.timer
+            console.log(t)
+            this.setState({timer: t})
+            if (t >= 5) {
+                clearInterval(intervalId)
+            }
+        }, 1000);
     }
     sendImage(canvas) {
         const imgData = canvas.toDataURL('image/png', .3);
@@ -123,7 +132,7 @@ class Game extends Component {
 
         return <div>
 
-            <Timer></Timer>
+            <Timer time = {this.state.timer}></Timer>
 
             <div id = "user">{this.state.users} </div>
 
