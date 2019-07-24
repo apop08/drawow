@@ -28,23 +28,23 @@ class Game extends Component {
             obj.setState({ chat: [...obj.state.chat, msg] })
             console.log(obj.state.chat)
         });
-        this.socket.on('tradeUsername', function () {
+        this.socket.on('Username', function () {
             console.log("sending username");
-            obj.socket.emit('tradeUsername', obj.props.user)
+            obj.socket.emit('Username', obj.props.user)
         });
 
         this.socket.on('drawing', function (img) {
 
             obj.canvasRef.current.recPic(img);
         });
-        this.socket.on('startGame', function (drawer) {
+        this.socket.on('start game', function (drawer) {
 
             if (obj.props.user == drawer) {
                 obj.setState({ drawer: true })
             }
             obj.setState({ live: true })
         });
-        this.socket.on('userList', function(users){
+        this.socket.on('game player list', function(users){
             obj.setState({users: users});
         })
     }
@@ -62,7 +62,7 @@ class Game extends Component {
 
         e.preventDefault(); // prevents page reloading
         //console.log(this.state.message);
-        const msg = `[${moment().format('LTS')}] ${this.props.user}: ${this.state.message}`;
+        const msg = `${this.state.message}`;
         this.socket.emit('chat message', msg);
         this.setState({ message: '' });
 

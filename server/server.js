@@ -18,7 +18,7 @@ const app = express()
 const PORT = process.env.PORT || 3001
 var server = require('http').Server(app);
 const io = require('socket.io')(server);
-const GameObj = require('./game/gameobj');
+const Lobby = require('./game/lobby');
 
 
 // ===== Middleware ====
@@ -92,5 +92,4 @@ app.use(function(err, req, res, next) {
 server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
-const game = new GameObj(io);
 //accept connected users socket requests
