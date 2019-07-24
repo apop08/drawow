@@ -126,14 +126,16 @@ class Game extends Component {
         }
 
         let canv = <button onClick={this.startGame.bind(this)} className ="btn btn-secondary startButton">Start</button>;
+        let timer = null;
         if (this.state.live) {
+            timer = <Timer time = {this.state.timer}></Timer>;
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
 
         return <div>
 
-            <Timer time = {this.state.timer}></Timer>
-
+            
+            {timer}
             <div id = "user">{this.state.users} </div>
 
             {canv}
