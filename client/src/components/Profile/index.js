@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Nav from '../Nav';
+import './profile.css';
 
 function Profile() {
     return (
-        <p>"test profile"</p>
+        <div>
+            <Nav />
+            
+            <div id="content">
+              
+            </div>
+
+        </div>
     )
+    
 }
 export default Profile;
+
