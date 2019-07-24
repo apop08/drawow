@@ -11,7 +11,7 @@ class GameRoom {
     addPlayer(player) {
         this.players.push(player);
         player.joinRoom(this);
-        this.dispatchList();
+        this.dispatchGamePlayerList();
     }
     removePlayer(player) {
         let playerToRemove = -1;
@@ -51,7 +51,7 @@ class GameRoom {
         this.startGame();
         this.room.emit('start game', this.drawer)
     }
-    dispatchList(){
+    dispatchGamePlayerList(){
         const arr = this.players.map((e) => e.socket.user);
         this.room.emit('game player list', arr);
     }

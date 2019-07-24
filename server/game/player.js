@@ -54,7 +54,7 @@ class Player {
         this.socket.on('disconnect', function () {
             console.log(`${obj.socket.user} disconnected`);
             obj.socket.removePlayer(obj);
-        })
+        });
 
         this.socket.on('start', function () {
             obj.gameObj.dispatchStart();
@@ -62,7 +62,21 @@ class Player {
 
         this.socket.on('join room', function(id){
             Lobby.playerJoinRoom(obj, id);
+        });
+
+        this.socket.on('start room', function(){
+            const game = Lobby.newGame();
+            Lobby.playerJoinRoom(obj, game.gId);
+        });
+
+        this.socket.on('room list', function (){
+            Lobby.dispatchRooms(obj.socket);
         })
+
+        this.socket.on('global player list', function (){
+            Lobby.dispatchPlayers(obj.socket);
+        })
+
     }
 }
 module.exports = Player

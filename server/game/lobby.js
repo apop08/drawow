@@ -46,6 +46,16 @@ class Lobby{
         if(gameToJoin !== -1)
             this.games[gameToJoin].addPlayer(player);
     }
+
+    dispatchRooms(socket){
+        const arr = this.games.map((e) => e.games.gId);
+        socket.emit("room list", arr);
+    }
+    
+    dispatchPlayers(socket){
+        const arr = this.players.map((e) => e.socket.user);
+        socket.emit("global player list", arr);
+    }
 }
 const lobby = new Lobby();
 module.exports = lobby;
