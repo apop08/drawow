@@ -33,7 +33,7 @@ class GameRoom {
 
 
         const idx = Math.floor(Math.random() * this.players.length);
-        this.drawer = this.players[idx];
+        this.drawer = this.players[idx].socket.user;
         this.drawer.setDrawer();
     }
     closeGame() {

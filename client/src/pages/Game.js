@@ -8,11 +8,14 @@ class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            state: 'lobby',
             message: '',
             chat: [],
             drawer: false,
             live: false,
-            users: []
+            users: [],
+            globalUsers: [],
+            rooms: []
         };
         this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -47,15 +50,18 @@ class Game extends Component {
         this.socket.on('game player list', function(users){
             obj.setState({users: users});
         })
+        this.socket.on('global player list', function(users){
+            obj.setState({globalUsers: users});
+        })
+        this.socket.on('room list', function(rooms){
+            obj.setState({rooms: rooms});
+        })
     }
 
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
-    }
-    sendSocketIO() {
-        this.socket.emit('example_message', 'demo');
     }
 
     submitChat(e) {

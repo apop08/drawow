@@ -9,6 +9,8 @@ class Player {
         this.isDrawing = false;
         this.gameObj = gameObj;
         this.setEvents();
+        Lobby.dispatchRooms(this.socket);
+        Lobby.dispatchPlayers(this.socket);
     }
     joinRoom(game) {
         this.state = 'waiting';
@@ -44,6 +46,7 @@ class Player {
             //send the msg out
             obj.socket.user = user;
             console.log(`Welcome ${obj.socket.user}`);
+            Lobby.dispatchPlayers();
         });
 
         this.socket.on('chat message', function (msg) {
@@ -53,7 +56,7 @@ class Player {
 
         this.socket.on('disconnect', function () {
             console.log(`${obj.socket.user} disconnected`);
-            obj.socket.removePlayer(obj);
+            obj.gameObj.removePlayer(obj);
         });
 
         this.socket.on('start', function () {
@@ -68,15 +71,6 @@ class Player {
             const game = Lobby.newGame();
             Lobby.playerJoinRoom(obj, game.gId);
         });
-
-        this.socket.on('room list', function (){
-            Lobby.dispatchRooms(obj.socket);
-        })
-
-        this.socket.on('global player list', function (){
-            Lobby.dispatchPlayers(obj.socket);
-        })
-
     }
 }
-module.exports = Player
+module.exports = Player;
