@@ -201,7 +201,7 @@ class Canvas extends Component {
 
       drawingStuff = <div className = "container">
         <RandomWord/>
-        <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
+        <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
         {palette}
         <div id="palette">
           <button className ="btn btn-secondary"id="white" onClick={this.color.bind(this, "white")}><i class="fas fa-eraser"></i></button>
