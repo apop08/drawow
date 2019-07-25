@@ -2,25 +2,27 @@ const Player = require('./player');
 const GameRoom = require('./gameroom');
 class Lobby {
     constructor(io) {
-        this.io = io;
         this.players = [];
         this.games = []
         this.nextPId = 1;
         this.nextGId = 1;
+        this.io = io;
         const obj = this;
         this.io.on('connection', function (socket) {
             obj.addPlayer(socket);
         });
+        this.newGame();
     }
     newGame() {
-        const newGame = new GameRoom(this.nextGId++)
+        const newGame = new GameRoom(this.nextGId++, this)
         this.games.push(newGame);
+        //console.log(this.games);
         this.dispatchRooms();
         return newGame;
     }
     addPlayer(socket) {
-        const newPlayer = new Player(socket, this.nextId++);
-        this.player.push(newPlayer);
+        const newPlayer = new Player(socket, this.nextId++, this);
+        this.players.push(newPlayer);
         newPlayer.askName();
     }
     closeGame(gId) {
@@ -50,11 +52,15 @@ class Lobby {
     }
 
     dispatchRooms(socket = null) {
-        const arr = this.games.map((e) => e.games.gId);
+        const arr = this.games.map((e) => e.gId);
+        console.log(arr);
         if (socket)
-            socket.emit("room list", arr);
-        else
-            this.io.emit("room list", arr);
+            socket.emit('roomlist', arr);
+        else {
+            console.log('emit to all');
+            //console.log(this.io); 
+            this.io.emit('roomlist', arr);
+        }
     }
 
     dispatchPlayers(socket = null) {
@@ -65,5 +71,5 @@ class Lobby {
             this.io.emit("global player list", arr);
     }
 }
-const lobby = new Lobby();
-module.exports = lobby;
+
+module.exports = Lobby;

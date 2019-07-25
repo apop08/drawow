@@ -1,12 +1,12 @@
 //const Player = require('./player');
-const Lobby = require('./lobby')
 class GameRoom {
-    constructor(gId) {
+    constructor(gId, Lobby) {
         this.gId = gId;
         this.players = [];
         this.state = 'waiting';
         this.drawer = null;
-        this.room = Lobby.io.to(this.gId);
+        //this.room = Lobby.io.in(this.gId);
+        this.Lobby = Lobby;
     }
     addPlayer(player) {
         this.players.push(player);
@@ -23,7 +23,7 @@ class GameRoom {
         if(playerToRemove !== -1)
             this.players.splice(playerToRemove, 1);
         this.dispatchList();
-        Lobby.removePlayer(player);
+        this.Lobby.removePlayer(player);
     }
     startGame() {
         this.state = 'playing';
@@ -42,18 +42,18 @@ class GameRoom {
         });
     }
     dispatchDrawing(img) {
-        this.room.emit('drawing', img)
+        this.Lobby.io.in(this.gId).emit('drawing', img)
     }
     dispatchChat(msg) {
-        this.room.emit('chat message', msg)
+        this.Lobby.io.in(this.gId).emit('chat message', msg)
     }
     dispatchStart(){
         this.startGame();
-        this.room.emit('start game', this.drawer)
+        this.Lobby.io.in(this.gId).emit('start game', this.drawer)
     }
     dispatchGamePlayerList(){
         const arr = this.players.map((e) => e.socket.user);
-        this.room.emit('game player list', arr);
+        this.Lobby.io.in(this.gId).emit('game player list', arr);
     }
 }
 

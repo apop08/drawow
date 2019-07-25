@@ -27,7 +27,6 @@ class Game extends Component {
             timer: 0
 
         };
-        this.sendSocketIO = this.sendSocketIO.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
         this.openChat = this.openChat.bind(this);
@@ -59,16 +58,24 @@ class Game extends Component {
             obj.setState({ live: true })
         });
 
-        this.socket.on('game player list', function(users){
-            obj.setState({users: users});
+        this.socket.on('game player list', function (users) {
+            obj.setState({ users: users });
 
         })
-        this.socket.on('global player list', function(users){
-            obj.setState({globalUsers: users});
+
+        this.socket.on('joined game', function (id) {
+            obj.setState({ gId: id, state:'waiting' });
+
         })
-        this.socket.on('room list', function(rooms){
-            obj.setState({rooms: rooms});
+        this.socket.on('global player list', function (users) {
+            obj.setState({ globalUsers: users });
         })
+        this.socket.on('roomlist', function (rooms) {
+            obj.setState({ rooms: rooms });
+            console.log(obj.state.rooms);
+        })
+
+        //this.setState({ state: 'lobby' })
     }
 
     handleChange(event) {
@@ -95,7 +102,7 @@ class Game extends Component {
         const intervalId = setInterval(() => {
             const t = ++this.state.timer
             console.log(t)
-            this.setState({timer: t})
+            this.setState({ timer: t })
             if (t >= 5) {
                 clearInterval(intervalId)
             }
@@ -114,45 +121,64 @@ class Game extends Component {
             this.setState({ formToPresent: true });
         }
     }
+    joinRoom(id, e){
+        e.preventDefault();
+        this.socket.emit('join room', id);
+    }
 
+    createRoom(e){
+        e.preventDefault();
+        this.socket.emit('start room');
+    }
 
     render() {
-        let chat = this.state.chat.map(e => {
-            return <ul id ="oldMessage">{e}</ul>;
-        })
-        let chatPage;
-        let chatBtn;
-        if (this.state.formToPresent) {
-            chatPage = <div className ="chatPage">
-                <ul style={{ color: 'Black'}} id="messages">{chat}</ul>
-                <form action="">
-                    <input className = "chatBox" type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button  className="btn btn-secondary send" onClick={this.submitChat.bind(this)}>Send</button>
-                </form>
+        if (this.state.state == 'lobby') {
+            return <div> 
+            {this.state.rooms.map((e) => {
+                return <button onClick={this.joinRoom.bind(this, e)}>{e}</button>
+            })}
+            <button onClick={this.createRoom.bind(this)}>Create Room</button>
             </div>
-            chatBtn= <button onClick={this.openChat} className ="btn btn-secondary xButton">X</button>
-        }else {
-            chatBtn =<button onClick={this.openChat} className ="btn btn-secondary chatButton">Chat </button>
         }
+        else {
 
-        let canv = <button onClick={this.startGame.bind(this)} className ="btn btn-secondary startButton">Start</button>;
-        let timer = null;
-        if (this.state.live) {
-            timer = <Timer time = {this.state.timer}></Timer>;
-            canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
-        }
+            let chat = this.state.chat.map(e => {
+                return <ul id="oldMessage">{e}</ul>;
+            })
+            let chatPage;
+            let chatBtn;
+            if (this.state.formToPresent) {
+                chatPage = <div className="chatPage">
+                    <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
+                    <form action="">
+                        <input className="chatBox" type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button className="btn btn-secondary send" onClick={this.submitChat.bind(this)}>Send</button>
+                    </form>
+                </div>
+                chatBtn = <button onClick={this.openChat} className="btn btn-secondary xButton">X</button>
+            } else {
+                chatBtn = <button onClick={this.openChat} className="btn btn-secondary chatButton">Chat </button>
+            }
 
-        return <div>
+            let canv = <button onClick={this.startGame.bind(this)} className="btn btn-secondary startButton">Start</button>;
+            let timer = null;
+            if (this.state.live) {
+                timer = <Timer time={this.state.timer}></Timer>;
+                canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
+            }
 
-            
-            {timer}
-            <div id = "user">{this.state.users} </div>
+            return <div>
 
-            {canv}
-            <div className="chat">
-                {chatBtn}
-                {chatPage}
+
+                {timer}
+                <div id="user">{this.state.users} </div>
+
+                {canv}
+                <div className="chat">
+                    {chatBtn}
+                    {chatPage}
+                </div>
             </div>
-        </div>
+        }
     }
 }
 export default Game;

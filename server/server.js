@@ -92,4 +92,5 @@ app.use(function(err, req, res, next) {
 server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
+lobby = new Lobby(io);
 //accept connected users socket requests

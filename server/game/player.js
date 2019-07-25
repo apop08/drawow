@@ -1,32 +1,36 @@
 const moment = require('moment')
-const Lobby = require('./lobby')
 class Player {
-    constructor(socket, playerId, gameObj) {
+    constructor(socket, playerId, Lobby) {
         this.playerId = playerId;
         this.socket = socket;
         this.state = 'lobby';
         this.gameId = 0;
         this.isDrawing = false;
-        this.gameObj = gameObj;
+        this.gameObj = null;
         this.setEvents();
-        Lobby.dispatchRooms(this.socket);
-        Lobby.dispatchPlayers(this.socket);
+        this.Lobby = Lobby;
+        //console.log(Lobby)
+        this.Lobby.dispatchRooms(this.socket);
+        this.Lobby.dispatchPlayers(this.socket);
     }
-    joinRoom(game) {
+    joinRoom(gameObj) {
         this.state = 'waiting';
-        this.gameId = game.id;
+        this.gameId = gameObj.gId;
+        this.gameObj = gameObj;
+        this.socket.emit('joined game', gameObj.gId)
         this.socket.join(this.gameId);
     }
     leaveRoom() {
         this.state = lobby;
         this.socket.leave(this.gameId);
         this.gameId = 0;
+        this.gameObj = null
     }
     sendTo(type, obj) {
         this.socket.emit(type, obj);
     }
     startGame() {
-        e.state = 'playing';
+        this.state = 'playing';
     }
     setDrawer() {
         this.isDrawing = true;
@@ -46,7 +50,7 @@ class Player {
             //send the msg out
             obj.socket.user = user;
             console.log(`Welcome ${obj.socket.user}`);
-            Lobby.dispatchPlayers();
+            obj.Lobby.dispatchPlayers();
         });
 
         this.socket.on('chat message', function (msg) {
@@ -64,12 +68,15 @@ class Player {
         });
 
         this.socket.on('join room', function(id){
-            Lobby.playerJoinRoom(obj, id);
+            obj.Lobby.playerJoinRoom(obj, id);
         });
 
         this.socket.on('start room', function(){
-            const game = Lobby.newGame();
-            Lobby.playerJoinRoom(obj, game.gId);
+            console.log("start room");
+            
+            const game = obj.Lobby.newGame();
+
+            obj.Lobby.playerJoinRoom(obj, game.gId);
         });
     }
 }
