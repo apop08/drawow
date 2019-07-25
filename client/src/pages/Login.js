@@ -51,6 +51,7 @@ class LoginForm extends Component {
 						<div id = "getUser">
 							<label htmlFor="username">Username: </label>
 							<input
+								className ="input"
 								type="text"
 								name="username"
 								value={this.state.username}
@@ -60,6 +61,7 @@ class LoginForm extends Component {
 						<div id ="password">
 							<label htmlFor="password">Password: </label>
 							<input
+								className ="input"
 								type="password"
 								name="password"
 								value={this.state.password}

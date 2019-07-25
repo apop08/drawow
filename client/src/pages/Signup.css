@@ -21,3 +21,14 @@
 input{
     width:150px
 }
+
+/* iphone X */
+@media (max-width: 375px) and (max-height: 812px)  {
+    .signupinput{
+        width:100px;
+    }
+    .signup{
+        width:230px;
+    }
+  
+}
