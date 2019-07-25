@@ -99,3 +99,11 @@ span{
         margin-bottom:90px;
     }
 }
+
+/* iphone X */
+@media (max-width: 375px) and (max-height: 812px)  {
+    .our-container{
+        /* margin-top:140px; */
+        margin-bottom:120px;
+    }
+}
