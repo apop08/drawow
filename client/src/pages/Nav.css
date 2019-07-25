@@ -151,7 +151,13 @@ body{
 /* galaxy s5 */
 @media (max-width: 360px) and (max-height: 640px)  {
     .navPage{
-        /* margin-top:10%;  */
         height:600px;
+    }
+}
+
+/* iphone 5/SE   */
+@media only screen and (max-width: 414px) {
+    .navPage{
+        height:540px;
     }
 }
