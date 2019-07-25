@@ -13,18 +13,12 @@ label{
     margin-right: 5px;
 }
 
-/* @media only screen and (max-width: 414px) {
-    label{
-        font-size:10px;
-        margin:0;
-
+/* iphone X */
+@media (max-width: 375px) and (max-height: 812px)  {
+    .input{
+        width:100px;
     }
-   input{
-       width:50px;
-       margin:0;
-   }
-   #login_button{
-    width:10px;
-    margin:0;
+    #login_button{
+        width:230px;
+    }
 }
-} */

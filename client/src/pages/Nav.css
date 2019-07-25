@@ -147,3 +147,11 @@ body{
         height:630px;
     }
 }
+
+/* galaxy s5 */
+@media (max-width: 360px) and (max-height: 640px)  {
+    .navPage{
+        /* margin-top:10%;  */
+        height:600px;
+    }
+}
