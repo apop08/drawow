@@ -51,7 +51,7 @@ class LoginPage extends Component {
 
                         <AwesomeButton style={{"--button-primary-color": "#ff5e86", "--button-primary-color-dark": "#ff5e86", "--button-primary-color-hover": "#ff5e86", "--button-primary-color-active":"#ff5e86"}} className='custom-button' type="primary" onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
 
-                        {this.state.width >= 500 && this.state.formToPresent }
+                        {this.state.width >= 320 && this.state.formToPresent }
                     </div>
                 </div>
             </Container>
