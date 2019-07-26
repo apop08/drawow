@@ -38,6 +38,14 @@ span{
     }
 }
 
+/* Evgenia's */
+@media (max-width: 1030px) and (max-height: 719px)   {
+    .our-container{
+        margin-top:200px;
+        margin-bottom:120px;
+    }
+}
+
 /* ipad pro */
 @media only screen and (max-width: 1024px) {
     .our-container{
@@ -128,5 +136,4 @@ span{
         margin-top:120px;
         margin-bottom:70px;
     }
-
 }

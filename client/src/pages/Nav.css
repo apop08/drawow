@@ -53,6 +53,14 @@ body{
     }
   }
 
+/* Evgenia's */
+@media (max-width: 1030px) and (max-height: 719px)   {
+    .navPage{
+        margin-top:10%;
+        height:610px;
+    }
+}
+
 /* for ipad pro */
 @media only screen and (max-width: 1024px) {
     .navPage{
