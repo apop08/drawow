@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 import Canvas from '../components/Canvas';
+import $ from 'jquery';
 
 import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
@@ -83,15 +84,98 @@ class Game extends Component {
 
     startGame() {
         this.socket.emit('start');
-        const intervalId = setInterval(() => {
-            const t = ++this.state.timer
-            console.log(t)
-            this.setState({timer: t})
-            if (t >= 5) {
-                clearInterval(intervalId)
-            }
+        // const intervalId = setInterval(() => {
+        //     const t = ++this.state.timer
+        //     console.log(t)
+        //     this.setState({ timer: t })
+        //     if (t >= 5) {
+        //         clearInterval(intervalId)
+        //     }
+        // }, 1000);
+
+        const intervalId = setInterval(() =>{
+            secondPlay()
         }, 1000);
+
+
+        const intervalMinuteID = setInterval(() =>{
+            minutePlay()
+        }, 10000);
+
+        setInterval(function () {
+            clearInterval(intervalId);
+            clearInterval(intervalMinuteID);
+        }, 60000);
+
+        function secondPlay() {
+            $("body").removeClass("play");
+            var aa = $("ul.secondPlay li.active");
+
+            if (aa.html() == undefined) {
+                aa = $("ul.secondPlay li").eq(0);
+                aa.addClass("before")
+                    .removeClass("active")
+                    .next("li")
+                    .addClass("active")
+                    .closest("body")
+                    .addClass("play");
+
+            }
+            else if (aa.is(":last-child")) {
+                $("ul.secondPlay li").removeClass("before");
+                aa.addClass("before").removeClass("active");
+                aa = $("ul.secondPlay li").eq(0);
+                aa.addClass("active")
+                    .closest("body")
+                    .addClass("play");
+            }
+            else {
+                $("ul.secondPlay li").removeClass("before");
+                aa.addClass("before")
+                    .removeClass("active")
+                    .next("li")
+                    .addClass("active")
+                    .closest("body")
+                    .addClass("play");
+            }
+
+        }
+
+        function minutePlay() {
+            $("body").removeClass("play");
+            var aa = $("ul.minutePlay li.active");
+
+            if (aa.html() == undefined) {
+                aa = $("ul.minutePlay li").eq(0);
+                aa.addClass("before")
+                    .removeClass("active")
+                    .next("li")
+                    .addClass("active")
+                    .closest("body")
+                    .addClass("play");
+
+            }
+            else if (aa.is(":last-child")) {
+                $("ul.minutePlay li").removeClass("before");
+                aa.addClass("before").removeClass("active");
+                aa = $("ul.minutePlay li").eq(0);
+                aa.addClass("active")
+                    .closest("body")
+                    .addClass("play");
+            }
+            else {
+                $("ul.minutePlay li").removeClass("before");
+                aa.addClass("before")
+                    .removeClass("active")
+                    .next("li")
+                    .addClass("active")
+                    .closest("body")
+                    .addClass("play");
+            }
+        }
     }
+
+
     sendImage(canvas) {
         const imgData = canvas.toDataURL('image/png', .3);
         //console.log(imgData)
@@ -109,34 +193,34 @@ class Game extends Component {
 
     render() {
         let chat = this.state.chat.map(e => {
-            return <ul id ="oldMessage">{e}</ul>;
+            return <ul id="oldMessage">{e}</ul>;
         })
         let chatPage;
         let chatBtn;
         if (this.state.formToPresent) {
-            chatPage = <div className ="chatPage">
-                <ul style={{ color: 'Black'}} id="messages">{chat}</ul>
+            chatPage = <div className="chatPage">
+                <ul style={{ color: 'Black' }} id="messages">{chat}</ul>
                 <form action="">
-                    <input className = "chatBox" type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button  className="btn btn-secondary send" onClick={this.submitChat.bind(this)}>Send</button>
+                    <input className="chatBox" type="text" name="message" ref="m" value={this.state.message} onChange={this.handleChange} /><button className="btn btn-secondary send" onClick={this.submitChat.bind(this)}>Send</button>
                 </form>
             </div>
-            chatBtn= <button onClick={this.openChat} className ="btn btn-secondary xButton">X</button>
-        }else {
-            chatBtn =<button onClick={this.openChat} className ="btn btn-secondary chatButton">Chat </button>
+            chatBtn = <button onClick={this.openChat} className="btn btn-secondary xButton">X</button>
+        } else {
+            chatBtn = <button onClick={this.openChat} className="btn btn-secondary chatButton">Chat </button>
         }
 
-        let canv = <button onClick={this.startGame.bind(this)} className ="btn btn-secondary startButton">Start</button>;
+        let canv = <button onClick={this.startGame.bind(this)} className="btn btn-secondary startButton">Start</button>;
         let timer = null;
         if (this.state.live) {
-            timer = <Timer time = {this.state.timer}></Timer>;
+            timer = <Timer time={this.state.timer}></Timer>;
             canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
         }
 
         return <div>
 
-            
+
             {timer}
-            <div id = "user">{this.state.users} </div>
+            <div id="user">{this.state.users} </div>
 
             {canv}
             <div className="chat">
@@ -145,5 +229,8 @@ class Game extends Component {
             </div>
         </div>
     }
+
+
+
 }
 export default Game;
