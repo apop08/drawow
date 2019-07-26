@@ -34,7 +34,6 @@ class Player {
     }
     setDrawer() {
         this.isDrawing = true;
-        this.socket.emit('Drawing');
     }
     askName() {
         this.socket.emit('Username');

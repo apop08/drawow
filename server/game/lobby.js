@@ -11,7 +11,7 @@ class Lobby {
         this.io.on('connection', function (socket) {
             obj.addPlayer(socket);
         });
-        this.newGame();
+        //this.newGame();
     }
     newGame() {
         const newGame = new GameRoom(this.nextGId++, this)
