@@ -98,7 +98,7 @@ class App extends Component {
 			<Router>
 
 				<div id="backgroundContainer">
-					<video autoplay muted loop>
+					<video autoPlay muted loop>
 						<source src="background.mp4" type="video/mp4" />
 					</video>
 					<Switch>
