@@ -65,7 +65,7 @@ class Game extends Component {
         })
 
         this.socket.on('joined game', function (id) {
-            obj.setState({ gId: id, state:'waiting' });
+            obj.setState({ gId: id, state: 'waiting' });
 
         })
         this.socket.on('global player list', function (users) {
@@ -109,12 +109,12 @@ class Game extends Component {
         //     }
         // }, 1000);
 
-        const intervalId = setInterval(() =>{
+        const intervalId = setInterval(() => {
             secondPlay()
         }, 1000);
 
 
-        const intervalMinuteID = setInterval(() =>{
+        const intervalMinuteID = setInterval(() => {
             minutePlay()
         }, 10000);
 
@@ -205,23 +205,23 @@ class Game extends Component {
             this.setState({ formToPresent: true });
         }
     }
-    joinRoom(id, e){
+    joinRoom(id, e) {
         e.preventDefault();
         this.socket.emit('join room', id);
     }
 
-    createRoom(e){
+    createRoom(e) {
         e.preventDefault();
         this.socket.emit('start room');
     }
 
     render() {
         if (this.state.state == 'lobby') {
-            return <div> 
-            {this.state.rooms.map((e) => {
-                return <button onClick={this.joinRoom.bind(this, e)}>{e}</button>
-            })}
-            <button onClick={this.createRoom.bind(this)}>Create Room</button>
+            return <div>
+                {this.state.rooms.map((e) => {
+                    return <button onClick={this.joinRoom.bind(this, e)}>{e}</button>
+                })}
+                <button onClick={this.createRoom.bind(this)}>Create Room</button>
             </div>
 
         }
@@ -254,8 +254,7 @@ class Game extends Component {
             return <div>
 
 
-            {timer}
-            <div id="user">{this.state.users} </div>
+
 
                 {timer}
                 <div id="user">{this.state.users} </div>
