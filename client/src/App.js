@@ -86,6 +86,7 @@ class App extends Component {
 	}
 
 	render() {
+
 		let nav;
 		if (this.state.loggedIn)
 			nav = <Route path="/nav" exact render={(props) => <Nav {...props} user={this.state.user.local.username}
@@ -95,7 +96,11 @@ class App extends Component {
 
 		return (
 			<Router>
-				<div>
+
+				<div id="backgroundContainer">
+					<video autoplay muted loop>
+						<source src="background.mp4" type="video/mp4" />
+					</video>
 					<Switch>
 						<Route path="/" exact render={(props) => <LoginPage {...props} _logout={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
 						<Route path="/about" exact component={About}></Route>
