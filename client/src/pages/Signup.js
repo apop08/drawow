@@ -59,6 +59,7 @@ class Signup extends Component {
 					<div id = "getUser">
 						<label htmlFor="username">Username: </label>
 						<input
+							className ="signupinput"
 							type="text"
 							name="username"
 							value={this.state.username}
@@ -68,6 +69,7 @@ class Signup extends Component {
 					<div id ="password">
 						<label htmlFor="password">Password: </label>
 						<input
+							className ="signupinput"
 							type="password"
 							name="password"
 							value={this.state.password}
@@ -77,6 +79,7 @@ class Signup extends Component {
 					<div id = "confirm">
 						<label htmlFor="confirmPassword">Confirm Password: </label>
 						<input
+							className ="signupinput"
 							type="password"
 							name="confirmPassword"
 							value={this.state.confirmPassword}

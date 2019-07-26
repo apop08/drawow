@@ -12,3 +12,13 @@ label{
     color: white;
     margin-right: 5px;
 }
+
+/* iphone X */
+@media (max-width: 375px) and (max-height: 812px)  {
+    .input{
+        width:100px;
+    }
+    #login_button{
+        width:230px;
+    }
+}
