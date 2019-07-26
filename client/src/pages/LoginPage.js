@@ -49,7 +49,7 @@ class LoginPage extends Component {
                         <AwesomeButton style={{"--button-primary-color": "#5200ff", "--button-primary-color-dark": "#5200ff", "--button-primary-color-hover": "#5200ff","--button-primary-color-active":"#5200ff"}} className='custom-button' type="primary" onPress={(e) => this.handleLoginPress(e)}>LogIn</AwesomeButton>
 
 
-                        <AwesomeButton style={{"--button-primary-color": "#ff5e86", "--button-primary-color-dark": "#ff5e86", "--button-primary-color-hover": "#ff5e86", "--button-primary-color-active":"#ff5e86"}} className='custom-button' type="primary" onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
+                        <AwesomeButton style={{"--button-primary-color": "#ff5e86", "--button-primary-color-dark": "#ff5e86", "--button-primary-color-hover": "#ff5e86", "--button-primary-color-active":"#ff5e86"}} className='custom-button' type="primary" _login={this.props._login} onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
 
                         {this.state.width >= 320 && this.state.formToPresent }
                     </div>
