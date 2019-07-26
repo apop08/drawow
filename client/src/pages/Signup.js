@@ -4,8 +4,8 @@ import axios from 'axios'
 import './Signup.css'
 
 class Signup extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			username: '',
 			password: '',
@@ -35,9 +35,11 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.error) {
 					console.log('youre good')
+					//this.props._login(this.state.username, this.state.password, this);
 					this.setState({
 						redirectTo: '/nav'
 					})
+					
 				} else {
 					alert("Already signed up. please login")
 					console.log('duplicate')
@@ -87,7 +89,7 @@ class Signup extends Component {
 						/>
 					</div>
 
-					<button className="btn btn-secondary signup" onClick={this.handleSubmit}>Sign up</button>
+					<button className="btn btn-secondary signup" onClick={this.handleSubmit.bind(this)}>Sign up</button>
 				</div>
 
 			)
