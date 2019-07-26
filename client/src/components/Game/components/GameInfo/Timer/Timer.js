@@ -13,199 +13,199 @@ class Timer extends Component {
     render() {
         return <div>
             
-            <div class="Timercontainer">
-                <ul class="flip minutePlay">
+            <div className="Timercontainer">
+                <ul className="flip minutePlay">
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">0</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">0</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">0</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">0</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">1</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">1</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">1</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">2</div>
-                            </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">2</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">1</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">3</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">2</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">3</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">4</div>
-                            </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">4</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">2</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">5</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">3</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">5</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">3</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">4</div>
+                            </div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">4</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">5</div>
+                            </div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">5</div>
                             </div>
                         </a>
                     </li>
                 </ul>
-                <ul class="flip secondPlay">
+                <ul className="flip secondPlay">
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">0</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">0</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">0</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">0</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">1</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">1</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">1</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">2</div>
-                            </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">2</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">1</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">3</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">2</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">3</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">4</div>
-                            </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">4</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">2</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">5</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">3</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">5</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">6</div>
-                            </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">6</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">3</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">7</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">4</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">7</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">8</div>
-                            </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">8</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">4</div>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <div class="up">
-                                <div class="shadow"></div>
-                                <div class="inn">9</div>
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">5</div>
                             </div>
-                            <div class="down">
-                                <div class="shadow"></div>
-                                <div class="inn">9</div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">5</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">6</div>
+                            </div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">6</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">7</div>
+                            </div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">7</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">8</div>
+                            </div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">8</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div className="up">
+                                <div className="shadow"></div>
+                                <div className="inn">9</div>
+                            </div>
+                            <div className="down">
+                                <div className="shadow"></div>
+                                <div className="inn">9</div>
                             </div>
                         </a>
                     </li>
