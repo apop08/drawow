@@ -9,6 +9,7 @@ class Lobby {
         this.io = io;
         const obj = this;
         this.io.on('connection', function (socket) {
+            //todo reconnection
             obj.addPlayer(socket);
         });
         //this.newGame();
