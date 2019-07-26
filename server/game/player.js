@@ -53,7 +53,7 @@ class Player {
         });
 
         this.socket.on('chat message', function (msg) {
-            const chatmsg = `[${moment().format('LTS')}] ${obj.socker.user}: ${msg}`;
+            const chatmsg = `[${moment().format('LTS')}] ${obj.socket.user}: ${msg}`;
             obj.gameObj.dispatchChat(chatmsg);
         })
 
