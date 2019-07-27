@@ -94,14 +94,10 @@ class App extends Component {
 		else
 			nav = <Route path="/nav" exact render={(props) => <LoginPage {...props} _logout={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
 
-		return (
+		return (	<div>
 			<Router>
-				<div>
-				<div id="backgroundContainer">
-					<video autoPlay muted loop>
-						<source src="background.mp4" type="video/mp4" />
-					</video>
-					</div>
+			
+
 					<Switch>
 						<Route path="/" exact render={(props) => <LoginPage {...props} _logout={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
 						<Route path="/about" exact component={About}></Route>
@@ -116,8 +112,9 @@ class App extends Component {
 
 					</Switch>
 
-				</div>
+				
 			</Router>
+			</div>
 		);
 	}
 

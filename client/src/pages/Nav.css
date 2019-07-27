@@ -50,22 +50,28 @@ body{
 @media (max-width: 1920px) and (max-height: 937px)   {
     .navPage{
         margin-top:5%;
-        height:830px;
+        height:840px;
     }
 }
 
-@media only screen and (max-width: 1105px) {
+/* @media only screen and (max-width: 1105px) {
     #userName {
         width:15%;
     margin-left:84%;
     }
-  }
+  } */
 
 /* Evgenia's */
-@media (max-width: 1030px) and (max-height: 719px)   {
+@media (max-width: 1440px) and (max-height: 719px)   {
     .navPage{
-        margin-top:10%;
-        height:610px;
+        margin-top:3%;
+        height:680px;
+    }
+}
+/* Lucy's */
+@media (max-width: 1440px) and (max-height: 698px)   {
+    .navPage{
+        height:660px;
     }
 }
 
@@ -79,7 +85,8 @@ body{
         margin-top:20%;
     }
 }
-@media only screen and (max-width: 1000px) {
+
+/* @media only screen and (max-width: 1000px) {
     #userName {
         width:100%;
     margin-left:0%;
@@ -104,47 +111,59 @@ body{
     .navPage{
         height:665px;
     }
-}
+} */
 
 /* iPad  */
 @media only screen and (max-width: 768px) {
    .navPage{
-       margin-top:20%;
-       margin-bottom:27%;
+    height:900px;
+       margin-top:16%;
+
    }
    .navBtn{
     width:50%;
     margin-bottom:0%;
     margin-top:5%;
+    margin-left:10%;
+    }
+    button:nth-child(5){
+        margin-left:5%;
+    }
+    #userName {
+        width:100%;
+    margin-left:0%;
+    text-align:center;
+    margin-top:5%;
     }
 }
 
-@media only screen and (max-width: 650px) {
+/* @media only screen and (max-width: 650px) {
     .navPage{
         height:675px;
     }
-}
+} */
 /* iphone 6/7/8 plus */
 @media only screen and (max-width: 414px) {
     .navPage{
-        margin-top:10%;
-        margin-bottom:5%;
+        height:736px;
+        margin-bottom:35%;
     }
 }
 
 /* pixel2XL */
 @media (max-width: 411px) and (max-height: 823px)   {
     .navPage{
-        margin-top:15%; 
-        margin-bottom:0%; 
-        height:750px;
+        margin-top:30%; 
+        margin-bottom:40%; 
+        height:823px;
     }
 }
 
 /* pixel2 */
 @media (max-width: 411px) and (max-height: 731px)  {
     .navPage{
-        height:670px;
+        margin-top:20%;
+        height:731px;
     }
 }
 
@@ -152,7 +171,8 @@ body{
 @media (max-width: 375px) and (max-height: 812px)  {
     .navPage{
         margin-top:25%; 
-        height:720px;
+        margin-bottom:48%; 
+        height:812px;
     }
 }
 
@@ -160,20 +180,21 @@ body{
 @media (max-width: 375px) and (max-height: 667px)  {
     .navPage{
         margin-top:10%; 
-        height:630px;
+        height:667px;
     }
 }
 
 /* galaxy s5 */
 @media (max-width: 360px) and (max-height: 640px)  {
     .navPage{
-        height:600px;
+        height:640px;
     }
 }
 
 /* iphone 5/SE   */
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 320px) {
     .navPage{
-        height:540px;
+        margin-top:5%; 
+        height:400px;
     }
 }
