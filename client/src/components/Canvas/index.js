@@ -200,19 +200,20 @@ class Canvas extends Component {
     if (this.props.drawer) {
 
       drawingStuff = <div className = "container">
-        <RandomWord/>
+        {this.props.word}
+        {console.log(this.props.word)}
         <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
         {palette}
         <div id="palette">
-          <button className ="btn btn-secondary"id="white" onClick={this.color.bind(this, "white")}><i class="fas fa-eraser"></i></button>
-          <button className ="btn btn-secondary"id="undo"><i class="fas fa-undo"></i></button>
-          <button className ="btn btn-secondary"id="redo"><i class="fas fa-redo"></i></button>
-          <button className ="btn btn-secondary"id="color" onClick={this.openColor}><i class="fas fa-palette"></i></button>
+          <button className ="btn btn-secondary"id="white" onClick={this.color.bind(this, "white")}><i className="fas fa-eraser"></i></button>
+          <button className ="btn btn-secondary"id="undo"><i className="fas fa-undo"></i></button>
+          <button className ="btn btn-secondary"id="redo"><i className="fas fa-redo"></i></button>
+          <button className ="btn btn-secondary"id="color" onClick={this.openColor}><i className="fas fa-palette"></i></button>
           <Slider min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
         </div>
       </div>
     }
-
+    
     //let obj = this;
     console.log(this.state)
     return drawingStuff

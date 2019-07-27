@@ -1,7 +1,7 @@
 
 // import Timer from '../components/Game/components/GameInfo/Timer/Timer';
 import React, { Component } from 'react';
-import Words from "./wordBank.json"
+//import Words from "./wordBank.json"
 import './style.css';
 
 class RandomWord extends Component {
@@ -9,15 +9,15 @@ class RandomWord extends Component {
         super(props);
         this.state = {
             word: '',
-            words: Words,
+            words: [],
         };
 
     }
     
     getWord (){
         let list = this.state.words.words.split(" ");
-        console.log(list)
-        return list[Math.floor(Math.random()*list.length)]
+        console.log(list);
+        return list[Math.floor(Math.random()*list.length)];
     }
     componentDidMount() {
         this.setState({word : this.getWord()})

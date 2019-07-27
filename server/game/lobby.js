@@ -1,7 +1,10 @@
 const Player = require('./player');
 const GameRoom = require('./gameroom');
+
 class Lobby {
     constructor(io) {
+        this.words = (require("./wordBank.json")).words.split(' ');
+
         this.players = [];
         this.games = []
         this.nextPId = 1;
@@ -53,17 +56,20 @@ class Lobby {
     }
 
     dispatchRooms(socket = null) {
-        const arr = this.games.map((e) => e.gId);
+        
+        const arr = this.games.map((e) => ({gId: e.gId, state: e.state}));
         console.log(arr);
         if (socket)
             socket.emit('roomlist', arr);
         else {
             console.log('emit to all');
-            //console.log(this.io); 
+            //console.log(this.io);
             this.io.emit('roomlist', arr);
         }
     }
-
+    randomWord(){
+        return this.words[Math.floor(Math.random() * this.words.length)];
+    }
     dispatchPlayers(socket = null) {
         const arr = this.players.map((e) => e.socket.user);
         if (socket)
