@@ -22,7 +22,7 @@ class GameRoom {
         }
         if(playerToRemove !== -1)
             this.players.splice(playerToRemove, 1);
-        this.dispatchList();
+        this.dispatchGamePlayerList();
         this.Lobby.removePlayer(player);
     }
     startGame() {
