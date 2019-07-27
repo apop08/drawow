@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Nav from '../Nav';
 
-function Rank() {
+function Profile() {
     return (
-        <p>"test rank"</p>
+        <div>
+            <Nav />
+            
+            <div id="content">
+              
+            </div>
+
+        </div>
     )
+    
 }
-export default Rank;
+export default Profile;
+
