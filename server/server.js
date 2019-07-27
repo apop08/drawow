@@ -80,12 +80,15 @@ if (process.env.NODE_ENV === 'production') {
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
 
+app.use('/api', require('./user/index')) ;
+
 // ====== Error handler ====
 app.use(function(err, req, res, next) {
 	console.log('====== ERROR =======')
 	console.error(err.stack)
 	res.status(500)
 })
+
 
 
 // ==== Starting Server =====
