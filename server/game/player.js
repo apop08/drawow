@@ -59,7 +59,8 @@ class Player {
 
         this.socket.on('disconnect', function () {
             console.log(`${obj.socket.user} disconnected`);
-            obj.gameObj.removePlayer(obj);
+            if(obj.gameObj)
+                obj.gameObj.removePlayer(obj);
         });
 
         this.socket.on('start', function () {
