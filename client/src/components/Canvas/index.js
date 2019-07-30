@@ -3,7 +3,8 @@ import Slider from "./components/Slider";
 import $ from "jquery"
 import { ChromePicker } from 'react-color';
 import './style.css'
-import RandomWord from "../Game/components/GameInfo/RandomWord"
+// import RandomWord from "../Game/components/GameInfo/RandomWord"
+import GuessBox from '../GuessBox';
 import { Z_ASCII } from "zlib";
 
 function getPosition(mouseEvent, sigCanvas) {
@@ -200,6 +201,8 @@ class Canvas extends Component {
     if (this.props.drawer) {
 
       drawingStuff = <div className = "container">
+        drawer : {this.props.drawerName}
+        <br></br>
         {this.props.word}
         {console.log(this.props.word)}
         <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
@@ -211,6 +214,12 @@ class Canvas extends Component {
           <button className ="btn btn-secondary"id="color" onClick={this.openColor}><i className="fas fa-palette"></i></button>
           <Slider min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
         </div>
+      </div>
+    } else {
+      drawingStuff =
+      <div className ="container">
+      <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
+      <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} /></div>
       </div>
     }
     
