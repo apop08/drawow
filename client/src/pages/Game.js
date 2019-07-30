@@ -25,7 +25,9 @@ class Game extends Component {
             globalUsers: [],
             rooms: [],
             formToPresent: null,
-            timer: 0
+            timer: 0,
+            word: '',
+            playerDrawing: '',
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -51,12 +53,12 @@ class Game extends Component {
 
             obj.canvasRef.current.recPic(img);
         });
-        this.socket.on('start game', function (drawer) {
-
-            if (obj.props.user == drawer) {
+        this.socket.on('start game', function (info) {
+            console.log(`the word is ${info.word}`)
+            if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true })
             }
-            obj.setState({ live: true })
+            obj.setState({ live: true , word: info.word, playerDrawing: info.drawer})
         });
 
         this.socket.on('game player list', function (users) {
@@ -219,7 +221,10 @@ class Game extends Component {
         if (this.state.state == 'lobby') {
             return <div>
                 {this.state.rooms.map((e) => {
-                    return <button onClick={this.joinRoom.bind(this, e)}>{e}</button>
+                    if(e.state == 'waiting')
+                        return <button onClick={this.joinRoom.bind(this, e.gId)} key={e.gId}>{e.gId}<br/>{e.state}</button>
+                    else
+                        return <button onClick={this.joinRoom.bind(this, e.gId)} key={e.gId} disabled>{e.gId}<br/>{e.state}</button>
                 })}
                 <button onClick={this.createRoom.bind(this)}>Create Room</button>
             </div>
@@ -248,7 +253,7 @@ class Game extends Component {
             let timer = null;
             if (this.state.live) {
                 timer = <Timer time={this.state.timer}></Timer>;
-                canv = <Canvas ref={this.canvasRef} gameobj={this} drawer={this.state.drawer} />
+                canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer} />
             }
 
             return <div>
