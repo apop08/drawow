@@ -17,7 +17,9 @@ class Rank extends Component{
         return (
             <div>
             
-            <h1>hello</h1>
+            <h1>Rank</h1>
+            <hr></hr>
+            <br></br>
             <div id="content">
               {this.state.users.map(user=> <h2>{user.local.username}</h2>)}
             </div>
