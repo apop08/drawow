@@ -22,7 +22,14 @@ class GuessBox extends Component {
 	}
     handleSubmit(event) {
         event.preventDefault();
+        let answer = this.props.answer;
         console.log("submitted" + this.state.guess)
+        console.log(answer);
+        if (this.state.guess == answer){
+            console.log("correct!")
+        } else { 
+            console.log("wrong");
+        }
     }
 
 

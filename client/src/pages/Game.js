@@ -10,6 +10,7 @@ import $ from 'jquery';
 import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
 import './Game.css'
+import GuessBox from '../components/GuessBox';
 
 
 class Game extends Component {
@@ -251,9 +252,13 @@ class Game extends Component {
 
             let canv = <button onClick={this.startGame.bind(this)} className="btn btn-secondary startButton">Start</button>;
             let timer = null;
+            let guessBox;
             if (this.state.live) {
                 timer = <Timer time={this.state.timer}></Timer>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer} />
+                if (this.state.drawer == false ){
+                    guessBox = <GuessBox answer = {this.state.word}/>
+                }
             }
 
             return <div>
@@ -262,7 +267,7 @@ class Game extends Component {
 
 
                 {timer}
-                <div id="user">{this.state.users} </div>
+                <div id="user">{this.state.users} {guessBox} </div>
 
                 {canv}
                 <div className="chat">
