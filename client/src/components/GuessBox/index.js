@@ -30,6 +30,7 @@ class GuessBox extends Component {
         } else { 
             console.log("wrong");
         }
+        this.setState({guess: ''})
     }
 
 
