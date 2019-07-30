@@ -1,4 +1,5 @@
 //const Player = require('./player');
+
 class GameRoom {
     constructor(gId, Lobby) {
         this.gId = gId;
@@ -25,8 +26,12 @@ class GameRoom {
         this.dispatchGamePlayerList();
         this.Lobby.removePlayer(player);
     }
+    getRandomWord(){
+        return this.Lobby.randomWord();
+    }
     startGame() {
         this.state = 'playing';
+        this.word = this.getRandomWord()
         this.players.forEach(e => {
             e.startGame();
         });
@@ -35,6 +40,7 @@ class GameRoom {
         const idx = Math.floor(Math.random() * this.players.length);
         this.drawer = this.players[idx].socket.user;
         this.players[idx].setDrawer();
+        this.Lobby.dispatchRooms();
     }
     closeGame() {
         this.players.forEach(e => {
@@ -42,14 +48,15 @@ class GameRoom {
         });
     }
     dispatchDrawing(img) {
-        this.Lobby.io.in(this.gId).emit('drawing', img)
+        this.Lobby.io.in(this.gId).emit('drawing', img);
     }
     dispatchChat(msg) {
-        this.Lobby.io.in(this.gId).emit('chat message', msg)
+        this.Lobby.io.in(this.gId).emit('chat message', msg);
     }
     dispatchStart(){
         this.startGame();
-        this.Lobby.io.in(this.gId).emit('start game', this.drawer)
+        console.log(this.word);
+        this.Lobby.io.in(this.gId).emit('start game', ({drawer: this.drawer,word:  this.word}));
     }
     dispatchGamePlayerList(){
         const arr = this.players.map((e) => e.socket.user);
