@@ -55,8 +55,12 @@ class Canvas extends Component {
 
   componentDidMount() {
     this.init();
-  };
 
+  };
+  clearCanvas()
+  {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
   init() {
     this.canvas = this.refs.canvas;
     //console.log(this.canvas);
@@ -131,25 +135,27 @@ class Canvas extends Component {
       });
 
       $("#canvas").mousedown(function (mouseEvent) {
-        var position = getPosition(mouseEvent, obj.canvas);
-        obj.ctx.moveTo(position.X, position.Y);
-        obj.ctx.beginPath();
-        obj.history.saveState(obj.canvas);
+        if (obj.props.state == 'playing') {
+          var position = getPosition(mouseEvent, obj.canvas);
+          obj.ctx.moveTo(position.X, position.Y);
+          obj.ctx.beginPath();
+          obj.history.saveState(obj.canvas);
 
-        // attach event handlers
-        $(this).mousemove(function (mouseEvent) {
-          drawLine(mouseEvent, obj.canvas, obj.ctx);
-        }).mouseup(function (mouseEvent) {
-          console.log("mouseup");
+          // attach event handlers
+          $(this).mousemove(function (mouseEvent) {
+            drawLine(mouseEvent, obj.canvas, obj.ctx);
+          }).mouseup(function (mouseEvent) {
+            console.log("mouseup");
 
-          obj.props.gameobj.sendImage(obj.canvas);
-          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-        }).mouseout(function (mouseEvent) {
-          console.log("mouseout");
+            obj.props.gameobj.sendImage(obj.canvas);
+            finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+          }).mouseout(function (mouseEvent) {
+            console.log("mouseout");
 
-          obj.props.gameobj.sendImage(obj.canvas);
-          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-        });
+            obj.props.gameobj.sendImage(obj.canvas);
+            finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+          });
+        }
       });
     }
   }
@@ -200,7 +206,7 @@ class Canvas extends Component {
     }
     if (this.props.drawer) {
 
-      drawingStuff = <div className = "container">
+      drawingStuff = <div className="container">
         drawer : {this.props.drawerName}
         <br></br>
         {this.props.word}
@@ -208,21 +214,21 @@ class Canvas extends Component {
         <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
         {palette}
         <div id="palette">
-          <button className ="btn btn-secondary"id="white" onClick={this.color.bind(this, "white")}><i className="fas fa-eraser"></i></button>
-          <button className ="btn btn-secondary"id="undo"><i className="fas fa-undo"></i></button>
-          <button className ="btn btn-secondary"id="redo"><i className="fas fa-redo"></i></button>
-          <button className ="btn btn-secondary"id="color" onClick={this.openColor}><i className="fas fa-palette"></i></button>
+          <button className="btn btn-secondary" id="white" onClick={this.color.bind(this, "white")}><i className="fas fa-eraser"></i></button>
+          <button className="btn btn-secondary" id="undo"><i className="fas fa-undo"></i></button>
+          <button className="btn btn-secondary" id="redo"><i className="fas fa-redo"></i></button>
+          <button className="btn btn-secondary" id="color" onClick={this.openColor}><i className="fas fa-palette"></i></button>
           <Slider min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
         </div>
       </div>
     } else {
       drawingStuff =
-      <div className ="container">
-      <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-      <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} /></div>
-      </div>
+        <div className="container">
+          <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
+          <div id="guessBox">{this.props.guesser} : <GuessBox answer={this.props.word} /></div>
+        </div>
     }
-    
+
     //let obj = this;
     console.log(this.state)
     return drawingStuff
