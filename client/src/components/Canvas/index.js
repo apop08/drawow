@@ -219,7 +219,7 @@ class Canvas extends Component {
       drawingStuff =
       <div className ="container">
       <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-      <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} /></div>
+      <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} guesser = {this.props.guesser} /></div>
       </div>
     }
     
