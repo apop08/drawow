@@ -5,12 +5,16 @@ class Rank extends Component{
     state ={
         users:[]
     }
-   componentDidMount(){ 
+   componentDidUpdate(){ 
        API.getUsers().then(({data} )=> {
         this.setState({users:data})   
         console.log(data)})
        .catch(err => console.log(err))
+
     //    make axios request
+    sortDecending =()=>{
+        const{}
+    }
    }
     render(){
         return (
@@ -20,7 +24,7 @@ class Rank extends Component{
             <hr></hr>
             <br></br>
             <div id="content">
-              {this.state.users.map(user=> <h2>{user.local.username}</h2>)}
+              {this.state.users.map(user=> <h2>{user.local.username}</h2>)} : 
             </div>
 
         </div>
