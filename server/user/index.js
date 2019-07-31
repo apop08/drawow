@@ -10,5 +10,7 @@ router.route("/user/:id")
 .get(userController.findById)
 .delete(userController.remove)
 
+router.route("/scores")
+.post(userController.updateScore)
 
 module.exports = router;

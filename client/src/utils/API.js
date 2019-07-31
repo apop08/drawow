@@ -16,5 +16,10 @@ export default {
   // Saves user to the database
   saveUser: function(userData) {
     return axios.post("/api/users", userData);
+  },
+  // get scores
+  updateScore: function(username) {
+    console.log("in APU")
+    return axios.post("/api/scores", username);
   }
 };
