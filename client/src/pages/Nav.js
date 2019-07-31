@@ -86,7 +86,7 @@ class Nav extends Component {
             className="btn btn-secondary navBtn"
             onClick={this.props._logout}
           >
-            logout
+            Logout
         </button>
 
           <Modal isOpen={this.state.modal} className="modal">
