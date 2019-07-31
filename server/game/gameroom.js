@@ -62,8 +62,8 @@ class GameRoom {
             obj.Lobby.io.in(obj.gId).emit('begin');
             setTimeout((obj2) => {
                 obj2.dispatchPost();
-            }, 5500, obj)
-        },30500, this);
+            }, 30500, obj)
+        },5500, this);
     }
     dispatchPost(){
         this.Lobby.io.in(this.gId).emit('post game');
