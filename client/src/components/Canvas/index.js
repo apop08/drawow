@@ -241,8 +241,10 @@ class Canvas extends Component {
           <Slider min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
         </div></div>)
     } else {
+
       extra =
-        <div id="guessBox">{this.props.guesser} : <GuessBox answer={this.props.word} /></div>
+        <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} guesser = {this.props.guesser} /></div>
+
     }
     drawingStuff = <div className="container">
       drawer : {this.props.drawerName}

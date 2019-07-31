@@ -11,7 +11,7 @@ const userSchema = new Schema({
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }
 	},
-	score: { type: Number, required: false }
+	score: { type: Number, required: false, default: 0}
 	
 	
 })
