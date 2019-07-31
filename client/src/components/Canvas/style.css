@@ -3,7 +3,7 @@
     margin-left:26.5%;
     margin-top:1%;
 }
-#palette{
+#palette, #guessBox{
     background: rgba(0, 0, 0, 0.673);
     height:83px;
     width:250px;
@@ -11,6 +11,9 @@
     margin-left:39%;
     padding-top:1%;
     padding-left:1%;
+}
+#guessBox{
+    color:white;
 }
 #undo, #redo, #color, #white{
     background:white;
