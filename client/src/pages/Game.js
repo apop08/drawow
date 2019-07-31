@@ -65,15 +65,21 @@ class Game extends Component {
             if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true, drawerName: obj.props.user })
             }
+            else
+            {
+                obj.setState({ drawer: false, drawerName: obj.props.user })
+            }
             obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, live:true})
         });
         this.socket.on('begin',() =>{
-            obj.setState({state: 'playing', timer: 60})
+            if(obj.props.user == obj.props.playerDrawing)
+                obj.canvasRef.current.init();
+            obj.setState({state: 'playing', timer: 30})
         })
         this.socket.on('post game',() =>{
             //post game wait time
-            obj.setState({state: 'post game', timer: 30})
-            setTimeout(() => obj.clearCanvas(), 30000)
+            obj.setState({state: 'post game', timer: 5})
+            setTimeout(() => obj.clearCanvas(), 5000)
         })
 
         this.socket.on('backToLobby',() =>{

@@ -62,14 +62,14 @@ class GameRoom {
             obj.Lobby.io.in(obj.gId).emit('begin');
             setTimeout((obj2) => {
                 obj2.dispatchPost();
-            }, 60500, obj)
-        },5500, this);
+            }, 5500, obj)
+        },30500, this);
     }
     dispatchPost(){
         this.Lobby.io.in(this.gId).emit('post game');
         setTimeout((obj) => {
             obj.dispatchStart();
-        }, 30500, this);
+        }, 5500, this);
     }
     dispatchGamePlayerList(){
         const arr = this.players.map((e) => e.socket.user);

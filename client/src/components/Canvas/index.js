@@ -57,8 +57,7 @@ class Canvas extends Component {
     this.init();
 
   };
-  clearCanvas()
-  {
+  clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   init() {
@@ -119,47 +118,71 @@ class Canvas extends Component {
         }
       }
     }
-    if (this.props.drawer) {
-      let obj = this;
+    let obj = this;
 
 
 
 
-      $('#undo').click(function () {
-        obj.history.undo(obj.canvas, obj.ctx, obj.props.gameobj);
-      });
+    $('#undo').click(function () {
+      obj.history.undo(obj.canvas, obj.ctx, obj.props.gameobj);
+    });
 
-      $('#redo').click(function () {
-        obj.history.redo(obj.canvas, obj.ctx, obj.props.gameobj);
+    $('#redo').click(function () {
+      obj.history.redo(obj.canvas, obj.ctx, obj.props.gameobj);
 
-      });
+    });
 
-      $("#canvas").mousedown(function (mouseEvent) {
-        if (obj.props.state == 'playing') {
-          var position = getPosition(mouseEvent, obj.canvas);
-          obj.ctx.moveTo(position.X, position.Y);
-          obj.ctx.beginPath();
-          obj.history.saveState(obj.canvas);
+    $("#canvas").mousedown(function (mouseEvent) {
+      if (obj.props.state == 'playing' && obj.props.drawer) {
+        var position = getPosition(mouseEvent, obj.canvas);
+        obj.ctx.moveTo(position.X, position.Y);
+        obj.ctx.beginPath();
+        obj.history.saveState(obj.canvas);
 
-          // attach event handlers
-          $(this).mousemove(function (mouseEvent) {
-            drawLine(mouseEvent, obj.canvas, obj.ctx);
-          }).mouseup(function (mouseEvent) {
-            console.log("mouseup");
+        // attach event handlers
+        $(this).mousemove(function (mouseEvent) {
+          drawLine(mouseEvent, obj.canvas, obj.ctx);
+        }).mouseup(function (mouseEvent) {
+          console.log("mouseup");
 
-            obj.props.gameobj.sendImage(obj.canvas);
-            finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-          }).mouseout(function (mouseEvent) {
-            console.log("mouseout");
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        }).mouseout(function (mouseEvent) {
+          console.log("mouseout");
 
-            obj.props.gameobj.sendImage(obj.canvas);
-            finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-          });
-        }
-      });
-    }
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        });
+      }
+    });
+
   }
+  setMouseEvents() {
+    const obj = this;
+    $("#canvas").mousedown(function (mouseEvent) {
+      if (obj.props.state == 'playing') {
+        var position = getPosition(mouseEvent, obj.canvas);
+        obj.ctx.moveTo(position.X, position.Y);
+        obj.ctx.beginPath();
+        obj.history.saveState(obj.canvas);
 
+        // attach event handlers
+        $(this).mousemove(function (mouseEvent) {
+          drawLine(mouseEvent, obj.canvas, obj.ctx);
+        }).mouseup(function (mouseEvent) {
+          console.log("mouseup");
+
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        }).mouseout(function (mouseEvent) {
+          console.log("mouseout");
+
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        });
+      }
+    });
+  }
   recPic(img) {
     //console.log(img);
     let pic = new Image();
@@ -197,38 +220,37 @@ class Canvas extends Component {
 
   }
   render() {
-    let drawingStuff = <div><canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas></div>;
+    let drawingStuff = null;
+    let word = null;
+    const canvas = <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>;
     let palette;
+    let extra;
     if (this.state.colorOption) {
       palette = <div style={{ position: "absolute", top: "12%", left: "60%" }}>
         <ChromePicker color={this.state.color} onChangeComplete={this.handleChange} />
       </div>
     }
     if (this.props.drawer) {
-
-      drawingStuff = <div className="container">
-        drawer : {this.props.drawerName}
-        <br></br>
-        {this.props.word}
-        {console.log(this.props.word)}
-        <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-        {palette}
+      word = this.props.word;
+      extra = (<div>{palette}
         <div id="palette">
           <button className="btn btn-secondary" id="white" onClick={this.color.bind(this, "white")}><i className="fas fa-eraser"></i></button>
           <button className="btn btn-secondary" id="undo"><i className="fas fa-undo"></i></button>
           <button className="btn btn-secondary" id="redo"><i className="fas fa-redo"></i></button>
           <button className="btn btn-secondary" id="color" onClick={this.openColor}><i className="fas fa-palette"></i></button>
           <Slider min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
-        </div>
-      </div>
+        </div></div>)
     } else {
-      drawingStuff =
-        <div className="container">
-          <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-          <div id="guessBox">{this.props.guesser} : <GuessBox answer={this.props.word} /></div>
-        </div>
+      extra =
+        <div id="guessBox">{this.props.guesser} : <GuessBox answer={this.props.word} /></div>
     }
-
+    drawingStuff = <div className="container">
+      drawer : {this.props.drawerName}
+      <br></br>
+      {word}
+      {canvas}
+      {extra}
+    </div>
     //let obj = this;
     console.log(this.state)
     return drawingStuff
