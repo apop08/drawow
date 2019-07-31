@@ -10,6 +10,7 @@ import $ from 'jquery';
 import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
 import './Game.css'
+import { timingSafeEqual } from 'crypto';
 // import GuessBox from '../components/GuessBox';
 
 
@@ -30,16 +31,17 @@ class Game extends Component {
             word: '',
             playerDrawing: '',
             user: this.props.user,
-            drawerName: ''
-
+            drawerName: '',
+            clear: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
         this.openChat = this.openChat.bind(this);
-
+        this.timerId = null;
     }
 
     componentDidMount() {
+        this.startCountdown();
         this.socket = openSocket();
         let obj = this;
         this.socket.on('chat message', function (msg) {
@@ -59,12 +61,31 @@ class Game extends Component {
         });
         this.socket.on('start game', function (info) {
             console.log(`the word is ${info.word}`)
+            //obj.clearCanvas()
             if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true, drawerName: obj.props.user })
             }
-            obj.setState({ live: true, word: info.word, playerDrawing: info.drawer })
+            else
+            {
+                obj.setState({ drawer: false, drawerName: obj.props.user })
+            }
+            obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, live:true})
         });
+        this.socket.on('begin',() =>{
+            if(obj.props.user == obj.props.playerDrawing)
+                obj.canvasRef.current.init();
+            obj.setState({state: 'playing', timer: 30})
+        })
+        this.socket.on('post game',() =>{
+            //post game wait time
+            obj.setState({state: 'post game', timer: 5})
+            setTimeout(() => obj.clearCanvas(), 5000)
+        })
 
+        this.socket.on('backToLobby',() =>{
+            //resets back to the lobby
+            obj.setState()
+        })
         this.socket.on('game player list', function (users) {
             obj.setState({ users: users + " " });
 
@@ -115,89 +136,21 @@ class Game extends Component {
         //     }
         // }, 1000);
 
-        const intervalId = setInterval(() => {
-            secondPlay()
-        }, 1000);
-
-
-        const intervalMinuteID = setInterval(() => {
-            minutePlay()
-        }, 10000);
-
-        setInterval(function () {
-            clearInterval(intervalId);
-            clearInterval(intervalMinuteID);
-        }, 60000);
-
-        function secondPlay() {
-            $("body").removeClass("play");
-            var aa = $("ul.secondPlay li.active");
-
-            if (aa.html() == undefined) {
-                aa = $("ul.secondPlay li").eq(0);
-                aa.addClass("before")
-                    .removeClass("active")
-                    .next("li")
-                    .addClass("active")
-                    .closest("body")
-                    .addClass("play");
-
-            }
-            else if (aa.is(":last-child")) {
-                $("ul.secondPlay li").removeClass("before");
-                aa.addClass("before").removeClass("active");
-                aa = $("ul.secondPlay li").eq(0);
-                aa.addClass("active")
-                    .closest("body")
-                    .addClass("play");
-            }
-            else {
-                $("ul.secondPlay li").removeClass("before");
-                aa.addClass("before")
-                    .removeClass("active")
-                    .next("li")
-                    .addClass("active")
-                    .closest("body")
-                    .addClass("play");
-            }
-
-        }
-
-        function minutePlay() {
-            $("body").removeClass("play");
-            var aa = $("ul.minutePlay li.active");
-
-            if (aa.html() == undefined) {
-                aa = $("ul.minutePlay li").eq(0);
-                aa.addClass("before")
-                    .removeClass("active")
-                    .next("li")
-                    .addClass("active")
-                    .closest("body")
-                    .addClass("play");
-
-            }
-            else if (aa.is(":last-child")) {
-                $("ul.minutePlay li").removeClass("before");
-                aa.addClass("before").removeClass("active");
-                aa = $("ul.minutePlay li").eq(0);
-                aa.addClass("active")
-                    .closest("body")
-                    .addClass("play");
-            }
-            else {
-                $("ul.minutePlay li").removeClass("before");
-                aa.addClass("before")
-                    .removeClass("active")
-                    .next("li")
-                    .addClass("active")
-                    .closest("body")
-                    .addClass("play");
-            }
-        }
     }
 
-
+    countDown(obj){
+        obj.setState({timer: --obj.state.timer});
+    }
+    startCountdown(){
+        this.timerID = setInterval(this.countDown, 1000, this);
+    }
+    clearCanvas(){
+        console.log(this);
+        
+        if(this.canvasRef){
+        this.canvasRef.current.clearCanvas();
+        }
+    }
     sendImage(canvas) {
         const imgData = canvas.toDataURL('image/png', .3);
         //console.log(imgData)
@@ -222,6 +175,9 @@ class Game extends Component {
     }
 
     render() {
+        let timer = null;
+        if(this.state.timer > 0) timer = this.state.timer
+        //if(this.state.timer < 0) clearInterval(this.timerId)
         if (this.state.state == 'lobby') {
             return <div>
                 {this.state.rooms.map((e) => {
@@ -254,11 +210,11 @@ class Game extends Component {
             }
 
             let canv = <button onClick={this.startGame.bind(this)} className="btn btn-secondary startButton">Start</button>;
-            let timer = null;
+            //let timer = null;
             if (this.state.live) {
-                timer = <Timer time={this.state.timer}></Timer>;
+                //timer = <Timer time={this.state.timer}></Timer>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
-                    guesser={this.state.user} drawerName={this.state.drawerName} />
+                    guesser={this.state.user} drawerName={this.state.drawerName} state={this.state.state} clear={this.state.clear}/>
             }
 
             return <div>
