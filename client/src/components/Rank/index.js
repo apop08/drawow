@@ -12,9 +12,9 @@ class Rank extends Component{
        .catch(err => console.log(err))
 
     //    make axios request
-    sortDecending =()=>{
-        const{}
-    }
+    // sortDecending =()=>{
+    //     const{}
+    // }
    }
     render(){
         return (
