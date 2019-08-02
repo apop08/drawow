@@ -247,7 +247,7 @@ class Canvas extends Component {
 
     }
     drawingStuff = <div className="container">
-      drawer : {this.props.drawerName}
+      drawer : {this.props.gameobj.state.playerDrawing}
       <br></br>
       {word}
       {canvas}

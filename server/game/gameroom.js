@@ -6,6 +6,7 @@ class GameRoom {
         this.players = [];
         this.state = 'waiting';
         this.drawer = null;
+        this.drawerIdx = 0;
         //this.room = Lobby.io.in(this.gId);
         this.Lobby = Lobby;
         this.turns = 4;
@@ -17,17 +18,17 @@ class GameRoom {
     }
     removePlayer(player) {
         let playerToRemove = -1;
-        for(let i in this.players){
-            if(this.players[i].playerId === player.playerId){
+        for (let i in this.players) {
+            if (this.players[i].playerId === player.playerId) {
                 playerToRemove = i;
             }
         }
-        if(playerToRemove !== -1)
+        if (playerToRemove !== -1)
             this.players.splice(playerToRemove, 1);
         this.dispatchGamePlayerList();
         this.Lobby.removePlayer(player);
     }
-    getRandomWord(){
+    getRandomWord() {
         return this.Lobby.randomWord();
     }
     startGame() {
@@ -38,15 +39,16 @@ class GameRoom {
         });
 
 
-        const idx = Math.floor(Math.random() * this.players.length);
-        this.drawer = this.players[idx].socket.user;
-        this.players[idx].setDrawer();
+        //const idx = Math.floor(Math.random() * this.players.length);
+        this.drawer = this.players[this.drawerIdx].socket.user;
+        this.players[this.drawerIdx].setDrawer();
         this.Lobby.dispatchRooms();
     }
     closeGame() {
         this.players.forEach(e => {
-            e.startGame();
+            e.leaveRoom();
         });
+        this.Lobby.closeGame(this.gId);
     }
     dispatchDrawing(img) {
         this.Lobby.io.in(this.gId).emit('drawing', img);
@@ -54,24 +56,31 @@ class GameRoom {
     dispatchChat(msg) {
         this.Lobby.io.in(this.gId).emit('chat message', msg);
     }
-    dispatchStart(){
+    dispatchStart() {
         this.startGame();
-        console.log(this.word);
-        this.Lobby.io.in(this.gId).emit('start game', ({drawer: this.drawer,word:  this.word}));
+        console.log(`${this.word}  ${this.drawer}`);
+        this.Lobby.io.in(this.gId).emit('start game', ({ drawer: this.drawer, word: this.word }));
         setTimeout((obj) => {
             obj.Lobby.io.in(obj.gId).emit('begin');
             setTimeout((obj2) => {
                 obj2.dispatchPost();
             }, 30500, obj)
-        },5500, this);
-    }
-    dispatchPost(){
-        this.Lobby.io.in(this.gId).emit('post game');
-        setTimeout((obj) => {
-            obj.dispatchStart();
         }, 5500, this);
     }
-    dispatchGamePlayerList(){
+    dispatchPost() {
+        this.Lobby.io.in(this.gId).emit('post game');
+        if (++this.drawerIdx >= this.players.length) {
+            setTimeout((obj) => {
+                obj.closeGame();
+            }, 5500, this);
+        }
+        else {
+            setTimeout((obj) => {
+                obj.dispatchStart();
+            }, 5500, this);
+        }
+    }
+    dispatchGamePlayerList() {
         const arr = this.players.map((e) => e.socket.user);
         this.Lobby.io.in(this.gId).emit('game player list', arr);
     }
