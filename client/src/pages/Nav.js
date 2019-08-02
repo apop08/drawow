@@ -41,6 +41,7 @@ class Nav extends Component {
     return (
       <div className = "navPage">
         <h1 id = "userName"><span id = "welcome">Welcome,</span><br></br>{this.props.user}</h1>
+        <h1 id = "userPoints2"><span id = "points">Points: </span>{this.props.score}</h1>
         <div className="App">
           <button
             name="button"

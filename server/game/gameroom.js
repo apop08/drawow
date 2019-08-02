@@ -8,6 +8,7 @@ class GameRoom {
         this.drawer = null;
         //this.room = Lobby.io.in(this.gId);
         this.Lobby = Lobby;
+        this.turns = 4;
     }
     addPlayer(player) {
         this.players.push(player);
@@ -57,6 +58,18 @@ class GameRoom {
         this.startGame();
         console.log(this.word);
         this.Lobby.io.in(this.gId).emit('start game', ({drawer: this.drawer,word:  this.word}));
+        setTimeout((obj) => {
+            obj.Lobby.io.in(obj.gId).emit('begin');
+            setTimeout((obj2) => {
+                obj2.dispatchPost();
+            }, 30500, obj)
+        },5500, this);
+    }
+    dispatchPost(){
+        this.Lobby.io.in(this.gId).emit('post game');
+        setTimeout((obj) => {
+            obj.dispatchStart();
+        }, 5500, this);
     }
     dispatchGamePlayerList(){
         const arr = this.players.map((e) => e.socket.user);
