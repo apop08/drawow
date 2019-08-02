@@ -84,7 +84,20 @@ class Game extends Component {
 
         this.socket.on('backToLobby',() =>{
             //resets back to the lobby
-            obj.setState()
+            obj.setState({
+                state: 'lobby',
+            message: '',
+            chat: [],
+            drawer: false,
+            live: false,
+            users: [],
+            formToPresent: null,
+            timer: 0,
+            word: '',
+            playerDrawing: '',
+            user: this.props.user,
+            drawerName: '',
+            clear: 0})
         })
         this.socket.on('game player list', function (users) {
             obj.setState({ users: users + " " });
