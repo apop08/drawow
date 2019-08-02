@@ -211,9 +211,9 @@ class Game extends Component {
             return <div>
                 {this.state.rooms.map((e) => {
                     if (e.state == 'waiting')
-                        return <button onClick={this.joinRoom.bind(this, e.gId)} key={e.gId}>{e.gId}<br />{e.state}</button>
+                        return <button className = "btn waiting" onClick={this.joinRoom.bind(this, e.gId)} key={e.gId}>{e.gId}<br />{e.state}</button>
                     else
-                        return <button onClick={this.joinRoom.bind(this, e.gId)} key={e.gId} disabled>{e.gId}<br />{e.state}</button>
+                        return <button className = "btn waiting" onClick={this.joinRoom.bind(this, e.gId)} key={e.gId} disabled>{e.gId}<br />{e.state}</button>
                 })}
                 <br></br>
                 <button className = "btn btn-secondary createRoom" onClick={this.createRoom.bind(this)}>Create Room</button>
@@ -240,16 +240,19 @@ class Game extends Component {
             }
 
             let canv = <button onClick={this.startGame.bind(this)} className="btn btn-secondary startButton">Start</button>;
-            //let timer = null;
+            let users = "users";
+            let toLobby = "btn btn-secondary toLobby"
             if (this.state.live) {
                 //timer = <Timer time={this.state.timer}></Timer>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
                     guesser={this.state.user} drawerName={this.state.drawerName} state={this.state.state} clear={this.state.clear}/>
+                users = "users started";
+                toLobby = "btn btn-secondary toLobby started2"
             }
 
             return <div>
-                <div className="users"><span id = "users">{this.state.users}</span> in the game... <br/>
-                <button className = "btn btn-secondary toLobby" onClick={this.returnToLobby}>Return</button>
+                <div className= {users}><span id = "users">{this.state.users}</span> in the game... <br/>
+                <button className = {toLobby} onClick={this.returnToLobby}>Return</button>
                 </div>
                 {timer}
                 <div>

@@ -76,7 +76,7 @@ ul #oldMessage, ul #message {
     border:none;
 }
 .startButton{
-    margin-top:50px;
+    margin-top:30px;
 }
 .startButton:hover, .createRoom:hover, .toLobby:hover{
     transform: scale(1.1    );
@@ -104,7 +104,7 @@ ul #oldMessage, ul #message {
     width: 350px;
     height: 100px;
     font-size:50px;
-    margin-top:180px;
+    margin-top:60px;
     margin-left:90px;
 }
 
@@ -114,4 +114,28 @@ ul #oldMessage, ul #message {
 }
 #users{
     color:#5200ff;
+}
+.waiting{
+    background:white;
+    border-color: #5200ff;
+    margin-top:80px;
+}
+.waiting:hover{
+    background: #5200ff;
+    color:white;
+}
+.started {
+    margin-top:0;
+    margin-left:0;  
+    text-align:left;
+    font-size:15px;
+}
+
+.started2{
+    font-size:20px;
+    width: 100px;
+    height: 30px;
+    padding:0;
+    margin-left:0;
+    margin-top:10px;        
 }
