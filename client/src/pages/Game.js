@@ -61,6 +61,7 @@ class Game extends Component {
         });
         this.socket.on('start game', function (info) {
             console.log(`the word is ${info.word}`)
+            console.log(`the word is ${info.drawer}`)
             //obj.clearCanvas()
             if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true, drawerName: obj.props.user })
@@ -82,7 +83,7 @@ class Game extends Component {
             setTimeout(() => obj.clearCanvas(), 5000)
         })
 
-        this.socket.on('backToLobby',() =>{
+        this.socket.on('quit game',() =>{
             //resets back to the lobby
             obj.setState({
                 state: 'lobby',
@@ -150,7 +151,22 @@ class Game extends Component {
         // }, 1000);
 
     }
-
+    returnToLobby = () => {
+        this.setState({
+            state: 'lobby',
+        message: '',
+        chat: [],
+        drawer: false,
+        live: false,
+        users: [],
+        formToPresent: null,
+        timer: 0,
+        word: '',
+        playerDrawing: '',
+        user: this.props.user,
+        drawerName: '',
+        clear: 0})
+    }
     countDown(obj){
         obj.setState({timer: --obj.state.timer});
     }
@@ -231,12 +247,14 @@ class Game extends Component {
             }
 
             return <div>
-                <div className="users">{this.state.users} in the game... </div>
+                <div className="users">{this.state.users} in the game... <br/>
+                <button onClick={this.returnToLobby}>return to lobby</button>
+                </div>
                 {timer}
                 <div>
                     {canv}
                 </div>
-
+                
                 <div className="chat">
                     {chatBtn}
                     {chatPage}

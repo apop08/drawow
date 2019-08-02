@@ -48,6 +48,7 @@ class GameRoom {
         this.players.forEach(e => {
             e.leaveRoom();
         });
+        this.Lobby.closeGame(this.gId);
     }
     dispatchDrawing(img) {
         this.Lobby.io.in(this.gId).emit('drawing', img);
@@ -57,7 +58,7 @@ class GameRoom {
     }
     dispatchStart() {
         this.startGame();
-        console.log(this.word);
+        console.log(`${this.word}  ${this.drawer}`);
         this.Lobby.io.in(this.gId).emit('start game', ({ drawer: this.drawer, word: this.word }));
         setTimeout((obj) => {
             obj.Lobby.io.in(obj.gId).emit('begin');
@@ -68,7 +69,7 @@ class GameRoom {
     }
     dispatchPost() {
         this.Lobby.io.in(this.gId).emit('post game');
-        if (++this.drawerIdx > this.players.length) {
+        if (++this.drawerIdx >= this.players.length) {
             setTimeout((obj) => {
                 obj.closeGame();
             }, 5500, this);
