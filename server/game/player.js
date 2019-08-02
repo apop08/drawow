@@ -79,6 +79,15 @@ class Player {
 
             obj.Lobby.playerJoinRoom(obj, game.gId);
         });
+
+        this.socket.on('leave room', function(){
+            console.log(`${obj.socket.user} quit game`);
+            
+            obj.gameObj.removePlayerFromArray(obj.playerId);
+            obj.socket.leave(obj.gameId);
+            obj.gameId = 0;
+            obj.gameObj = null
+        })
     }
 }
 module.exports = Player;

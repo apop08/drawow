@@ -24,8 +24,8 @@ class Lobby {
         this.dispatchRooms();
         return newGame;
     }
-    addPlayer(socket) {
-        const newPlayer = new Player(socket, this.nextId++, this);
+    addPlayer(socket) { 
+        const newPlayer = new Player(socket, this.nextPId++, this);
         this.players.push(newPlayer);
         newPlayer.askName();
     }
