@@ -1,6 +1,7 @@
 
 // import Timer from '../components/Game/components/GameInfo/Timer/Timer';
 import React, { Component } from 'react';
+import API from "../../utils/API";
 // import './style.css';
 
 class GuessBox extends Component {
@@ -27,10 +28,18 @@ class GuessBox extends Component {
         console.log(answer);
         if (this.state.guess == answer){
             console.log("correct!")
+            console.log(this.props.guesser)
+            this.updateScore(this.props.guesser);
         } else { 
             console.log("wrong");
         }
         this.setState({guess: ''})
+    }
+
+    updateScore(user) {
+        API.updateScore(user).then(({data}) => {
+            console.log(data)
+        });
     }
 
 
