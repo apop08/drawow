@@ -30,7 +30,15 @@ class Lobby {
         newPlayer.askName();
     }
     closeGame(gId) {
-
+        let gameToRemove = -1;
+        for (let i in this.games) {
+            if (this.games[i].gId === gId) {
+                gameToRemove = i;
+            }
+        }
+        if (gameToRemove !== -1)
+            this.games.splice(gameToRemove, 1);
+        this.dispatchRooms();
     }
     removePlayer(player) {
         let playerToRemove = -1;

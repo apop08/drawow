@@ -25,6 +25,7 @@ class Player {
         this.socket.leave(this.gameId);
         this.gameId = 0;
         this.gameObj = null
+        this.socket.emit("quit game");
     }
     sendTo(type, obj) {
         this.socket.emit(type, obj);

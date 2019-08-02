@@ -1,4 +1,4 @@
-// const db = require("../db/models/user.js");
+// const db = require("../db");
 const User = require('../db/models/user')
 // Defining methods for the userController
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
   findById: function(req, res) {
     console.log("Find id")
     console.log(req.params)
-    db.User
+    User
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -22,7 +22,7 @@ module.exports = {
   create: function(req, res) {
     console.log("inside create")
     console.log(req.body)
-    db.User
+    User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -30,7 +30,7 @@ module.exports = {
   update: function(req, res) {
     console.log("inside update")
     console.log(req.params, req.body)
-    db.User
+    User
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -38,7 +38,7 @@ module.exports = {
   remove: function(req, res) {
     console.log("inside remove")
     console.log(req.params)
-    db.User
+    User
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

@@ -35,10 +35,8 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.error) {
 					console.log('youre good')
-					// this.props._login(this.state.username, this.state.password, this);
-					this.setState({
-						redirectTo: '/nav'
-					})
+					this.props._login(this.state.username, this.state.password, this);
+					
 					
 				} else {
 					alert("Already signed up. please login")
@@ -49,7 +47,10 @@ class Signup extends Component {
 				}
 			})
 	}
-
+	success(){
+		console.log("we did it");
+		this.setState({ redirectTo: '/nav' })
+	}
 	render() {
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
