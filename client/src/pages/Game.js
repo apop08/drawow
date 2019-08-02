@@ -166,6 +166,7 @@ class Game extends Component {
         user: this.props.user,
         drawerName: '',
         clear: 0})
+        this.socket.emit('leave room');
     }
     countDown(obj){
         obj.setState({timer: --obj.state.timer});

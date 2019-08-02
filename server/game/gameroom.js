@@ -17,16 +17,22 @@ class GameRoom {
         this.dispatchGamePlayerList();
     }
     removePlayer(player) {
+        this.removePlayerFromArray(player.playerId)
+        this.Lobby.removePlayer(player);
+    }
+    removePlayerFromArray(pid){
         let playerToRemove = -1;
         for (let i in this.players) {
-            if (this.players[i].playerId === player.playerId) {
+            if (this.players[i].playerId === pid) {
                 playerToRemove = i;
             }
         }
         if (playerToRemove !== -1)
             this.players.splice(playerToRemove, 1);
+        if(this.players.length == 0){
+            this.Lobby.closeGame(this.gId);
+        }
         this.dispatchGamePlayerList();
-        this.Lobby.removePlayer(player);
     }
     getRandomWord() {
         return this.Lobby.randomWord();
@@ -81,7 +87,11 @@ class GameRoom {
         }
     }
     dispatchGamePlayerList() {
+        console.log("sending player list");
+        
         const arr = this.players.map((e) => e.socket.user);
+        console.log(this.players);
+        
         this.Lobby.io.in(this.gId).emit('game player list', arr);
     }
 }
