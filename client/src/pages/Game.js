@@ -215,7 +215,8 @@ class Game extends Component {
                     else
                         return <button onClick={this.joinRoom.bind(this, e.gId)} key={e.gId} disabled>{e.gId}<br />{e.state}</button>
                 })}
-                <button onClick={this.createRoom.bind(this)}>Create Room</button>
+                <br></br>
+                <button className = "btn btn-secondary createRoom" onClick={this.createRoom.bind(this)}>Create Room</button>
             </div>
 
         }
@@ -247,8 +248,8 @@ class Game extends Component {
             }
 
             return <div>
-                <div className="users">{this.state.users} in the game... <br/>
-                <button onClick={this.returnToLobby}>return to lobby</button>
+                <div className="users"><span id = "users">{this.state.users}</span> in the game... <br/>
+                <button className = "btn btn-secondary toLobby" onClick={this.returnToLobby}>Return</button>
                 </div>
                 {timer}
                 <div>
