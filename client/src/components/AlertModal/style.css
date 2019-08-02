@@ -1,0 +1,13 @@
+
+.alertmodal{
+    width:300px;
+    height:150px;
+    z-index:3;
+    background:#5200ff;
+    color:white;
+    margin-left:40%;
+    margin-top: 10%;
+    font-size:50px;
+    padding-top:4%;
+    border-radius:5px;
+}

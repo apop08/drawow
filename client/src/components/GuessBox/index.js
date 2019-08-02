@@ -2,6 +2,7 @@
 // import Timer from '../components/Game/components/GameInfo/Timer/Timer';
 import React, { Component } from 'react';
 import API from "../../utils/API";
+import AlertModal from "../AlertModal";
 // import './style.css';
 
 class GuessBox extends Component {
@@ -9,6 +10,8 @@ class GuessBox extends Component {
         super(props);
         this.state = {
             guess: '',
+            modal: false,
+            answer: null,
         };
         this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,10 +33,13 @@ class GuessBox extends Component {
             console.log("correct!")
             console.log(this.props.guesser)
             this.updateScore(this.props.guesser);
+            this.setState({answer: true})
         } else { 
             console.log("wrong");
+            this.setState({answer:false})
         }
-        this.setState({guess: ''})
+        this.setState({guess: '', modal:true})
+  
     }
 
     updateScore(user) {
@@ -44,7 +50,14 @@ class GuessBox extends Component {
 
 
     render() {
-        return (<div><input type="guess" name= "guess" value={this.state.guess}
+        let modal;
+        if(this.state.modal){
+            modal=  <AlertModal answer = {this.state.answer}/>;
+            let obj =this;
+            setTimeout(function(){obj.setState({modal:false, answer: null})}, 4000);
+        }
+        return (<div>{modal}
+            <input type="guess" name= "guess" value={this.state.guess}
         onChange={this.handleChange}></input>	
         <button className="btn btn-secondary guess" onClick={this.handleSubmit.bind(this)}>Submit</button>
         </div>)

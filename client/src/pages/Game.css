@@ -88,8 +88,5 @@ ul #oldMessage, ul #message {
 }
 
 .users{
-    /* margin-top:80px; */
-    /* margin-left:0px; */
     margin-right:80%;
-    /* position: fixed; */
 }

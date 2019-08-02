@@ -35,7 +35,7 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.error) {
 					console.log('youre good')
-					//this.props._login(this.state.username, this.state.password, this);
+					// this.props._login(this.state.username, this.state.password, this);
 					this.setState({
 						redirectTo: '/nav'
 					})
