@@ -26,6 +26,11 @@ class Signup extends Component {
 		event.preventDefault()
 
 		// TODO - validate!
+var reg = /^[a-zA-Z0-9]{6,20}$/;
+
+console.log(this.state.username.match(reg));
+
+if (this.state.username.match(reg) && this.state.password.match(reg)) {
 		axios
 			.post('/auth/signup', {
 				username: this.state.username,
@@ -46,6 +51,7 @@ class Signup extends Component {
 					})
 				}
 			})
+		}
 	}
 	success(){
 		console.log("we did it");
@@ -59,30 +65,30 @@ class Signup extends Component {
 			return (
 
 				<div className="SignupForm">
-					<div id = "getUser">
+					<div id="getUser">
 						<label htmlFor="username">Username: </label>
 						<input
-							className ="signupinput"
+							className="signupinput"
 							type="text"
 							name="username"
 							value={this.state.username}
 							onChange={this.handleChange}
 						/>
 					</div>
-					<div id ="password">
+					<div id="password">
 						<label htmlFor="password">Password: </label>
 						<input
-							className ="signupinput"
+							className="signupinput"
 							type="password"
 							name="password"
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
 					</div>
-					<div id = "confirm">
+					<div id="confirm">
 						<label htmlFor="confirmPassword">Confirm Password: </label>
 						<input
-							className ="signupinput"
+							className="signupinput"
 							type="password"
 							name="confirmPassword"
 							value={this.state.confirmPassword}
