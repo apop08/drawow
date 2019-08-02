@@ -20,7 +20,7 @@ class Rank extends Component{
             <hr></hr>
             <br></br>
             <div id="content">
-              {this.state.users.map(user=> <h2>{user.local.username}</h2>)}
+              {this.state.users.map(user=> <h2>{user.local.username}   :  {user.score}</h2> )}
             </div>
 
         </div>
