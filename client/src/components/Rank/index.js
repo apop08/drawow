@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Nav from '../Nav';
 import API from '../../utils/API';
 
 class Rank extends Component{
