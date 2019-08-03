@@ -3,6 +3,7 @@
     bottom: 5.3%;
     right: 3%;
     width:20%;
+    font-family: 'Rubik', sans-serif;
 }
 
 .chatPage{
@@ -46,6 +47,7 @@
     padding:0% 2% 0% 2%;
     font-size:15px;
     margin: 1px 0% 3px 0%;
+    font-family: 'Rubik', sans-serif;
 }
 .chatButton:hover{
     transform: scale(1.2);
@@ -74,6 +76,7 @@ ul #oldMessage, ul #message {
     height: 100px;
     font-size:50px;
     border:none;
+    font-family: 'Rubik', sans-serif;
 }
 .startButton{
     margin-top:30px;
@@ -96,6 +99,7 @@ ul #oldMessage, ul #message {
     text-align: center;
     font-size:30px;
     color:black;
+    font-family: 'Rubik', sans-serif;
 }
 .createRoom{
     background: #5200ff;
@@ -106,19 +110,22 @@ ul #oldMessage, ul #message {
     font-size:50px;
     margin-top:60px;
     margin-left:90px;
+    font-family: 'Rubik', sans-serif;
 }
 
 .toLobby{
     margin-left:90px;
-    margin-top:70px;
+    margin-top:20px;
 }
 #users{
     color:#5200ff;
+    font-family: 'Rubik', sans-serif;
 }
 .waiting{
     background:white;
     border-color: #5200ff;
     margin-top:80px;
+    font-family: 'Rubik', sans-serif;
 }
 .waiting:hover{
     background: #5200ff;
@@ -129,6 +136,7 @@ ul #oldMessage, ul #message {
     margin-left:5%;  
     text-align:left;
     font-size:15px;
+    font-family: 'Rubik', sans-serif;
 }
 
 .started2{
@@ -137,5 +145,10 @@ ul #oldMessage, ul #message {
     height: 30px;
     padding:0;
     margin-left:0;
-    margin-top:10px;        
+    margin-top:10px;   
+    font-family: 'Rubik', sans-serif;            
+}   
+#drawer{
+    color:black;
+    margin:0;
 }

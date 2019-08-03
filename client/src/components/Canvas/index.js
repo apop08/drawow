@@ -41,7 +41,7 @@ function finishDrawing(mouseEvent, sigCanvas, context) {
 class Canvas extends Component {
   constructor(props) {
     super(props)
-    this.state = { color: "000000", colorOption: null };
+    this.state = { color: "000000", colorOption: true };
     this.canvas = false;
     this.ctx = false;
     this.x = this.state.color;
@@ -222,12 +222,12 @@ class Canvas extends Component {
   render() {
     let drawingStuff = null;
     let word = null;
-    const canvas = <canvas id="canvas" ref="canvas" width="300" height="300" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>;
+    const canvas = <canvas id="canvas" ref="canvas" width="350" height="350" style={{ position: "absolute", top: "10%", left: "0", border: "2px solid" }}></canvas>;
     let palette;
     let extra;
     if (this.state.colorOption) {
-      palette = <div style={{ position: "absolute", top: "12%", left: "60%" }}>
-        <ChromePicker color={this.state.color} onChangeComplete={this.handleChange} />
+      palette = <div style={{ position: "absolute", top: "20%", left: "58%" }}>
+        <ChromePicker width = "280" color={this.state.color} onChangeComplete={this.handleChange} />
       </div>
     }
     if (this.props.drawer) {
@@ -247,9 +247,9 @@ class Canvas extends Component {
 
     }
     drawingStuff = <div className="container">
-      drawer : {this.props.gameobj.state.playerDrawing}
+     {/* <div id = "drawer">drawer : {this.props.gameobj.state.playerDrawing}</div>  */}
       <br></br>
-      {word}
+     <div id = "word">{word}</div> 
       {canvas}
       {extra}
     </div>

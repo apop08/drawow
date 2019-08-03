@@ -216,7 +216,7 @@ class Game extends Component {
                 state = "Starting Soon";
                 break;
             case "playing":
-                state = null;
+                state = "drawer:" + this.state.drawerName;
                 break;
             case "post game":
                 state = "Switching drawer";
@@ -265,24 +265,15 @@ class Game extends Component {
             if (this.state.live) {
                 //timer = <Timer time={this.state.timer}></Timer>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
-<<<<<<< HEAD
-                    guesser={this.state.user} drawerName={this.state.drawerName} state={this.state.state} clear={this.state.clear}/>
+                    guesser={this.state.user}  state={this.state.state} clear={this.state.clear}/>
                 users = "users started";
                 toLobby = "btn btn-secondary toLobby started2"
             }
 
             return <div>
                 <div className= {users}><span id = "users">{this.state.users}</span> in the game... <br/>
+                {state} <br></br>
                 <button className = {toLobby} onClick={this.returnToLobby}>Return</button>
-=======
-                    guesser={this.state.user} drawerName={this.state.drawerName} state={this.state.state} clear={this.state.clear} />
-            }
-
-            return <div>
-                <div className="users">{this.state.users} in the game... <br />
-                    {state}<br />
-                    <button onClick={this.returnToLobby}>return to lobby</button>
->>>>>>> master
                 </div>
                 {timer}
                 <div>
