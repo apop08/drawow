@@ -19,11 +19,11 @@ class Timer extends Component {
         (function draw() {
             α++;
             α %= 360;
-            var r = (α * π / 180)
-                , x = Math.sin(r) * 125
-                , y = Math.cos(r) * - 125
+            var r = (α * π / 180    )
+                , x = Math.sin(r) * 25
+                , y = Math.cos(r) * - 25
                 , mid = (α > 180) ? 1 : 0
-                , anim = 'M 0 0 v -125 A 125 125 1 '
+                , anim = 'M 0 0 v -25 A 25 25     1 '
                     + mid + ' 1 '
                     + x + ' '
                     + y + ' z';
@@ -40,9 +40,9 @@ class Timer extends Component {
     }
 
     render() {
-        return <svg width="250" height="250" viewbox="0 0 250 250">
-            <path id="border" transform="translate(125, 125)" />
-            <path id="loader" transform="translate(125, 125) scale(.84)" />
+        return <svg width="60" height="60" viewbox="0 0 150 150">
+            <path id="border" transform="translate(25, 25)" />
+            <path id="loader" transform="translate(25, 25) scale(.84)" />
         </svg>
     }
 }
