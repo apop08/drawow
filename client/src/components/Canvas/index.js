@@ -254,7 +254,7 @@ class Canvas extends Component {
       {extra}
     </div>
     //let obj = this;
-    console.log(this.state)
+    //console.log(this.state)
     return drawingStuff
   }
 }

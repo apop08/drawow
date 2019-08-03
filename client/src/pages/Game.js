@@ -32,7 +32,8 @@ class Game extends Component {
             playerDrawing: '',
             user: this.props.user,
             drawerName: '',
-            clear: 0
+            clear: 0,
+            timerMax = 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
@@ -69,16 +70,16 @@ class Game extends Component {
             else {
                 obj.setState({ drawer: false, drawerName: obj.props.user })
             }
-            obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, live: true })
+            obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, timerMax:5, live: true })
         });
         this.socket.on('begin', () => {
             if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
-            obj.setState({ state: 'playing', timer: 30 })
+            obj.setState({ state: 'playing', timer: 30, timerMax: 30 })
         })
         this.socket.on('post game', () => {
             //post game wait time
-            obj.setState({ state: 'post game', timer: 5 })
+            obj.setState({ state: 'post game', timer: 5, timerMax: 15 })
             setTimeout(() => obj.clearCanvas(), 5000)
         })
 
@@ -267,6 +268,7 @@ class Game extends Component {
             }
 
             return <div>
+                <Timer/>
                 <div className="users">{this.state.users} in the game... <br />
                     {state}<br />
                     <button onClick={this.returnToLobby}>return to lobby</button>
