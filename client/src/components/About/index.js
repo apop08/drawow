@@ -16,7 +16,7 @@ function About() {
                     <br></br><br></br>
                 <div className="githubLink">
                     <a href="https://github.com/apop08">Alex</a> <a href="https://github.com/evgeniasemez">Evgenia</a>
-                    <a href="https://github.com/lucy839">Lucy</a> <a href="https://github.com/nursaids">Said</a>
+                    <a href="https://github.com/lucy839">Lucy</a> <a href="https://github.com/nursaids">Nursaid</a>
                 </div>
             </div>
 
