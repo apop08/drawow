@@ -99,7 +99,11 @@ ul #oldMessage, ul #message {
     text-align: center;
     font-size:30px;
     color:black;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik', sans-serif;   
+    /* display:inline; */
+   /* margin-left:0;     */
+ 
+   /* margin-right:%; */
 }
 .createRoom{
     background: #5200ff;
@@ -114,7 +118,7 @@ ul #oldMessage, ul #message {
 }
 
 .toLobby{
-    margin-left:90px;
+      margin-left:90px;
     margin-top:20px;
 }
 #users{
@@ -133,10 +137,14 @@ ul #oldMessage, ul #message {
 }
 .started {
     margin-top:0;
-    margin-left:5%;  
+    margin-left:5%  ;  
     text-align:left;
     font-size:15px;
     font-family: 'Rubik', sans-serif;
+    /* width:300px;  */
+    /* margin-right:2%;  */
+    float:left; 
+    display:inline; 
 }
 
 .started2{

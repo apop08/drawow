@@ -7,7 +7,7 @@
     background: rgba(0, 0, 0, 0.673);
     height:83px;
     width:265px;
-    margin-top:27.5%;
+    margin-top:25.5%;
     margin-left:58%;
     padding-top:1%;
     padding-left:1%;
@@ -40,9 +40,10 @@
     font-weight:bold;
     font-family: 'Rubik', sans-serif;
     padding:0;
+    margin-left:3%
 }
 #drawer{
     color:black;
     margin:0;
-    padding:0;
+    padding:0;  
 }   

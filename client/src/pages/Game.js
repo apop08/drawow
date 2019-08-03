@@ -33,7 +33,7 @@ class Game extends Component {
             user: this.props.user,
             drawerName: '',
             clear: 0,
-            timerMax = 0
+            timerMax :  0
         };
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
@@ -264,20 +264,22 @@ class Game extends Component {
             let users = "users";
             let toLobby = "btn btn-secondary toLobby"
             if (this.state.live) {
-                //timer = <Timer time={this.state.timer}></Timer>;
+                timer = <Timer/>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
                     guesser={this.state.user}  state={this.state.state} clear={this.state.clear}/>
                 users = "users started";
                 toLobby = "btn btn-secondary toLobby started2"
+        
             }
 
             return <div>
-                <Timer/>
-                <div className="users">{this.state.users} in the game... <br />
+                 {/* {timer} */}
+                <div className= {users}><span id = "users">{this.state.users}</span>  in the game... <br />
                     {state}<br />
-                    <button onClick={this.returnToLobby}>return to lobby</button>
+                    <button  className={toLobby} onClick={this.returnToLobby}>Return</button>
                 </div>
                 {timer}
+             
                 <div>
                     {canv}
                 </div>
