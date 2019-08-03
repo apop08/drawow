@@ -6,7 +6,7 @@ class Timer extends Component {
         // displayTime(props);
         super(props)
         this.state = {
-            time: 0
+            time: this.props.timer
         };
     }
 
