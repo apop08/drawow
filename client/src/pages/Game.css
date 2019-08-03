@@ -93,3 +93,14 @@ ul #oldMessage, ul #message {
     margin-right:80%;
     /* position: fixed; */
 }
+
+svg {
+    display: block;
+    margin: 50px auto;
+  }
+  
+  #loader 
+  { fill: #0088cc }
+  
+  #border 
+  { fill: #00517a }
