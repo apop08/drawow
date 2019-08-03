@@ -66,39 +66,39 @@ class Game extends Component {
             if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true, drawerName: obj.props.user })
             }
-            else
-            {
+            else {
                 obj.setState({ drawer: false, drawerName: obj.props.user })
             }
-            obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, live:true})
+            obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, live: true })
         });
-        this.socket.on('begin',() =>{
-            if(obj.props.user == obj.props.playerDrawing)
+        this.socket.on('begin', () => {
+            if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
-            obj.setState({state: 'playing', timer: 30})
+            obj.setState({ state: 'playing', timer: 30 })
         })
-        this.socket.on('post game',() =>{
+        this.socket.on('post game', () => {
             //post game wait time
-            obj.setState({state: 'post game', timer: 5})
+            obj.setState({ state: 'post game', timer: 5 })
             setTimeout(() => obj.clearCanvas(), 5000)
         })
 
-        this.socket.on('quit game',() =>{
+        this.socket.on('quit game', () => {
             //resets back to the lobby
             obj.setState({
                 state: 'lobby',
-            message: '',
-            chat: [],
-            drawer: false,
-            live: false,
-            users: [],
-            formToPresent: null,
-            timer: 0,
-            word: '',
-            playerDrawing: '',
-            user: this.props.user,
-            drawerName: '',
-            clear: 0})
+                message: '',
+                chat: [],
+                drawer: false,
+                live: false,
+                users: [],
+                formToPresent: null,
+                timer: 0,
+                word: '',
+                playerDrawing: '',
+                user: this.props.user,
+                drawerName: '',
+                clear: 0
+            })
         })
         this.socket.on('game player list', function (users) {
             obj.setState({ users: users + " " });
@@ -154,31 +154,32 @@ class Game extends Component {
     returnToLobby = () => {
         this.setState({
             state: 'lobby',
-        message: '',
-        chat: [],
-        drawer: false,
-        live: false,
-        users: [],
-        formToPresent: null,
-        timer: 0,
-        word: '',
-        playerDrawing: '',
-        user: this.props.user,
-        drawerName: '',
-        clear: 0})
+            message: '',
+            chat: [],
+            drawer: false,
+            live: false,
+            users: [],
+            formToPresent: null,
+            timer: 0,
+            word: '',
+            playerDrawing: '',
+            user: this.props.user,
+            drawerName: '',
+            clear: 0
+        })
         this.socket.emit('leave room');
     }
-    countDown(obj){
-        obj.setState({timer: --obj.state.timer});
+    countDown(obj) {
+        obj.setState({ timer: --obj.state.timer });
     }
-    startCountdown(){
+    startCountdown() {
         this.timerID = setInterval(this.countDown, 1000, this);
     }
-    clearCanvas(){
+    clearCanvas() {
         console.log(this);
-        
-        if(this.canvasRef){
-        this.canvasRef.current.clearCanvas();
+
+        if (this.canvasRef) {
+            this.canvasRef.current.clearCanvas();
         }
     }
     sendImage(canvas) {
@@ -206,7 +207,25 @@ class Game extends Component {
 
     render() {
         let timer = null;
-        if(this.state.timer > 0) timer = this.state.timer
+        let state = this.state.state;
+        switch (state) {
+            case "waiting":
+                state = "Waiting for Players";
+                break;
+            case "countdown":
+                state = "Starting Soon";
+                break;
+            case "playing":
+                state = null;
+                break;
+            case "post game":
+                state = "Switching drawer";
+                break;
+            default:
+                //state = "unknown"
+                break;
+        }
+        if (this.state.timer > 0) timer = this.state.timer
         //if(this.state.timer < 0) clearInterval(this.timerId)
         if (this.state.state == 'lobby') {
             return <div>
@@ -244,18 +263,19 @@ class Game extends Component {
             if (this.state.live) {
                 //timer = <Timer time={this.state.timer}></Timer>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
-                    guesser={this.state.user} drawerName={this.state.drawerName} state={this.state.state} clear={this.state.clear}/>
+                    guesser={this.state.user} drawerName={this.state.drawerName} state={this.state.state} clear={this.state.clear} />
             }
 
             return <div>
-                <div className="users">{this.state.users} in the game... <br/>
-                <button onClick={this.returnToLobby}>return to lobby</button>
+                <div className="users">{this.state.users} in the game... <br />
+                    {state}<br />
+                    <button onClick={this.returnToLobby}>return to lobby</button>
                 </div>
                 {timer}
                 <div>
                     {canv}
                 </div>
-                
+
                 <div className="chat">
                     {chatBtn}
                     {chatPage}
