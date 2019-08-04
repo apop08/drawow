@@ -1,19 +1,21 @@
 #canvas{
-    border-radius: 50%;
-    margin-left:26.5%;
-    margin-top:1%;
+    border-radius: 5px;
+    margin-left:15%;
+    margin-top:4%;
 }
 #palette, #guessBox{
     background: rgba(0, 0, 0, 0.673);
     height:83px;
-    width:250px;
-    margin-top:29%;
-    margin-left:39%;
+    width:265px;
+    margin-top:25.5%;
+    margin-left:58%;
     padding-top:1%;
     padding-left:1%;
 }
+
 #guessBox{
     color:white;
+    font-family: 'Rubik', sans-serif;
 }
 #undo, #redo, #color, #white{
     background:white;
@@ -31,3 +33,17 @@
     text-align:center;
     padding:0%
 }
+#word{
+    color: #5200ff;
+    margin:0;
+    font-size:30px;
+    font-weight:bold;
+    font-family: 'Rubik', sans-serif;
+    padding:0;
+    margin-left:3%
+}
+#drawer{
+    color:black;
+    margin:0;
+    padding:0;  
+}   

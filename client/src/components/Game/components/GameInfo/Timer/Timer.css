@@ -1,10 +1,16 @@
 svg {
-    display: block;
-    margin: 50px auto;
-  }
-  
+    display: inline;
+    margin: 0  ;
+    margin-top:2%;
+    margin-right:11%;
+    /* width:100p   x; */
+    /* width:25%;   */
+
+  } 
+
   #loader 
-  { fill: #0088cc }
+  { fill: #9978e1;   }
+
   
   #border 
-  { fill: #00517a }
+  { fill: #5200ff;} 
