@@ -78,12 +78,12 @@ class GameRoom {
         if (++this.drawerIdx >= this.players.length) {
             setTimeout((obj) => {
                 obj.closeGame();
-            }, 5500, this);
+            }, 15500, this);
         }
         else {
             setTimeout((obj) => {
                 obj.dispatchStart();
-            }, 5500, this);
+            }, 15500, this);
         }
     }
     dispatchGamePlayerList() {

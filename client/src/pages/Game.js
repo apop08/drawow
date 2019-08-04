@@ -33,7 +33,7 @@ class Game extends Component {
             user: this.props.user,
             drawerName: '',
             clear: 0,
-            timerMax = 0
+            timerMax: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
@@ -79,7 +79,7 @@ class Game extends Component {
         })
         this.socket.on('post game', () => {
             //post game wait time
-            obj.setState({ state: 'post game', timer: 5, timerMax: 15 })
+            obj.setState({ state: 'post game', timer: 15, timerMax: 15 })
             setTimeout(() => obj.clearCanvas(), 5000)
         })
 
@@ -268,7 +268,7 @@ class Game extends Component {
             }
 
             return <div>
-                <Timer/>
+                <Timer obj={this}/>
                 <div className="users">{this.state.users} in the game... <br />
                     {state}<br />
                     <button onClick={this.returnToLobby}>return to lobby</button>
