@@ -6,25 +6,24 @@ class Timer extends Component {
         // displayTime(props);
         super(props)
         this.state = {
-            time: this.props.timer
+            time: 360 / this.props.timeMax,
+            counter: 360
         };
     }
     componentDidMount() {
-        let time = 360 / this.props.obj.state.timerMax;
+        //let time = 360 / this.state.time; /// this.props.obj.state.timerMax;
         var loader = document.getElementById('loader')
             , border = document.getElementById('border')
-            , α = 0
-            , π = Math.PI
-            , t = 1000 / time;
+            , pi = Math.PI;
 
-        (function draw() {
-            α++;
+        (function draw(obj) {
+            //console.log(obj)
+            if(obj.state.counter < 360) obj.setState({counter: obj.state.counter + 1});
 
-            α %= 360;
 
-            let b = 360 - α;
-            console.log(b)
-            var r = (b * π / 180)
+            let b = 360 - obj.state.counter;
+            
+            var r = (b * pi / 180)
                 , x = Math.sin(r) * 25
                 , y = Math.cos(r) * - 25
                 , mid = (b > 180) ? 1 : 0
@@ -40,11 +39,17 @@ class Timer extends Component {
             loader.setAttribute('d', anim);
             border.setAttribute('d', anim);
 
-            setTimeout(draw, t); // Redraw
-        })();
+            setTimeout(draw, 1000 / obj.state.time, obj); // Redraw
+        })(this);
 
     }
 
+    setTime(time){
+        this.setState({
+            time: 360 / time,
+            counter: 0
+        })
+    }
     render() {
         return <svg width="60" height="60" viewbox="0 0 150 150">
             <path id="border" transform="translate(25, 25)" />

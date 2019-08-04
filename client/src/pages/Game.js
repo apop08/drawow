@@ -33,14 +33,11 @@ class Game extends Component {
             user: this.props.user,
             drawerName: '',
             clear: 0,
-<<<<<<< HEAD
             timerMax: 0
-=======
-            timerMax :  0
->>>>>>> master
         };
         this.handleChange = this.handleChange.bind(this);
         this.canvasRef = React.createRef();
+        this.timerRef = React.createRef();
         this.openChat = this.openChat.bind(this);
         this.timerId = null;
     }
@@ -75,16 +72,19 @@ class Game extends Component {
                 obj.setState({ drawer: false, drawerName: obj.props.user })
             }
             obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, timerMax:5, live: true })
+            obj.timerRef.current.setTime(5);
         });
         this.socket.on('begin', () => {
             if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
             obj.setState({ state: 'playing', timer: 30, timerMax: 30 })
+            obj.timerRef.current.setTime(30);
         })
         this.socket.on('post game', () => {
             //post game wait time
             obj.setState({ state: 'post game', timer: 15, timerMax: 15 })
-            setTimeout(() => obj.clearCanvas(), 5000)
+            setTimeout(() => obj.clearCanvas(), 15000)
+            obj.timerRef.current.setTime(15);
         })
 
         this.socket.on('quit game', () => {
@@ -268,7 +268,7 @@ class Game extends Component {
             let users = "users";
             let toLobby = "btn btn-secondary toLobby"
             if (this.state.live) {
-                timer = <Timer/>;
+                timer = <Timer ref={this.timerRef} timeMax={0}/>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
                     guesser={this.state.user}  state={this.state.state} clear={this.state.clear}/>
                 users = "users started";
@@ -277,13 +277,8 @@ class Game extends Component {
             }
 
             return <div>
-<<<<<<< HEAD
-                <Timer obj={this}/>
-                <div className="users">{this.state.users} in the game... <br />
-=======
                  {/* {timer} */}
                 <div className= {users}><span id = "users">{this.state.users}</span>  in the game... <br />
->>>>>>> master
                     {state}<br />
                     <button  className={toLobby} onClick={this.returnToLobby}>Return</button>
                 </div>
