@@ -141,8 +141,6 @@ ul #oldMessage, ul #message {
     text-align:left;
     font-size:15px;
     font-family: 'Rubik', sans-serif;
-    /* width:300px;  */
-    /* margin-right:2%;  */
     float:left; 
     display:inline; 
 }
@@ -156,3 +154,42 @@ ul #oldMessage, ul #message {
     margin-top:10px;   
     font-family: 'Rubik', sans-serif;            
 }   
+
+/* Alex's */
+@media (max-width: 1920px) and (max-height: 937px)   {
+    .startButton{
+        margin-left:6%;
+    }
+}
+/* Evgenia's */
+@media (max-width: 1440px) and (max-height: 719px)   {
+    .toLobby{
+        margin-right:7%;
+  }
+}
+
+/* for ipad pro */
+@media only screen and (max-width: 1024px) {
+    .createRoom{
+        margin-top:50%;
+        margin-left:80px;
+    }
+    .toLobby{
+        margin-top:10%;
+  }
+  .startButton{
+    margin-left:11%;
+    }
+}
+/* iPad  */
+@media only screen and (max-width: 768px) {
+    .createRoom{
+        margin-left:50px;
+        margin-top:40%;
+    }
+    .toLobby{
+        margin-top:15%;
+        margin-right:10%;
+  }
+
+ }

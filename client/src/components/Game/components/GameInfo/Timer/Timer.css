@@ -14,3 +14,22 @@ svg {
   
   #border 
   { fill: #5200ff;} 
+  /* for ipad pro */
+@media only screen and (max-width: 1024px) {
+  svg {
+
+    margin-right:16%;
+
+
+  } 
+}
+/* iPad  */
+@media only screen and (max-width: 768px) {
+  svg {
+
+    margin-right:23%;
+
+
+  } 
+
+}

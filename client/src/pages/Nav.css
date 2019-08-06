@@ -73,92 +73,66 @@ body{
     }
 }
 
-/* @media only screen and (max-width: 1105px) {
-    #userName {
-        width:15%;
-    margin-left:84%;
-    }
-  } */
-
 /* Evgenia's */
 @media (max-width: 1440px) and (max-height: 719px)   {
-    .navPage{
-        margin-top:3%;
-        height:680px;
+    .navPage{   
+        height:650px;
+    }
+    .App{
+        margin-top:8%;
     }
 }
 /* Lucy's */
 @media (max-width: 1440px) and (max-height: 698px)   {
     .navPage{
-        height:660px;
+        height:630px;
         margin-left:5%;
     }
     .App{
-        margin-top:8%;
+        margin-top:4%;
     }
 }
 
 /* for ipad pro */
 @media only screen and (max-width: 1024px) {
     .navPage{
-        height:1110px;
-        margin-top:25%;
+        height:1240px;
+        margin-top:12%;
+        margin-left:2%;
     }
     .navBtn{
-        margin-top:20%;
+        margin-top:30%;
+    }
+    .App{
+        margin-top:2%;
     }
 }
 
-/* @media only screen and (max-width: 1000px) {
-    #userName {
-        width:100%;
-    margin-left:0%;
-    text-align:center;
-    margin-top:5%;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    button{
-        margin-right:2%;
-    }
-    .navBtn{
-        width:60%;
-        margin-left:20%;
-        margin-right:20%;
-        margin-bottom:4%;
-    }
-    button:nth-child(5){
-        margin-right:20%;
-    }
+    /* iPad  */
+    @media only screen and (max-width: 768px) {
     .navPage{
-        height:665px;
-    }
-} */
+        height:900px;
+        margin-top:16%;
 
-/* iPad  */
-@media only screen and (max-width: 768px) {
-   .navPage{
-    height:900px;
-       margin-top:16%;
-
-   }
-   .navBtn{
-    width:50%;
-    margin-bottom:0%;
-    margin-top:5%;
-    margin-left:10%;
     }
-    button:nth-child(5){
-        margin-left:5%;
+    .navBtn{
+        width:50%;
+        margin-bottom:0%;
+        margin-top:5%;
+        margin-left:10%;
+        }
+        button:nth-child(5){
+            margin-left:5%;
+        }
+        #userName {
+            width:768px;
+        margin-left:-2%;
+        /* padding-left:10%; */
+        text-align:center;
+        margin-top:5%;
+        }
+       
     }
-    #userName {
-        width:100%;
-    margin-left:0%;
-    text-align:center;
-    margin-top:5%;
-    }
-}
 
 /* @media only screen and (max-width: 650px) {
     .navPage{
