@@ -243,7 +243,7 @@ class Canvas extends Component {
     } else {
 
       extra =
-        <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} guesser = {this.props.guesser} score={this.props.score} /></div>
+        <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} guesser = {this.props.guesser} score={this.props.score} obj={this.props.gameobj}/></div>
 
     }
     drawingStuff = <div className="container">

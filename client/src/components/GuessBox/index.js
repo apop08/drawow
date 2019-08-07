@@ -58,10 +58,16 @@ class GuessBox extends Component {
             let obj =this;
             setTimeout(function(){obj.setState({modal:false, answer: null})}, 4000);
         }
+        let button = <button className="btn btn-secondary guess" onClick={this.handleSubmit.bind(this)}>Submit</button>;
+        let input = <input type="guess" name= "guess" value={this.state.guess} onChange={this.handleChange}></input>;
+        if(this.props.obj.state.state == 'post game'){
+            button = <button className="btn btn-secondary guess" onClick={this.handleSubmit.bind(this)} disabled>Submit</button>;
+            input = <input type="guess" name= "guess" value={this.state.guess} onChange={this.handleChange} disabled></input>;
+        }
         return (<div>{modal}
-            <input type="guess" name= "guess" value={this.state.guess}
-        onChange={this.handleChange}></input>	
-        <button className="btn btn-secondary guess" onClick={this.handleSubmit.bind(this)}>Submit</button>
+        {input}
+
+        {button}
         </div>)
    
     }
