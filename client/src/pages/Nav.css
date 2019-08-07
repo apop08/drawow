@@ -142,8 +142,29 @@ body{
 /* iphone 6/7/8 plus */
 @media only screen and (max-width: 414px) {
     .navPage{
-        height:736px;
+        height:530px;
         margin-bottom:35%;
+    }
+    #userName {
+        width:414px;
+    padding-left:4%;
+    /* padding-left:10%; */
+    text-align:center;
+    /* margin-top:5%; */
+        /* margin-right:40%; */
+        /* padding-right:10%; */
+    }
+    #userPoints2 {
+        /* margin-top:2.5%; */
+        /* background: rgba(0, 0, 0, 0.673); */
+        /* text-align:right; */
+        /* display: block; */
+        width:414px;
+        margin-left:-2%;
+        padding-left:4%;
+        /* color:white; */
+        /* font-weight:bold; */
+        text-align:center;
     }
 }
 

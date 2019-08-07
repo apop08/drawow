@@ -168,3 +168,50 @@
     }
 
  }
+  /* iphone 6/7/8 plus */
+@media only screen and (max-width: 414px) {
+    #word{
+        /* text- */
+        margin-left:0;
+        /* text-align:center; */
+        /* margin-right:80%; */
+        margin-top:0%;  
+    }
+    #canvas {
+        width:250px;
+        height:250px;
+        margin-left:8%;
+        margin-top:10%
+    }
+   
+    #palette{
+        margin-left:8%;
+        margin-top:65%;
+        /* bottom:0; */
+        height:60px;
+        width:250px;
+        /* padding-top:2.5%; */
+     
+        /* z-index:3; */
+    }
+      #chromePicker{
+        margin-left:8%;
+        margin-top:75%;
+        display:hide;
+        /* z-index:; */
+        width:250px;
+        height:80px;    
+   
+      } 
+      #guessBox{
+        margin-left:8%;
+        margin-top:80%;
+        width:250px;
+        /* width:300px; */
+    }
+.container{
+    margin-top:8%;
+     height:450px;
+    overflow:scroll;
+}
+}
