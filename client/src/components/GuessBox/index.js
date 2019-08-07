@@ -43,9 +43,11 @@ class GuessBox extends Component {
     }
 
     updateScore(user) {
+        
         API.updateScore(user).then(({data}) => {
-            console.log(data)
+            
         });
+        this.props.score.updateScore();
     }
 
 

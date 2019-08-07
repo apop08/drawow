@@ -105,12 +105,16 @@ class App extends Component {
 			})
 	}
 
+	updateScore = () =>{
+		this.setState({user: {score: this.state.user.score + 1}});
+	}
+
 	render() {
 
 		let nav;
 		if (this.state.loggedIn)
 			nav = <Route path="/nav" exact render={(props) => <Nav {...props} user={this.state.user.local.username} score={this.state.user.score}
-				_logout={this._logout} />}></Route>
+				updateScore={this.updateScore} _logout={this._logout} />}></Route>
 		else
 			nav = <Route path="/nav" exact render={(props) => <LoginPage {...props} _logout={this._logout} _login={this._login} loggedIn={this.state.loggedIn} />}></Route>
 
