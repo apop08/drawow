@@ -4,20 +4,16 @@ import './style.css';
 
 class Rank extends Component{
     state ={
-        users:[],
-        rankOne: ''
+        users:[]
     }
    componentDidMount(){ 
        API.getUsers().then(({data} )=> {
-        this.setState({users:data, rankOne: data[0].local.username})   
+        this.setState({users:data})   
         console.log(data)})
        .catch(err => console.log(err))
     //    make axios request
    }
     render(){
-        let crown;
-        console.log(this.state.rankOne)
-   
         return (
             <div>
             

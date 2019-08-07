@@ -1,54 +1,42 @@
 svg {
-    display: inline;
-    margin: 0  ;
-    margin-top:2%;
-    margin-right:11%;
-    /* width:100p   x; */
-    /* width:25%;   */
+  display: inline;
+  margin: 0  ;
+  margin-top:2%;
+  margin-right:11%;
+} 
 
-  } 
+#loader { 
+  fill: #9978e1;   
+}
 
-  #loader 
-  { fill: #9978e1;   }
+#border { 
+  fill: #5200ff;
+} 
 
-  
-  #border 
-  { fill: #5200ff;} 
-  /* for ipad pro */
+/* for ipad pro */
 @media only screen and (max-width: 1024px) {
   svg {
-
     margin-right:16%;
-
-
   } 
 }
+
 /* iPad  */
 @media only screen and (max-width: 768px) {
   svg {
-
     margin-right:23%;
-
-
   } 
-
 }
-  /* iphone 6/7/8 plus */
-  @media only screen and (max-width: 414px) {
-    svg {
 
-      margin-right:2%;
-  
-  
-    } 
-  }
-  /* iphone 5/SE   */
+/* iphone 6/7/8 plus */
+@media only screen and (max-width: 414px) {
+  svg {
+    margin-right:2%;
+  } 
+}
+
+/* iphone 5/SE   */
 @media only screen and (max-width: 320px) {
   svg {
-
     margin-right:0%;
-
-
   } 
-
 }
