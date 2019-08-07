@@ -58,7 +58,8 @@ class Canvas extends Component {
 
   };
   clearCanvas() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    if(this.ctx)
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   init() {
     this.canvas = this.refs.canvas;

@@ -73,19 +73,23 @@ class Game extends Component {
                 obj.setState({ drawer: false, drawerName: obj.props.user })
             }
             obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, timerMax:5, live: true })
-            obj.timerRef.current.setTime(5);
+            
+            if(obj.timerRef.current)
+                obj.timerRef.current.setTime(5);
         });
         this.socket.on('begin', () => {
             if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
             obj.setState({ state: 'playing', timer: 60, timerMax: 60 })
-            obj.timerRef.current.setTime(60);
+            if(obj.timerRef.current)
+                obj.timerRef.current.setTime(60);
         })
         this.socket.on('post game', () => {
             //post game wait time
             obj.setState({ state: 'post game', timer: 15, timerMax: 15 })
             setTimeout(() => obj.clearCanvas(), 15000)
-            obj.timerRef.current.setTime(15);
+            if(obj.timerRef.current)
+                obj.timerRef.current.setTime(15);
         })
 
         this.socket.on('quit game', () => {
@@ -184,7 +188,7 @@ class Game extends Component {
     clearCanvas() {
         console.log(this);
 
-        if (this.canvasRef) {
+        if (this.canvasRef.current) {
             this.canvasRef.current.clearCanvas();
         }
     }
