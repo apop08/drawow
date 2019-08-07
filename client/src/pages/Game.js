@@ -11,6 +11,7 @@ import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
 import './Game.css'
 import { timingSafeEqual } from 'crypto';
+import AlertModal from '../components/AlertModal';
 // import GuessBox from '../components/GuessBox';
 
 
@@ -77,7 +78,7 @@ class Game extends Component {
         this.socket.on('begin', () => {
             if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
-            obj.setState({ state: 'playing', timer: 30, timerMax: 30 })
+            obj.setState({ state: 'playing', timer: 60, timerMax: 60 })
             obj.timerRef.current.setTime(30);
         })
         this.socket.on('post game', () => {
@@ -212,6 +213,7 @@ class Game extends Component {
 
     render() {
         let timer = null;
+        let word = null;
         let state = this.state.state;
         switch (state) {
             case "waiting":
@@ -246,7 +248,6 @@ class Game extends Component {
 
         }
         else {
-
             let chat = this.state.chat.map(e => {
                 return <ul id="oldMessage">{e}</ul>;
             })
@@ -269,6 +270,11 @@ class Game extends Component {
             let toLobby = "btn btn-secondary toLobby"
             if (this.state.live) {
                 timer = <Timer ref={this.timerRef} timeMax={0}/>;
+
+                if(this.state.state == 'post game')
+                {
+                    word = <AlertModal answer = {this.state.word}/>;
+                }
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
                     guesser={this.state.user}  state={this.state.state} clear={this.state.clear} score={this.props.score}/>
                 users = "users started";
@@ -283,7 +289,7 @@ class Game extends Component {
                     <button  className={toLobby} onClick={this.returnToLobby}>Return</button>
                 </div>
                 {timer}
-             
+                {word}
                 <div>
                     {canv}
                 </div>
