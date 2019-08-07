@@ -270,7 +270,7 @@ class Game extends Component {
             if (this.state.live) {
                 timer = <Timer ref={this.timerRef} timeMax={0}/>;
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
-                    guesser={this.state.user}  state={this.state.state} clear={this.state.clear}/>
+                    guesser={this.state.user}  state={this.state.state} clear={this.state.clear} score={this.props.score}/>
                 users = "users started";
                 toLobby = "btn btn-secondary toLobby started2"
         
