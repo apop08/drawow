@@ -11,6 +11,7 @@ import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
 import './Game.css'
 import { timingSafeEqual } from 'crypto';
+import AlertModal from '../components/AlertModal';
 // import GuessBox from '../components/GuessBox';
 
 
@@ -272,7 +273,7 @@ class Game extends Component {
 
                 if(this.state.state == 'post game')
                 {
-                    word = `The word was ${this.state.word}`
+                    word = <AlertModal answer = {this.state.word}/>;
                 }
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
                     guesser={this.state.user}  state={this.state.state} clear={this.state.clear} score={this.props.score}/>

@@ -33,10 +33,10 @@ class GuessBox extends Component {
             console.log("correct!")
             console.log(this.props.guesser)
             this.updateScore(this.props.guesser);
-            this.setState({answer: true})
+            this.setState({answer: 'correct'})
         } else { 
             console.log("wrong");
-            this.setState({answer:false})
+            this.setState({answer:'wrong'})
         }
         this.setState({guess: '', modal:true})
   
