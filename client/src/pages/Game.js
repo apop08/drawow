@@ -62,8 +62,8 @@ class Game extends Component {
             obj.canvasRef.current.recPic(img);
         });
         this.socket.on('start game', function (info) {
-            console.log(`the word is ${info.word}`)
-            console.log(`the word is ${info.drawer}`)
+            //console.log(`the word is ${info.word}`)
+            //console.log(`the word is ${info.drawer}`)
             //obj.clearCanvas()
             if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true, drawerName: obj.props.user })
