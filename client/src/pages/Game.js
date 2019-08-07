@@ -188,7 +188,7 @@ class Game extends Component {
     clearCanvas() {
         console.log(this);
 
-        if (this.canvasRef) {
+        if (this.canvasRef.current) {
             this.canvasRef.current.clearCanvas();
         }
     }
