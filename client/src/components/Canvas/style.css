@@ -6,14 +6,18 @@
 
 #palette, #guessBox{
     background: rgba(0, 0, 0, 0.673);
-    height:83px;
+    height:90px;
     width:265px;
     margin-top:25.5%;
     margin-left:58%;
     padding-top:1%;
     padding-left:1%;
+    /* overflow:scroll; */
 }
-
+/* #palette{
+    margin-top:2%;
+    height:100px;
+} */
 #guessBox{
     color:white;
     font-family: 'Rubik', sans-serif;
@@ -48,27 +52,35 @@
     margin-left:3%
 }
 
-#drawer{
+#drawer{    
     color:black;
     margin:0;
     padding:0;  
 }  
-
+#chromePicker{
+  height:60px;
+  width:250px;
+}
 /* Alex's */
 @media (max-width: 1920px) and (max-height: 937px)   {
     #canvas {
-        width:500px;
-        height:500px;
-        margin-left:18%;
+        width:350px;
+        height:350px;
+        margin-left:25%;
+        margin-top:10%;
     }
     #word{
         margin-left:35%;
     }
     #palette{
+        height:90px;
+        width:250px;
+        margin-top:25.5%;
         margin-left:76%;
-        margin-top:35%;
-        height: 85px;
-        padding-top:2.5%;
+        /* margin-top:32%; */
+        height: 150px;
+        padding-top:2%;
+        /* overflow:scroll */
     }
     #undo, #redo, #color, #white{
         width: "25px";
@@ -94,6 +106,7 @@
         width:350px;
         height:350px;
         margin-left:12%;
+        margin-top:4%;
     }
     #word{
         margin-left:5%;
@@ -113,13 +126,26 @@
         width:300px;
     }
 }
+/* Lucy's */
+@media (max-width: 1440px) and (max-height: 698px)   {
+    #palette{
+        /* background: rgba(0, 0, 0, 0.673); */
+        height:85px;
+        width:250px;
+        margin-top:25.5%;
+        /* margin-left:58%; */
+        padding-top:1%;
+        padding-left:1%;
+        /* overflow:scroll; */
+    }
+}
 
 /* for ipad pro */
 @media only screen and (max-width: 1024px) {
     #canvas {
-        width:450px;
-        height:450px;
-        margin-left:18%;
+        width:350px;
+        height:350px;
+        margin-left:25%;
         margin-top:7%
     }
     #word{
@@ -127,13 +153,13 @@
         margin-top:2%;  
     }
     #palette{
-        margin-left:28%;
-        margin-top:55%;
+        margin-left:30%;
+        margin-top:45%;
         padding-top:2.5%;
     }
     #chromePicker{
         margin-left: 28%;  
-        margin-top:60%;
+        margin-top:55%;
     } 
     #guessBox{
         margin-left:28%;
