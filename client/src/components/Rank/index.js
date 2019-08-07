@@ -14,6 +14,7 @@ class Rank extends Component{
     //    make axios request
    }
     render(){
+        let rank = 1;
         return (
             <div>
             
@@ -23,10 +24,11 @@ class Rank extends Component{
             <div id="content">
               {this.state.users.map(user=> 
               <tr>
-                  <td> <h2>{user.local.username}</h2>  </td>
+                  <td> <h2>{rank-- > 0 ? (<i class="fas fa-crown"></i>): null}{user.local.username}</h2>  </td>
                   <td> <h2>{user.score}</h2></td>
             </tr>
               )}
+              {/* {this.state.users.map(user=> <h2>{user.local.username}   :  {user.score}</h2> )} */}
             </div>
 
         </div>

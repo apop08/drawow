@@ -11,7 +11,8 @@ class Nav extends Component {
     super(props);
     this.state = {
       modal: false,
-      button: ""
+      button: "",
+      score: this.props.score
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -20,7 +21,10 @@ class Nav extends Component {
     const { name, value } = event.target;
     this.setState({ modal: !this.state.modal, [name]: value });
   }
+  updateScore() {
+    this.setState({score: this.state.score + 1});
 
+  }
   render() {
     console.log(this.props.user);
     var test = "";
@@ -30,7 +34,7 @@ class Nav extends Component {
         test = <About />
         break
       case "game":
-        test = <Game user={this.props.user}/>
+        test = <Game user={this.props.user} score={this}/>
         break
       case "rank":
         test = <Rank />
@@ -41,7 +45,7 @@ class Nav extends Component {
     return (
       <div className = "navPage">
         <h1 id = "userName"><span id = "welcome">Welcome,</span><br></br>{this.props.user}</h1>
-        <h1 id = "userPoints2"><span id = "points">Points: </span>{this.props.score}</h1>
+        <h1 id = "userPoints2"><span id = "points">Points: </span>{this.state.score}</h1>
         <div className="App">
           <button
             name="button"

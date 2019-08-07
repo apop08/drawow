@@ -11,6 +11,7 @@ import Timer from '../components/Game/components/GameInfo/Timer/Timer'
 
 import './Game.css'
 import { timingSafeEqual } from 'crypto';
+import AlertModal from '../components/AlertModal';
 // import GuessBox from '../components/GuessBox';
 
 
@@ -62,8 +63,8 @@ class Game extends Component {
             obj.canvasRef.current.recPic(img);
         });
         this.socket.on('start game', function (info) {
-            console.log(`the word is ${info.word}`)
-            console.log(`the word is ${info.drawer}`)
+            //console.log(`the word is ${info.word}`)
+            //console.log(`the word is ${info.drawer}`)
             //obj.clearCanvas()
             if (obj.props.user == info.drawer) {
                 obj.setState({ drawer: true, drawerName: obj.props.user })
@@ -72,19 +73,23 @@ class Game extends Component {
                 obj.setState({ drawer: false, drawerName: obj.props.user })
             }
             obj.setState({ state: 'countdown', word: info.word, playerDrawing: info.drawer, timer: 5, timerMax:5, live: true })
-            obj.timerRef.current.setTime(5);
+            
+            if(obj.timerRef.current)
+                obj.timerRef.current.setTime(5);
         });
         this.socket.on('begin', () => {
             if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
-            obj.setState({ state: 'playing', timer: 30, timerMax: 30 })
-            obj.timerRef.current.setTime(30);
+            obj.setState({ state: 'playing', timer: 60, timerMax: 60 })
+            if(obj.timerRef.current)
+                obj.timerRef.current.setTime(60);
         })
         this.socket.on('post game', () => {
             //post game wait time
             obj.setState({ state: 'post game', timer: 15, timerMax: 15 })
             setTimeout(() => obj.clearCanvas(), 15000)
-            obj.timerRef.current.setTime(15);
+            if(obj.timerRef.current)
+                obj.timerRef.current.setTime(15);
         })
 
         this.socket.on('quit game', () => {
@@ -183,7 +188,7 @@ class Game extends Component {
     clearCanvas() {
         console.log(this);
 
-        if (this.canvasRef) {
+        if (this.canvasRef.current) {
             this.canvasRef.current.clearCanvas();
         }
     }
@@ -212,6 +217,7 @@ class Game extends Component {
 
     render() {
         let timer = null;
+        let word = null;
         let state = this.state.state;
         switch (state) {
             case "waiting":
@@ -246,7 +252,6 @@ class Game extends Component {
 
         }
         else {
-
             let chat = this.state.chat.map(e => {
                 return <ul id="oldMessage">{e}</ul>;
             })
@@ -269,8 +274,13 @@ class Game extends Component {
             let toLobby = "btn btn-secondary toLobby"
             if (this.state.live) {
                 timer = <Timer ref={this.timerRef} timeMax={0}/>;
+
+                if(this.state.state == 'post game')
+                {
+                    word = <AlertModal answer = {this.state.word}/>;
+                }
                 canv = <Canvas ref={this.canvasRef} word={this.state.word} gameobj={this} drawer={this.state.drawer}
-                    guesser={this.state.user}  state={this.state.state} clear={this.state.clear}/>
+                    guesser={this.state.user}  state={this.state.state} clear={this.state.clear} score={this.props.score}/>
                 users = "users started";
                 toLobby = "btn btn-secondary toLobby started2"
         
@@ -283,7 +293,7 @@ class Game extends Component {
                     <button  className={toLobby} onClick={this.returnToLobby}>Return</button>
                 </div>
                 {timer}
-             
+                {word}
                 <div>
                     {canv}
                 </div>
