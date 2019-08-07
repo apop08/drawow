@@ -207,9 +207,9 @@ ul #oldMessage, ul #message {
         width: 280px;
 
         font-size:40px;
-        margin-left:10px;
+        margin-left:9px;
         /* margin-top:15%;
-        margin-right:10%; */
+        margin-right:10%; */        margin-right:0;
   }
   .chatButton{
     margin-left:    68%;
@@ -243,6 +243,7 @@ margin-top:50%;
 
         font-size:38px;
         margin-left:6px;
+        margin-right:0;
         /* margin-top:15%;
         margin-right:10%; */
   }
@@ -257,25 +258,89 @@ margin-top:50%;
 }  
 }
 
-/* iphone 6/7/8 */
-@media (max-width: 375px) and (max-height: 667px)  {
-    .navPage{
-        margin-top:10%; 
-        height:667px;
-    }
-}
+
 
 /* galaxy s5 */
 @media (max-width: 360px) and (max-height: 640px)  {
-    .navPage{
-        height:640px;
+    .createRoom{
+
+        /* width: 260px; */
+/* margin-top:50%; */
+        /* font-size:38px; */
+        margin-left:0px;
+       
     }
+    .toLobby, .startButton  {
+        width: 250px;
+height:80px;
+        font-size:36px;
+ /*        margin-left:6px; 
+        /* margin-top:15%;
+        margin-right:10%; */
+  }
+
+  .started2{
+    font-size:15px;
+    width: 50px;
+ height:30px;
+    /* padding:0; */
+    margin-left:0;
+    margin-top:5px;   
+    /* font-family: 'Rubik', sans-serif;             */
+}
+.chatButton{
+    margin-left:    65%;
+
+}
+.gameContainer{
+    overflow:scroll;
+} 
 }
 
 /* iphone 5/SE   */
 @media only screen and (max-width: 320px) {
-    .navPage{
-        margin-top:5%; 
-        height:400px;
+    .createRoom{
+
+        width: 230px;
+/* margin-top:50%; */
+        font-size:33px;
+        /* margin-lefst:-2px; */
+       
     }
+    .users{
+        margin-top:0%;
+        font-size:20px;
+     
+    }
+    .toLobby, .startButton  {
+        width: 200px;
+/* height:80px; */
+font-size:33px;
+text-align:center;
+ /*        margin-left:6px; 
+        /* margin-top:15%;
+        margin-right:10%; */
+  }
+  .started{
+      font-size:15px;
+      width:50%;
+  }
+  .started2{
+    font-size:15px;
+    width: 50px;
+ height:30px;
+    /* padding:0; */
+    margin-left:0;
+    margin-top:5px;   
+    /* font-family: 'Rubik', sans-serif;             */
+}
+.chatButton{
+    /* margin-left:    84%; */
+    /* background:#5200ff; */
+    /* color:white;
+    border:none;
+    height:25px;   
+    padding:0% 2% 0% 2%; */
+    font-size:12px;
+}
 }

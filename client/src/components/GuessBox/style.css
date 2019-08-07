@@ -1,0 +1,9 @@
+@media only screen and (max-width: 320px) {
+    .guess{
+        padding:1px;
+        margin-right:0;
+    }
+    input{
+        width:120px;
+    }
+}

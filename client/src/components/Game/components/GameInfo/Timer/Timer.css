@@ -42,3 +42,13 @@ svg {
   
     } 
   }
+  /* iphone 5/SE   */
+@media only screen and (max-width: 320px) {
+  svg {
+
+    margin-right:0%;
+
+
+  } 
+
+}

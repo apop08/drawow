@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import AlertModal from "../AlertModal";
+import './style.css';
 // import './style.css';
 
 class GuessBox extends Component {
