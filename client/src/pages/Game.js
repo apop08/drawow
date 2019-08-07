@@ -79,7 +79,7 @@ class Game extends Component {
             if (obj.props.user == obj.props.playerDrawing)
                 obj.canvasRef.current.init();
             obj.setState({ state: 'playing', timer: 60, timerMax: 60 })
-            obj.timerRef.current.setTime(30);
+            obj.timerRef.current.setTime(60);
         })
         this.socket.on('post game', () => {
             //post game wait time
