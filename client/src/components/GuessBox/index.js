@@ -29,7 +29,7 @@ class GuessBox extends Component {
         let answer = this.props.answer;
         console.log("submitted" + this.state.guess)
         console.log(answer);
-        if (this.state.guess == answer){
+        if (this.state.guess.toLowerCase() == answer.toLowerCase()){
             console.log("correct!")
             console.log(this.props.guesser)
             this.updateScore(this.props.guesser);
