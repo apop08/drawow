@@ -12,10 +12,11 @@
     border-color:rgba(0, 0, 0, 0.673);
     animation: open .25s;
 }
+
 @keyframes open {
     from { transform: scaleY(0) }
         to { transform: scaleY(1) }
-  }
+}
  
 .chatButton{
     margin-left:    84%;
@@ -26,6 +27,7 @@
     padding:0% 2% 0% 2%;
     font-size:15px;
 }
+
 .xButton{
     margin-left:    91%;
     background:#5200ff;
@@ -35,10 +37,12 @@
     padding:0% 2% 0% 2%;
     font-size:15px;
 }
+
 .chatBox{
     width: 83%;
     margin:0%
 }
+
 .send{
     background:#5200ff;
     color:white;
@@ -49,20 +53,16 @@
     margin: 1px 0% 3px 0%;
     font-family: 'Rubik', sans-serif;
 }
+
 .chatButton:hover{
     transform: scale(1.2);
 }
+
 .send:hover, .chatButton:hover, .xButton{
     background:white;
     color:   #5200ff;
     border:solid 0.5px #1a034d73;
 }
-/* needs to be worked on */
- /* .send:active{
-    border:none;
-    outline:none;
-
-} */
 
 ul #oldMessage, ul #message {
     text-align:left;
@@ -78,14 +78,17 @@ ul #oldMessage, ul #message {
     border:none;
     font-family: 'Rubik', sans-serif;
 }
+
 .startButton{
     margin-top:30px;
 }
+
 .startButton:hover, .createRoom:hover, .toLobby:hover{
     transform: scale(1.1    );
     background:#5200ff;
     color:white;
 }
+
 #user{
     float:left;
     font-size:30px;
@@ -94,17 +97,13 @@ ul #oldMessage, ul #message {
 }
 
 .users{
-    /* margin-right:80%; */
     margin-top:80px;
     text-align: center;
     font-size:30px;
     color:black;
     font-family: 'Rubik', sans-serif;   
-    /* display:inline; */
-   /* margin-left:0;     */
- 
-   /* margin-right:%; */
 }
+
 .createRoom{
     background: #5200ff;
     color:white;
@@ -121,20 +120,24 @@ ul #oldMessage, ul #message {
       margin-left:90px;
     margin-top:20px;
 }
+
 #users{
     color:#5200ff;
     font-family: 'Rubik', sans-serif;
 }
+
 .waiting{
     background:white;
     border-color: #5200ff;
     margin-top:80px;
     font-family: 'Rubik', sans-serif;
 }
+
 .waiting:hover{
     background: #5200ff;
     color:white;
 }
+
 .started {
     margin-top:0;
     margin-left:5%  ;  
@@ -161,11 +164,12 @@ ul #oldMessage, ul #message {
         margin-left:6%;
     }
 }
+
 /* Evgenia's */
 @media (max-width: 1440px) and (max-height: 719px)   {
     .toLobby{
         margin-right:7%;
-  }
+    }
 }
 
 /* for ipad pro */
@@ -176,11 +180,12 @@ ul #oldMessage, ul #message {
     }
     .toLobby{
         margin-top:10%;
-  }
-  .startButton{
-    margin-left:11%;
+    }
+    .startButton{
+        argin-left:11%;
     }
 }
+
 /* iPad  */
 @media only screen and (max-width: 768px) {
     .createRoom{
@@ -190,157 +195,108 @@ ul #oldMessage, ul #message {
     .toLobby{
         margin-top:15%;
         margin-right:10%;
-  }
+    }
+}
 
- }
- /* iphone 6/7/8 plus */
+/* iphone 6/7/8 plus */
 @media only screen and (max-width: 414px) {
     .createRoom{
-
         width: 280px;
-
         font-size:40px;
-        margin-left:10px;
-       
+        margin-left:10px;  
     }
     .toLobby, .startButton  {
         width: 280px;
-
         font-size:40px;
         margin-left:9px;
-        /* margin-top:15%;
-        margin-right:10%; */        margin-right:0;
-  }
-  .chatButton{
-    margin-left:    68%;
-
+        margin-right:0;
+    }
+    .chatButton{
+        margin-left:    68%;
+    }
+    .started2{
+        font-size:15px;
+        width: 50px;
+        margin-left:0;
+        margin-top:5px;   
+    }  
 }
-.started2{
-    font-size:15px;
-    width: 50px;
- 
-    /* padding:0; */
-    margin-left:0;
-    margin-top:5px;   
-    /* font-family: 'Rubik', sans-serif;             */
-}  
-}
-
-
 
 /* iphone X */
 @media (max-width: 375px) and (max-height: 812px)  {
     .createRoom{
-
         width: 260px;
-margin-top:50%;
+        margin-top:50%;
         font-size:38px;
         margin-left:6px;
-       
     }
     .toLobby, .startButton  {
         width: 260px;
-
         font-size:38px;
         margin-left:6px;
         margin-right:0;
-        /* margin-top:15%;
-        margin-right:10%; */
-  }
-  .started2{
-    font-size:15px;
-    width: 50px;
- 
-    /* padding:0; */
-    margin-left:0;
-    margin-top:5px;   
-    /* font-family: 'Rubik', sans-serif;             */
-}  
+    }
+    .started2{
+        font-size:15px;
+        width: 50px;
+        margin-left:0;
+        margin-top:5px;   
+    }  
 }
-
-
 
 /* galaxy s5 */
 @media (max-width: 360px) and (max-height: 640px)  {
     .createRoom{
-
-        /* width: 260px; */
-/* margin-top:50%; */
-        /* font-size:38px; */
-        margin-left:0px;
-       
+        margin-left:0px;  
     }
     .toLobby, .startButton  {
         width: 250px;
-height:80px;
+        height:80px;
         font-size:36px;
- /*        margin-left:6px; 
-        /* margin-top:15%;
-        margin-right:10%; */
-  }
+    }
+    .started2{
+        font-size:15px;
+        width: 50px;
+        height:30px;
+        margin-left:0;
+        margin-top:5px;   
+    }
+    .chatButton{
+        margin-left:    65%;
 
-  .started2{
-    font-size:15px;
-    width: 50px;
- height:30px;
-    /* padding:0; */
-    margin-left:0;
-    margin-top:5px;   
-    /* font-family: 'Rubik', sans-serif;             */
-}
-.chatButton{
-    margin-left:    65%;
-
-}
-.gameContainer{
-    overflow:scroll;
-} 
+    }
+    .gameContainer{
+        overflow:scroll;
+    } 
 }
 
 /* iphone 5/SE   */
 @media only screen and (max-width: 320px) {
     .createRoom{
-
         width: 230px;
-/* margin-top:50%; */
         font-size:33px;
-        /* margin-lefst:-2px; */
-       
     }
     .users{
         margin-top:0%;
         font-size:20px;
-     
     }
     .toLobby, .startButton  {
         width: 200px;
-/* height:80px; */
-font-size:33px;
-text-align:center;
- /*        margin-left:6px; 
-        /* margin-top:15%;
-        margin-right:10%; */
-  }
-  .started{
-      font-size:15px;
-      width:50%;
-  }
-  .started2{
-    font-size:15px;
-    width: 50px;
- height:30px;
-    /* padding:0; */
-    margin-left:0;
-    margin-top:5px;   
-    /* font-family: 'Rubik', sans-serif;             */
-}
-.chatButton{
-    /* margin-left:    84%; */
-    /* background:#5200ff; */
-    /* color:white;
-    border:none;
-    height:25px;   
-    padding:0% 2% 0% 2%; */
-    font-size:12px;
-}
+        font-size:33px;
+        text-align:center;
+    }
+    .started{
+        font-size:15px;
+        width:50%;
+    }
+    .started2{
+        font-size:15px;
+        width: 50px;
+        height:30px;
+        margin-left:0;
+        margin-top:5px;   
+    }
+    .chatButton{
+        font-size:12px;
+    }
 }
