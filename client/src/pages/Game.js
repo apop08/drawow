@@ -286,7 +286,7 @@ class Game extends Component {
         
             }
 
-            return <div>
+            return <div className="gameContainer">
                  {/* {timer} */}
                 <div className= {users}><span id = "users">{this.state.users}</span>  in the game... <br />
                     {state}<br />

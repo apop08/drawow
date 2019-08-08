@@ -223,11 +223,11 @@ class Canvas extends Component {
   render() {
     let drawingStuff = null;
     let word = null;
-    const canvas = <canvas id="canvas" ref="canvas" width="350" height="350" style={{ position: "absolute", top: "10%", left: "0", border: "2px solid" }}></canvas>;
+    const canvas = <canvas   id="canvas" ref="canvas" width="350" height="350" style={{ position: "absolute", top: "10%", left: "0", border: "2px solid" }}></canvas>;
     let palette;
     let extra;
     if (this.state.colorOption) {
-      palette = <div style={{ position: "absolute", top: "20%", left: "58%" }}>
+      palette = <div id = "chromePicker" style={{ position: "absolute", top: "20%" }}>
         <ChromePicker width = "280" color={this.state.color} onChangeComplete={this.handleChange} />
       </div>
     }

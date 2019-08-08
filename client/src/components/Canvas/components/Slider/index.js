@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 class Slider extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +18,7 @@ class Slider extends Component {
     }
 
     render() {
-        return <div >
+        return <div id ="slider">
             <input type="range" ref='input' style={this.props.style}  min={this.props.min} max={this.props.max} onChange={this.handleChange.bind(this)} step={this.props.step} />
         </div>;
     }

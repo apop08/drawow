@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
+import './style.css';
 
 class Rank extends Component{
     state ={
@@ -21,7 +22,13 @@ class Rank extends Component{
             <hr></hr>
             <br></br>
             <div id="content">
-              {this.state.users.map(user=> <h2>{rank-- > 0 ? (<i class="fas fa-crown"></i>): null}{user.local.username}   :  {user.score}</h2> )}
+              {this.state.users.map(user=> 
+              <tr>
+                  <td> <h2>{rank-- > 0 ? (<i class="fas fa-crown"></i>): null}{user.local.username}</h2>  </td>
+                  <td> <h2>{user.score}</h2></td>
+            </tr>
+              )}
+              {/* {this.state.users.map(user=> <h2>{user.local.username}   :  {user.score}</h2> )} */}
             </div>
 
         </div>
