@@ -175,7 +175,7 @@ ul #oldMessage, ul #message {
 /* for ipad pro */
 @media only screen and (max-width: 1024px) {
     .createRoom{
-        margin-top:50%;
+        margin-top:45%;
         margin-left:80px;
     }
     .toLobby{

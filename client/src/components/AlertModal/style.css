@@ -14,10 +14,8 @@
 /* for ipad pro */
 @media only screen and (max-width: 1024px) {
     .alertmodal{
-      
         margin-left:35%;
-        margin-top: 15%;
-        
+        margin-top: 15%;    
     }
 }
 
@@ -31,8 +29,7 @@
 /* iphone 6/7/8 plus */
 @media only screen and (max-width: 414px) {
     .alertmodal{
-      padding-top:15%;
-      font-size:35px;
+        font-size:35px;
         margin-left:5%; 
     }
 }
@@ -43,7 +40,6 @@
         width:250px;
         margin-left:8%;
         font-size:30px;
-        padding-top:18%;
     }
 }
 
