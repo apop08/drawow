@@ -1,40 +1,21 @@
 .alertmodal{
     width:300px;
-    height:150px;
+    height:auto;
     z-index:3;
     background:#5200ff;
     color:white;
     margin-left:40%;
     margin-top: 10%;
     font-size:50px;
-    padding-top:4%;
+    padding-top:0%;
     border-radius:5px;
-}
-
-/* Alex's */
-@media (max-width: 1920px) and (max-height: 937px)   {    
-    .alertmodal{
-
-        padding-top:2%;
-    
-    }
-}
-
-/* Evgenia's */
-@media (max-width: 1440px) and (max-height: 719px)   {
-    .alertmodal{
-        padding-top:3%;
-     
-    }
 }
 
 /* for ipad pro */
 @media only screen and (max-width: 1024px) {
     .alertmodal{
-      
         margin-left:35%;
-        margin-top: 15%;
-        
+        margin-top: 15%;    
     }
 }
 
@@ -48,8 +29,7 @@
 /* iphone 6/7/8 plus */
 @media only screen and (max-width: 414px) {
     .alertmodal{
-      padding-top:15%;
-      font-size:35px;
+        font-size:35px;
         margin-left:5%; 
     }
 }
@@ -60,7 +40,6 @@
         width:250px;
         margin-left:8%;
         font-size:30px;
-        padding-top:18%;
     }
 }
 
