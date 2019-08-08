@@ -76,18 +76,22 @@ body{
 /* Alex's */
 @media (max-width: 1920px) and (max-height: 937px)   {
     .navPage{
-        margin-top:5%;
-        height:840px;
+        margin-top:0%;
+        height:890px;
+    }
+    .App{
+        margin-top:12%;
+        margin-left:5%;
     }
 }
 
 /* Evgenia's */
 @media (max-width: 1440px) and (max-height: 719px)   {
     .navPage{   
-        height:650px;
+        height:680px;
     }
     .App{
-        margin-top:8%;
+        margin-top:9%;
     }
 }
 
