@@ -18,7 +18,7 @@ const app = express()
 const PORT = process.env.PORT || 3001
 var server = require('http').Server(app);
 const io = require('socket.io')(server);
-const GameObj = require('./game/gameobj');
+const Lobby = require('./game/lobby');
 
 
 // ===== Middleware ====
@@ -68,14 +68,19 @@ app.use(passport.session()) // will call the deserializeUser
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path')
 	console.log('YOU ARE IN THE PRODUCTION ENV')
+	app.use(express.static(path.join(__dirname, '../client/build')))
 	app.use('/static', express.static(path.join(__dirname, '../client/build/static')))
+	
 	app.get('/', (req, res) => {
 		res.sendFile(path.join(__dirname, '../client/build/'))
 	})
+	
 }
 
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
+
+app.use('/api', require('./user/index')) ;
 
 // ====== Error handler ====
 app.use(function(err, req, res, next) {
@@ -85,9 +90,10 @@ app.use(function(err, req, res, next) {
 })
 
 
+
 // ==== Starting Server =====
 server.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
-const game = new GameObj(io);
+lobby = new Lobby(io);
 //accept connected users socket requests

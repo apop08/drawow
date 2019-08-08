@@ -48,18 +48,20 @@ class LoginForm extends Component {
 			return (
 				<div className="LoginForm">
 					<form>
-						<div>
+						<div id = "getUser">
 							<label htmlFor="username">Username: </label>
 							<input
+								className ="input"
 								type="text"
 								name="username"
 								value={this.state.username}
 								onChange={this.handleChange}
 							/>
 						</div>
-						<div>
+						<div id ="password">
 							<label htmlFor="password">Password: </label>
 							<input
+								className ="input"
 								type="password"
 								name="password"
 								value={this.state.password}
@@ -67,7 +69,7 @@ class LoginForm extends Component {
 							/>
 						</div>
 					
-						<button id ="login_button" onClick={this.handleSubmit}>Login</button>
+						<button className ="btn btn-secondary" id ="login_button" onClick={this.handleSubmit}>Login</button>
 					</form>
 				</div>
 

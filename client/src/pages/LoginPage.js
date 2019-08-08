@@ -32,12 +32,13 @@ class LoginPage extends Component {
 
     // attach login form when login button is clicked
     handleLoginPress() {
+        // console.log("why")
         this.setState({ formToPresent: <Login _login={this.props._login} loggedIn = {this.props.loggedIn}/> });
     }
 
     // attach signup form when signup button is clicked
     handleSignUpPress() {
-        this.setState({ formToPresent: <Signup/> });
+        this.setState({ formToPresent: <Signup _login={this.props._login} /> });
     }
     render() {
         return (
@@ -50,7 +51,7 @@ class LoginPage extends Component {
 
                         <AwesomeButton style={{"--button-primary-color": "#ff5e86", "--button-primary-color-dark": "#ff5e86", "--button-primary-color-hover": "#ff5e86", "--button-primary-color-active":"#ff5e86"}} className='custom-button' type="primary" onPress={(e) => this.handleSignUpPress(e)}>Sign Up</AwesomeButton>
 
-                        {this.state.width >= 712 && this.state.formToPresent }
+                        {this.state.width >= 320 && this.state.formToPresent }
                     </div>
                 </div>
             </Container>

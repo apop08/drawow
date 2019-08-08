@@ -2,10 +2,24 @@
     margin-right: 0;
     background: #b2757e;
     color: white;
+    border:none;
+    margin-top:1%;
+    width:280px;
 }
 label{
     display: inline-block;
     margin-bottom: .5rem;
     color: white;
     margin-right: 5px;
+    font-size:15px;
+}
+
+/* iphone X */
+@media (max-width: 375px) and (max-height: 812px)  {
+    .input{
+        width:100px;
+    }
+    #login_button{
+        width:230px;
+    }
 }

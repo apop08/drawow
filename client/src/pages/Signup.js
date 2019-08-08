@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import './Signup.css'
 
 class Signup extends Component {
-    constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			username: '',
 			password: '',
 			confirmPassword: '',
 			redirectTo: null
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
+		}
+		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
 
@@ -23,8 +24,13 @@ class Signup extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault()
-		
+
 		// TODO - validate!
+var reg = /^[a-zA-Z0-9]{6,20}$/;
+
+console.log(this.state.username.match(reg));
+
+if (this.state.username.match(reg) && this.state.password.match(reg)) {
 		axios
 			.post('/auth/signup', {
 				username: this.state.username,
@@ -34,9 +40,9 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.error) {
 					console.log('youre good')
-					this.setState({
-						redirectTo: '/nav'
-					})
+					this.props._login(this.state.username, this.state.password, this);
+					
+					
 				} else {
 					alert("Already signed up. please login")
 					console.log('duplicate')
@@ -45,43 +51,57 @@ class Signup extends Component {
 					})
 				}
 			})
+		}
 	}
-
+	success(){
+		console.log("we did it");
+		this.setState({ redirectTo: '/nav' })
+	}
 	render() {
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
-			
+
 			return (
-			
-					<div className="SignupForm">
+
+				<div className="SignupForm">
+					<div id="getUser">
 						<label htmlFor="username">Username: </label>
 						<input
+							className="signupinput"
 							type="text"
 							name="username"
 							value={this.state.username}
 							onChange={this.handleChange}
 						/>
+					</div>
+					<div id="password">
 						<label htmlFor="password">Password: </label>
 						<input
+							className="signupinput"
 							type="password"
 							name="password"
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
+					</div>
+					<div id="confirm">
 						<label htmlFor="confirmPassword">Confirm Password: </label>
 						<input
+							className="signupinput"
 							type="password"
 							name="confirmPassword"
 							value={this.state.confirmPassword}
 							onChange={this.handleChange}
 						/>
-						<button onClick={this.handleSubmit}>Sign up</button>
 					</div>
-				
+
+					<button className="btn btn-secondary signup" onClick={this.handleSubmit.bind(this)}>Sign up</button>
+				</div>
+
 			)
 		}
-    }
+	}
 }
 
-    export default Signup
+export default Signup

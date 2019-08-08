@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import Slider from "./components/Slider";
 import $ from "jquery"
 import { ChromePicker } from 'react-color';
+import './style.css'
+// import RandomWord from "../Game/components/GameInfo/RandomWord"
+import GuessBox from '../GuessBox';
+import { Z_ASCII } from "zlib";
+
 function getPosition(mouseEvent, sigCanvas) {
   var rect = sigCanvas.getBoundingClientRect();
   return {
@@ -36,12 +41,13 @@ function finishDrawing(mouseEvent, sigCanvas, context) {
 class Canvas extends Component {
   constructor(props) {
     super(props)
-    this.state = { color: "000000" };
+    this.state = { color: "000000", colorOption: true };
     this.canvas = false;
     this.ctx = false;
     this.x = this.state.color;
     //this.y = 2;
     this.color = this.color.bind(this);
+    this.openColor = this.openColor.bind(this);
     //let obj = this;
     //this.handleChange = this.handleChange.bind(this);
 
@@ -49,8 +55,12 @@ class Canvas extends Component {
 
   componentDidMount() {
     this.init();
-  };
 
+  };
+  clearCanvas() {
+    if(this.ctx)
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
   init() {
     this.canvas = this.refs.canvas;
     //console.log(this.canvas);
@@ -79,7 +89,7 @@ class Canvas extends Component {
         console.log("undo");
 
         this.restoreState(canvas, ctx, this.undo_list, this.redo_list, obj);
-        
+
       },
 
       redo: function (canvas, ctx, obj) {
@@ -109,22 +119,22 @@ class Canvas extends Component {
         }
       }
     }
-    if (this.props.drawer) {
-      let obj = this;
+    let obj = this;
 
 
 
 
-      $('#undo').click(function () {
-        obj.history.undo(obj.canvas, obj.ctx, obj.props.gameobj);
-      });
+    $('#undo').click(function () {
+      obj.history.undo(obj.canvas, obj.ctx, obj.props.gameobj);
+    });
 
-      $('#redo').click(function () {
-        obj.history.redo(obj.canvas, obj.ctx, obj.props.gameobj);
-        
-      });
+    $('#redo').click(function () {
+      obj.history.redo(obj.canvas, obj.ctx, obj.props.gameobj);
 
-      $("#canvas").mousedown(function (mouseEvent) {
+    });
+
+    $("#canvas").mousedown(function (mouseEvent) {
+      if (obj.props.state == 'playing' && obj.props.drawer) {
         var position = getPosition(mouseEvent, obj.canvas);
         obj.ctx.moveTo(position.X, position.Y);
         obj.ctx.beginPath();
@@ -135,19 +145,45 @@ class Canvas extends Component {
           drawLine(mouseEvent, obj.canvas, obj.ctx);
         }).mouseup(function (mouseEvent) {
           console.log("mouseup");
-          
+
           obj.props.gameobj.sendImage(obj.canvas);
           finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
         }).mouseout(function (mouseEvent) {
           console.log("mouseout");
-          
+
           obj.props.gameobj.sendImage(obj.canvas);
           finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
         });
-      });
-    }
-  }
+      }
+    });
 
+  }
+  setMouseEvents() {
+    const obj = this;
+    $("#canvas").mousedown(function (mouseEvent) {
+      if (obj.props.state == 'playing') {
+        var position = getPosition(mouseEvent, obj.canvas);
+        obj.ctx.moveTo(position.X, position.Y);
+        obj.ctx.beginPath();
+        obj.history.saveState(obj.canvas);
+
+        // attach event handlers
+        $(this).mousemove(function (mouseEvent) {
+          drawLine(mouseEvent, obj.canvas, obj.ctx);
+        }).mouseup(function (mouseEvent) {
+          console.log("mouseup");
+
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        }).mouseout(function (mouseEvent) {
+          console.log("mouseout");
+
+          obj.props.gameobj.sendImage(obj.canvas);
+          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+        });
+      }
+    });
+  }
   recPic(img) {
     //console.log(img);
     let pic = new Image();
@@ -174,24 +210,53 @@ class Canvas extends Component {
     this.ctx.strokeStyle = this.state.color;
 
   }
-  render() {
-    let drawingStuff = <div><canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas></div>;
-    if (this.props.drawer) {
-      drawingStuff = <div><div style={{ position: "absolute", top: "12%", left: "60%" }}>
-        Color: <ChromePicker color={this.state.color} onChangeComplete={this.handleChange} />
-      </div>
-        <canvas id="canvas" ref="canvas" width="400" height="400" style={{ position: "absolute", top: "10%", left: "10%", border: "2px solid" }}></canvas>
-        <div style={{ position: "absolute", top: "12%", left: "43%" }}>Choose Color</div>
-        <button style={{ position: "absolute", top: "22%", left: "43%", width: "15px", height: "15px", background: "white" }} id="white" onClick={this.color.bind(this, "white")}></button>
-        <button style={{ position: "absolute", top: "28%", left: "43%", width: "15px", height: "15px", background: "white" }} id="undo">Undo</button>
-        <button style={{ position: "absolute", top: "28%", left: "45%", width: "15px", height: "15px", background: "white" }} id="redo">Redo</button>
-        <Slider style={{ position: "absolute", top: "25%", left: "43%", width: "100px", height: "15px", background: "black" }} min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
-        </div>
+  openColor(e) {
+    e.preventDefault();
+    if (this.state.colorOption === true) {
+      this.setState({ colorOption: false });
+    } else {
+      this.setState({ colorOption: true });
     }
 
+
+  }
+  render() {
+    let drawingStuff = null;
+    let word = null;
+    const canvas = <canvas   id="canvas" ref="canvas" width="350" height="350" style={{ position: "absolute", top: "10%", left: "0", border: "2px solid" }}></canvas>;
+    let palette;
+    let extra;
+    if (this.state.colorOption) {
+      palette = <div id = "chromePicker" style={{ position: "absolute", top: "20%" }}>
+        <ChromePicker width = "280" color={this.state.color} onChangeComplete={this.handleChange} />
+      </div>
+    }
+    if (this.props.drawer) {
+      word = this.props.word;
+      extra = (<div>{palette}
+        <div id="palette">
+          <button className="btn btn-secondary" id="white" onClick={this.color.bind(this, "white")}><i className="fas fa-eraser"></i></button>
+          <button className="btn btn-secondary" id="undo"><i className="fas fa-undo"></i></button>
+          <button className="btn btn-secondary" id="redo"><i className="fas fa-redo"></i></button>
+          <button className="btn btn-secondary" id="color" onClick={this.openColor}><i className="fas fa-palette"></i></button>
+          <Slider min="1" max="15" value="1" step="1" fn={this.brush.bind(this)} />
+        </div></div>)
+    } else {
+
+      extra =
+        <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} guesser = {this.props.guesser} score={this.props.score} obj={this.props.gameobj}/></div>
+
+    }
+    drawingStuff = <div className="container">
+     {/* <div id = "drawer">drawer : {this.props.gameobj.state.playerDrawing}</div>  */}
+      <br></br>
+     <div id = "word">{word}</div> 
+      {canvas}
+      {extra}
+    </div>
     //let obj = this;
-    console.log(this.state)
-    return drawingStuff;
+    //console.log(this.state)
+    return drawingStuff
   }
 }
 
