@@ -97,13 +97,13 @@ body{
 
 /* Lucy's */
 @media (max-width: 1440px) and (max-height: 698px)   {
-    .navPage{
-        height:630px;
-        margin-left:5%;
-    }
-    .App{
-        margin-top:4%;
-    }
+        .navPage{
+            height:660px;
+            /* margin-left:5%; */
+        }
+    /* .App{
+        margin-top:8%;
+    } */
 }
 
 /* for ipad pro */
