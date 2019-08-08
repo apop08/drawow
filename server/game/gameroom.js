@@ -20,7 +20,7 @@ class GameRoom {
         this.removePlayerFromArray(player.playerId)
         this.Lobby.removePlayer(player);
     }
-    removePlayerFromArray(pid){
+    removePlayerFromArray(pid) {
         let playerToRemove = -1;
         for (let i in this.players) {
             if (this.players[i].playerId === pid) {
@@ -29,7 +29,7 @@ class GameRoom {
         }
         if (playerToRemove !== -1)
             this.players.splice(playerToRemove, 1);
-        if(this.players.length == 0){
+        if (this.players.length == 0) {
             this.Lobby.closeGame(this.gId);
         }
         this.dispatchGamePlayerList();
@@ -63,15 +63,17 @@ class GameRoom {
         this.Lobby.io.in(this.gId).emit('chat message', msg);
     }
     dispatchStart() {
-        this.startGame();
-        console.log(`${this.word}  ${this.drawer}`);
-        this.Lobby.io.in(this.gId).emit('start game', ({ drawer: this.drawer, word: this.word }));
-        setTimeout((obj) => {
-            obj.Lobby.io.in(obj.gId).emit('begin');
-            setTimeout((obj2) => {
-                obj2.dispatchPost();
-            }, 60500, obj)
-        }, 5500, this);
+        if (this.players.length > 1) {
+            this.startGame();
+            console.log(`${this.word}  ${this.drawer}`);
+            this.Lobby.io.in(this.gId).emit('start game', ({ drawer: this.drawer, word: this.word }));
+            setTimeout((obj) => {
+                obj.Lobby.io.in(obj.gId).emit('begin');
+                setTimeout((obj2) => {
+                    obj2.dispatchPost();
+                }, 60500, obj)
+            }, 5500, this);
+        }
     }
     dispatchPost() {
         this.Lobby.io.in(this.gId).emit('post game');
@@ -88,10 +90,10 @@ class GameRoom {
     }
     dispatchGamePlayerList() {
         console.log("sending player list");
-        
+
         const arr = this.players.map((e) => e.socket.user);
         console.log(this.players);
-        
+
         this.Lobby.io.in(this.gId).emit('game player list', arr);
     }
 }
