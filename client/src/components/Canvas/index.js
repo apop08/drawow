@@ -51,6 +51,7 @@ class Canvas extends Component {
     //let obj = this;
     //this.handleChange = this.handleChange.bind(this);
 
+
   }
 
   componentDidMount() {
@@ -58,10 +59,12 @@ class Canvas extends Component {
 
   };
   clearCanvas() {
-    if(this.ctx)
+    if (this.ctx)
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   init() {
+    let is_touch_device = 'ontouchstart' in document.documentElement;
+
     this.canvas = this.refs.canvas;
     //console.log(this.canvas);
     this.colorbar = this.refs.colorbar;
@@ -132,30 +135,93 @@ class Canvas extends Component {
       obj.history.redo(obj.canvas, obj.ctx, obj.props.gameobj);
 
     });
+    if (is_touch_device) {
+      let canvas = this.canvas;
+      let ctx = this.ctx;
+      // create a drawer which tracks touch movements
+      var drawer = {
+        isDrawing: false,
+        touchstart: function (coors) {
+          ctx.beginPath();
+          ctx.moveTo(coors.x, coors.y);
+          this.isDrawing = true;
+        },
+        touchmove: function (coors) {
+          if (this.isDrawing) {
+            ctx.lineTo(coors.x, coors.y);
+            ctx.stroke();
+          }
+        },
+        touchend: function (coors) {
+          if (this.isDrawing) {
+            this.touchmove(coors);
+            this.isDrawing = false;
+          }
+        }
+      };
 
-    $("#canvas").mousedown(function (mouseEvent) {
-      if (obj.props.state == 'playing' && obj.props.drawer) {
-        var position = getPosition(mouseEvent, obj.canvas);
-        obj.ctx.moveTo(position.X, position.Y);
-        obj.ctx.beginPath();
-        obj.history.saveState(obj.canvas);
+      // create a function to pass touch events and coordinates to drawer
+      function draw(event) {
 
-        // attach event handlers
-        $(this).mousemove(function (mouseEvent) {
-          drawLine(mouseEvent, obj.canvas, obj.ctx);
-        }).mouseup(function (mouseEvent) {
-          console.log("mouseup");
+        // get the touch coordinates.  Using the first touch in case of multi-touch
+        var coors = {
+          x: event.targetTouches[0].pageX,
+          y: event.targetTouches[0].pageY
+        };
 
-          obj.props.gameobj.sendImage(obj.canvas);
-          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-        }).mouseout(function (mouseEvent) {
-          console.log("mouseout");
+        // Now we need to get the offset of the canvas location
+        let obj = this.canvas;
 
-          obj.props.gameobj.sendImage(obj.canvas);
-          finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
-        });
+        if (obj.offsetParent) {
+          // Every time we find a new object, we add its offsetLeft and offsetTop to curleft and curtop.
+          do {
+            coors.x -= obj.offsetLeft;
+            coors.y -= obj.offsetTop;
+          }
+          // The while loop can be "while (obj = obj.offsetParent)" only, which does return null
+          // when null is passed back, but that creates a warning in some editors (i.e. VS2010).
+          while ((obj = obj.offsetParent) != null);
+        }
+
+        // pass the coordinates to the appropriate handler
+        drawer[event.type](coors);
       }
-    });
+
+      // attach the touchstart, touchmove, touchend event listeners.
+      this.canvas.addEventListener('touchstart', draw, false);
+      this.canvas.addEventListener('touchmove', draw, false);
+      this.canvas.addEventListener('touchend', draw, false);
+
+      // prevent elastic scrolling
+      this.canvas.addEventListener('touchmove', function (event) {
+        event.preventDefault();
+      }, false);
+    }
+    else {
+      $("#canvas").mousedown(function (mouseEvent) {
+        if (obj.props.state == 'playing' && obj.props.drawer) {
+          var position = getPosition(mouseEvent, obj.canvas);
+          obj.ctx.moveTo(position.X, position.Y);
+          obj.ctx.beginPath();
+          obj.history.saveState(obj.canvas);
+
+          // attach event handlers
+          $(this).mousemove(function (mouseEvent) {
+            drawLine(mouseEvent, obj.canvas, obj.ctx);
+          }).mouseup(function (mouseEvent) {
+            console.log("mouseup");
+
+            obj.props.gameobj.sendImage(obj.canvas);
+            finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+          }).mouseout(function (mouseEvent) {
+            console.log("mouseout");
+
+            obj.props.gameobj.sendImage(obj.canvas);
+            finishDrawing(mouseEvent, obj.canvas, obj.ctx, obj.history);
+          });
+        }
+      });
+    }
 
   }
   setMouseEvents() {
@@ -223,12 +289,12 @@ class Canvas extends Component {
   render() {
     let drawingStuff = null;
     let word = null;
-    const canvas = <canvas   id="canvas" ref="canvas" width="350" height="350" style={{ position: "absolute", top: "10%", left: "0", border: "2px solid" }}></canvas>;
+    const canvas = <canvas id="canvas" ref="canvas" width="350" height="350" style={{ position: "absolute", top: "10%", left: "0", border: "2px solid" }}></canvas>;
     let palette;
     let extra;
     if (this.state.colorOption) {
-      palette = <div id = "chromePicker" style={{ position: "absolute", top: "20%" }}>
-        <ChromePicker width = "280" color={this.state.color} onChangeComplete={this.handleChange} />
+      palette = <div id="chromePicker" style={{ position: "absolute", top: "20%" }}>
+        <ChromePicker width="280" color={this.state.color} onChangeComplete={this.handleChange} />
       </div>
     }
     if (this.props.drawer) {
@@ -244,13 +310,13 @@ class Canvas extends Component {
     } else {
 
       extra =
-        <div id = "guessBox">{this.props.guesser} : <GuessBox answer = {this.props.word} guesser = {this.props.guesser} score={this.props.score} obj={this.props.gameobj}/></div>
+        <div id="guessBox">{this.props.guesser} : <GuessBox answer={this.props.word} guesser={this.props.guesser} score={this.props.score} obj={this.props.gameobj} /></div>
 
     }
     drawingStuff = <div className="container">
-     {/* <div id = "drawer">drawer : {this.props.gameobj.state.playerDrawing}</div>  */}
+      {/* <div id = "drawer">drawer : {this.props.gameobj.state.playerDrawing}</div>  */}
       <br></br>
-     <div id = "word">{word}</div> 
+      <div id="word">{word}</div>
       {canvas}
       {extra}
     </div>
